@@ -218,10 +218,10 @@
     "order_id": "ord_rrcq5wmo5aho4zEK",
     "expected_match_status": "exception",
     "expected_settlement_ids": [
-      "set_rJyF0FzwXSp2sh1h",
-      "set_rgY4BnjnePHXmz1q"
+      "set_rgY4BnjnePHXmz1q",
+      "set_embvELIFCg7Cr8iy"
     ],
-    "expected_bank_utr": "8764019185488064",
+    "expected_bank_utr": "3222739389920457",
     "exception_code": "REFUND_SPLIT",
     "exception_detail": "Order spans 2 settlement batches due to cross-batch refund deduction.",
     "notes": "Partial refund - split across settlement batches"
@@ -231,7 +231,7 @@
     "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_tFT6jua6ZgoZjgNK",
-      "set_TaL6LlUNnobBedYh"
+      "set_Na3sPb5gFFlorUIj"
     ],
     "expected_bank_utr": "7731922760759889",
     "exception_code": "REFUND_SPLIT",
@@ -242,10 +242,10 @@
     "order_id": "ord_ohZLWumvMi5brH8l",
     "expected_match_status": "exception",
     "expected_settlement_ids": [
-      "set_hXCf2oeLBzT5vux9",
+      "set_ZxZYr1ol75jKh16f",
       "set_V4wg4sqjavfNXiFk"
     ],
-    "expected_bank_utr": "1928170744360234",
+    "expected_bank_utr": "4551358727174306",
     "exception_code": "REFUND_SPLIT",
     "exception_detail": "Order spans 2 settlement batches due to cross-batch refund deduction.",
     "notes": "Partial refund - split across settlement batches"
@@ -386,10 +386,10 @@
     "order_id": "ord_1jjrZHBUxmz5F0Pk",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_rJyF0FzwXSp2sh1h",
-      "set_kyGXwhQTxKnx2UKz"
+      "set_dS1etbXKykETNYkj",
+      "set_rJyF0FzwXSp2sh1h"
     ],
-    "expected_bank_utr": "8764019185488064",
+    "expected_bank_utr": "6645099990010898",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -398,10 +398,10 @@
     "order_id": "ord_KJvE6mcijq2n9U8T",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_ZolSi8pQVqkVXIGp",
+      "set_Kn5g1yPEHl7H4rVk",
       "set_TSQMGSpsZtpowhBi"
     ],
-    "expected_bank_utr": "5891268649864786",
+    "expected_bank_utr": "9838457202665686",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -410,10 +410,10 @@
     "order_id": "ord_ix3byoTdJDG3VsfK",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_uHgGkLEuchopnEIg",
-      "set_dXl1JugHwQ0tyEYK"
+      "set_dXl1JugHwQ0tyEYK",
+      "set_vlVzIbTfj7VNQanv"
     ],
-    "expected_bank_utr": "3971705984451436",
+    "expected_bank_utr": "9131670805685667",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -422,10 +422,10 @@
     "order_id": "ord_7lJFp4TopHrFinUH",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_dzpjnWC8GffdSJO1",
+      "set_R1Y2DlNQZDHPIFF2",
       "set_V7F9hKTGqzpLcAYZ"
     ],
-    "expected_bank_utr": "3404668212156495",
+    "expected_bank_utr": "2329615120485076",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -434,10 +434,10 @@
     "order_id": "ord_fhtgp2mlJLqm3sCW",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_hXCf2oeLBzT5vux9",
-      "set_V7F9hKTGqzpLcAYZ"
+      "set_V7F9hKTGqzpLcAYZ",
+      "set_hXCf2oeLBzT5vux9"
     ],
-    "expected_bank_utr": "1928170744360234",
+    "expected_bank_utr": "6562241976878494",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -446,10 +446,10 @@
     "order_id": "ord_g7yxIPn2iG00RvQ4",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_V3eq4cwW8ZJ5VcAF",
+      "set_Kn5g1yPEHl7H4rVk",
       "set_dXl1JugHwQ0tyEYK"
     ],
-    "expected_bank_utr": "9182851816125590",
+    "expected_bank_utr": "9838457202665686",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -458,10 +458,10 @@
     "order_id": "ord_4dzvdm4BNJ6lawOH",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_N7qnLF1p0arQ1wdU",
+      "set_C7Op2x2IWgEccBkA",
       "set_V4wg4sqjavfNXiFk"
     ],
-    "expected_bank_utr": "4223322280194425",
+    "expected_bank_utr": "7115238023621921",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."
@@ -470,10 +470,10 @@
     "order_id": "ord_8Egf9iYdn8PBwVtm",
     "expected_match_status": "matched",
     "expected_settlement_ids": [
-      "set_RYqCIfOec1havXA4",
-      "set_Sw3LIoAVNkuIt6tk"
+      "set_Sw3LIoAVNkuIt6tk",
+      "set_9ToTHsCDgzx1sCU2"
     ],
-    "expected_bank_utr": "4281644161019753",
+    "expected_bank_utr": "4772690326551327",
     "exception_code": null,
     "exception_detail": null,
     "notes": "Full refund - deducted in future batch. Matched but spans 2 batches (normal)."

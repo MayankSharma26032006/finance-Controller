@@ -1,0 +1,548 @@
+[
+  {
+    "settlement_id": "set_1E8lJ4dKfU21o9Is",
+    "expected_bank_utr": "7200283948232204",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 14420.72
+  },
+  {
+    "settlement_id": "set_72COYJjxWDkwwSC7",
+    "expected_bank_utr": "6349339650496273",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 20018.51
+  },
+  {
+    "settlement_id": "set_7jjnYa4zDhsdCrOd",
+    "expected_bank_utr": "4233944953006776",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 51616.94
+  },
+  {
+    "settlement_id": "set_7oqQnmBR7evr0ci5",
+    "expected_bank_utr": "9503100649340391",
+    "expected_bank_credit_status": "NEFT_FAILED",
+    "net_amount_expected": 62386.14
+  },
+  {
+    "settlement_id": "set_8RtNKz3DtYo65Esd",
+    "expected_bank_utr": "2772648839585585",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 222370.0
+  },
+  {
+    "settlement_id": "set_8Sb4BfgfjUQBK1mX",
+    "expected_bank_utr": "8519537749266329",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 18424.75
+  },
+  {
+    "settlement_id": "set_90xLAzrpKGhmCSgG",
+    "expected_bank_utr": "6307028672020095",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 63431.93
+  },
+  {
+    "settlement_id": "set_9Mtqu1WU2vABiXxu",
+    "expected_bank_utr": "6739190088991141",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 5521.54
+  },
+  {
+    "settlement_id": "set_9S0DOxz6KylRYLut",
+    "expected_bank_utr": "2332829302025691",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 23711.85
+  },
+  {
+    "settlement_id": "set_9ToTHsCDgzx1sCU2",
+    "expected_bank_utr": "4373615873662713",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 19474.16
+  },
+  {
+    "settlement_id": "set_9uzpCYjf5bgPTUtY",
+    "expected_bank_utr": "6464196234219262",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 44930.0
+  },
+  {
+    "settlement_id": "set_AV62afrvDhm479Um",
+    "expected_bank_utr": "2855359520561006",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 26755.84
+  },
+  {
+    "settlement_id": "set_Ad4zo2jTsrOoxgZi",
+    "expected_bank_utr": "3652944716198273",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 145536.88
+  },
+  {
+    "settlement_id": "set_C7Op2x2IWgEccBkA",
+    "expected_bank_utr": "7115238023621921",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 12762.69
+  },
+  {
+    "settlement_id": "set_DVir6Fj8l02GyFLF",
+    "expected_bank_utr": "0537092300716950",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 28494.04
+  },
+  {
+    "settlement_id": "set_F8QEvpUQjpjX9kbe",
+    "expected_bank_utr": "2070204262019712",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 64897.97
+  },
+  {
+    "settlement_id": "set_FR9ot51uE87jsrpt",
+    "expected_bank_utr": "0203042322775213",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 11609.75
+  },
+  {
+    "settlement_id": "set_GM715pqZVuJ4cIaq",
+    "expected_bank_utr": "6337014005278105",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 10776.71
+  },
+  {
+    "settlement_id": "set_GiD2aBqKAA6uhLY2",
+    "expected_bank_utr": "0505243838058269",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 5403.85
+  },
+  {
+    "settlement_id": "set_IKI2HSJNZIzVorQJ",
+    "expected_bank_utr": "8808799196234199",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 29568.91
+  },
+  {
+    "settlement_id": "set_Kn5g1yPEHl7H4rVk",
+    "expected_bank_utr": "9838457202665686",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 12765.85
+  },
+  {
+    "settlement_id": "set_KwvDbhazu51Ki32f",
+    "expected_bank_utr": "6337618518626713",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 4124.58
+  },
+  {
+    "settlement_id": "set_LLBqCKPN8Ref2vrG",
+    "expected_bank_utr": "7972699994981283",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 35729.41
+  },
+  {
+    "settlement_id": "set_N2ONPdEqpac5A1Id",
+    "expected_bank_utr": "9553024530123984",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 94497.05
+  },
+  {
+    "settlement_id": "set_N7qnLF1p0arQ1wdU",
+    "expected_bank_utr": "4223322280194425",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 36447.64
+  },
+  {
+    "settlement_id": "set_Na3sPb5gFFlorUIj",
+    "expected_bank_utr": "4203401535346607",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 131115.68
+  },
+  {
+    "settlement_id": "set_NvO7qBhqH6y5IHWi",
+    "expected_bank_utr": "1845235426874470",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 28724.06
+  },
+  {
+    "settlement_id": "set_PWlt3GGK46uPiLB1",
+    "expected_bank_utr": "2216265496330833",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 22843.68
+  },
+  {
+    "settlement_id": "set_QRnxRADI8cShveSb",
+    "expected_bank_utr": "7416365604500635",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 35025.87
+  },
+  {
+    "settlement_id": "set_R1Y2DlNQZDHPIFF2",
+    "expected_bank_utr": "2329615120485076",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 114915.85
+  },
+  {
+    "settlement_id": "set_RTP6kuwRwviITZ8T",
+    "expected_bank_utr": "1003076205459671",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 88022.53
+  },
+  {
+    "settlement_id": "set_RYqCIfOec1havXA4",
+    "expected_bank_utr": "4281644161019753",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 120625.13
+  },
+  {
+    "settlement_id": "set_RbO22QgpoiJCUald",
+    "expected_bank_utr": "3988941321097202",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 3130.14
+  },
+  {
+    "settlement_id": "set_S90m4mijUY5ZaSUQ",
+    "expected_bank_utr": "4344149169993934",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 33125.28
+  },
+  {
+    "settlement_id": "set_Sw3LIoAVNkuIt6tk",
+    "expected_bank_utr": "4772690326551327",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 14275.88
+  },
+  {
+    "settlement_id": "set_T6lPkr1aJDDI2syr",
+    "expected_bank_utr": "8182238794026208",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 45432.95
+  },
+  {
+    "settlement_id": "set_TNMkXQaLcE2jWjXT",
+    "expected_bank_utr": "0597025512827636",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 89266.79
+  },
+  {
+    "settlement_id": "set_TSQMGSpsZtpowhBi",
+    "expected_bank_utr": "5294690217741743",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 64224.64
+  },
+  {
+    "settlement_id": "set_TaL6LlUNnobBedYh",
+    "expected_bank_utr": "5593965213835071",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 23842.7
+  },
+  {
+    "settlement_id": "set_U2nSzCXHLiAeNQeM",
+    "expected_bank_utr": "2814447189395309",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 117009.06
+  },
+  {
+    "settlement_id": "set_U3Ca3YQE4YX1rr36",
+    "expected_bank_utr": "4078516994970890",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 27284.72
+  },
+  {
+    "settlement_id": "set_Ug9C5dqtELc0MalO",
+    "expected_bank_utr": "9136817203136955",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 57017.48
+  },
+  {
+    "settlement_id": "set_UqdA68EjNEriLrYN",
+    "expected_bank_utr": "1388503423622033",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 19548.18
+  },
+  {
+    "settlement_id": "set_V3eq4cwW8ZJ5VcAF",
+    "expected_bank_utr": "9182851816125590",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 52825.05
+  },
+  {
+    "settlement_id": "set_V4wg4sqjavfNXiFk",
+    "expected_bank_utr": "5977216880053789",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 168754.33
+  },
+  {
+    "settlement_id": "set_V7F9hKTGqzpLcAYZ",
+    "expected_bank_utr": "6562241976878494",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 53562.93
+  },
+  {
+    "settlement_id": "set_VOB4zqVFFkpSRoYt",
+    "expected_bank_utr": "8849979572857595",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 296392.39
+  },
+  {
+    "settlement_id": "set_WIEcUT7ccrpISlwF",
+    "expected_bank_utr": "8241996264222975",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 53837.56
+  },
+  {
+    "settlement_id": "set_WJ15kNwFzTfuucuv",
+    "expected_bank_utr": "5326011939103829",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 19402.32
+  },
+  {
+    "settlement_id": "set_WiMaMiXsjZYcAOai",
+    "expected_bank_utr": "9178791505962571",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 155832.46
+  },
+  {
+    "settlement_id": "set_XM3vfZ2ZYA9Dsk5b",
+    "expected_bank_utr": "7569198321029161",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 30473.2
+  },
+  {
+    "settlement_id": "set_XSbG5A1ROwkHLHyD",
+    "expected_bank_utr": "4893326145430796",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 213242.84
+  },
+  {
+    "settlement_id": "set_Z6cNI0dLKiUswAFg",
+    "expected_bank_utr": "8224731261685071",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 65044.04
+  },
+  {
+    "settlement_id": "set_ZolSi8pQVqkVXIGp",
+    "expected_bank_utr": "5891268649864786",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 6551.03
+  },
+  {
+    "settlement_id": "set_ZxZYr1ol75jKh16f",
+    "expected_bank_utr": "4551358727174306",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 27477.7
+  },
+  {
+    "settlement_id": "set_aSwAEJfJ3sJp0tN3",
+    "expected_bank_utr": "7918750677610659",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 34623.0
+  },
+  {
+    "settlement_id": "set_aU7vt8QXC2o38ZNn",
+    "expected_bank_utr": "6019153057347243",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 222941.34
+  },
+  {
+    "settlement_id": "set_bUE7JjtAC63UCmTB",
+    "expected_bank_utr": "9131117861902547",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 19793.64
+  },
+  {
+    "settlement_id": "set_dS1etbXKykETNYkj",
+    "expected_bank_utr": "6645099990010898",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 109019.89
+  },
+  {
+    "settlement_id": "set_dXl1JugHwQ0tyEYK",
+    "expected_bank_utr": "9131670805685667",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 8891.44
+  },
+  {
+    "settlement_id": "set_dhV066q3rTHFvUL7",
+    "expected_bank_utr": "9523120219150576",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 237084.68
+  },
+  {
+    "settlement_id": "set_dzpjnWC8GffdSJO1",
+    "expected_bank_utr": "3404668212156495",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 16810.02
+  },
+  {
+    "settlement_id": "set_e2gYgFtnNfu0HFP9",
+    "expected_bank_utr": "7814590099217790",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 17953.35
+  },
+  {
+    "settlement_id": "set_eT16voUAoNXYDwpO",
+    "expected_bank_utr": "7561547055491215",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 50899.16
+  },
+  {
+    "settlement_id": "set_embvELIFCg7Cr8iy",
+    "expected_bank_utr": "9017074039251999",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 15226.89
+  },
+  {
+    "settlement_id": "set_fEDr92sW4GiqXzCa",
+    "expected_bank_utr": "8209225709001635",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 33469.17
+  },
+  {
+    "settlement_id": "set_gZQhCaMh9935fh7T",
+    "expected_bank_utr": "3646280550774065",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 76454.82
+  },
+  {
+    "settlement_id": "set_hPgvA2jLpCdphOkd",
+    "expected_bank_utr": "1856302750003056",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 48539.52
+  },
+  {
+    "settlement_id": "set_hXCf2oeLBzT5vux9",
+    "expected_bank_utr": "1928170744360234",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 33113.41
+  },
+  {
+    "settlement_id": "set_iptJy9nLtVDL39UX",
+    "expected_bank_utr": "0637311804674130",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 202434.54
+  },
+  {
+    "settlement_id": "set_kyGXwhQTxKnx2UKz",
+    "expected_bank_utr": "0262706648900824",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 23240.17
+  },
+  {
+    "settlement_id": "set_nMXqCQS6Pl6YRVa3",
+    "expected_bank_utr": "6524062215599672",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 67018.56
+  },
+  {
+    "settlement_id": "set_q0QjJXw0nDdmGnIu",
+    "expected_bank_utr": "8709872649632251",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 17523.94
+  },
+  {
+    "settlement_id": "set_qDrKBsWOy5rFKAFI",
+    "expected_bank_utr": "7595002601515325",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 31733.97
+  },
+  {
+    "settlement_id": "set_qfljMPmrmh880aW7",
+    "expected_bank_utr": "7315663979255116",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 16399.19
+  },
+  {
+    "settlement_id": "set_qzwNVIaFVCY4icfY",
+    "expected_bank_utr": "7182360107126158",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 59528.04
+  },
+  {
+    "settlement_id": "set_rJyF0FzwXSp2sh1h",
+    "expected_bank_utr": "8764019185488064",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 123515.11
+  },
+  {
+    "settlement_id": "set_rgY4BnjnePHXmz1q",
+    "expected_bank_utr": "3222739389920457",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 7109.51
+  },
+  {
+    "settlement_id": "set_slmG6Lz28LHIQKCQ",
+    "expected_bank_utr": "2319057720441007",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 27892.04
+  },
+  {
+    "settlement_id": "set_tFT6jua6ZgoZjgNK",
+    "expected_bank_utr": "7731922760759889",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 47852.08
+  },
+  {
+    "settlement_id": "set_tv5v6MltHMUOhfQ6",
+    "expected_bank_utr": "0821398654622021",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 194661.03
+  },
+  {
+    "settlement_id": "set_uHgGkLEuchopnEIg",
+    "expected_bank_utr": "3971705984451436",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 22912.94
+  },
+  {
+    "settlement_id": "set_urYbcsJZzsp7CXUQ",
+    "expected_bank_utr": "8085133138004983",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 200646.34
+  },
+  {
+    "settlement_id": "set_v0UAJVAe9TIYRcPk",
+    "expected_bank_utr": "2923345110090605",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 1367.44
+  },
+  {
+    "settlement_id": "set_vZk1knB8WSivLbh0",
+    "expected_bank_utr": "4679087018726001",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 43289.77
+  },
+  {
+    "settlement_id": "set_vlVzIbTfj7VNQanv",
+    "expected_bank_utr": "4299074729669417",
+    "expected_bank_credit_status": "no_credit_expected",
+    "net_amount_expected": -446.18
+  },
+  {
+    "settlement_id": "set_wO3ZIjM7kAclBFPU",
+    "expected_bank_utr": "9007397130722113",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 85720.74
+  },
+  {
+    "settlement_id": "set_x4faNXDAgTQfOyiF",
+    "expected_bank_utr": "9190749921640069",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 149509.95
+  },
+  {
+    "settlement_id": "set_x79wu0ywvCSMfgEe",
+    "expected_bank_utr": "8775833364770413",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 244401.4
+  },
+  {
+    "settlement_id": "set_yKBQ4xChc6xyx4Bc",
+    "expected_bank_utr": "2224050764871775",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 34161.81
+  },
+  {
+    "settlement_id": "set_zZmz6LQXnO2bwdJf",
+    "expected_bank_utr": "1225909566844823",
+    "expected_bank_credit_status": "credited",
+    "net_amount_expected": 76121.33
+  }
+]

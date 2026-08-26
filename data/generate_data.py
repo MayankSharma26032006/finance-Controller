@@ -101,6 +101,19 @@ def calc_fee(gross, fee_pct):
     gst = round(fee * 0.18, 2)
     return fee, gst
 
+def calc_fee_with_drift(gross, fee_pct):
+    """Compute fee/gst as usual but derive net from unrounded intermediates.
+    This creates a small gap between sum(net) and sum(gross)-sum(fee)-sum(gst)
+    at the batch level, because the per-row rounding of net uses different
+    intermediate precision than the batch-level check."""
+    fee_exact = gross * fee_pct
+    gst_exact = fee_exact * 0.18
+    net_exact = gross - fee_exact - gst_exact
+    fee = round(fee_exact, 2)
+    gst = round(gst_exact, 2)
+    net = round(net_exact, 2)  # net uses unrounded intermediates
+    return fee, gst, net
+
 def pick_payment_method():
     methods = ["upi"] * 45 + ["visa_mc_domestic"] * 25 + ["amex_diners"] * 10 + ["international_card"] * 5 + ["upi"] * 15
     return rng.choice(methods)
@@ -322,9 +335,26 @@ FEE_RATES = {
     "international_card": 0.03,
 }
 
+# Mark ~35% of batches as "drift batches" for realistic rounding variance.
+# Only ~40-50% of these will actually produce non-zero drift (depends on
+# whether gross * fee_pct has fractional paise), so effective rate is ~15-20%.
+drift_batch_ids = set()
+for batch in settlements:
+    if rng.random() < 0.35:
+        drift_batch_ids.add(batch["settlement_id"])
+print(f"  Drift batches (unrounded-net rounding): {len(drift_batch_ids)}/{len(settlements)}")
+
 settlement_rows = []
 for batch in settlements:
-    for order in batch["orders"]:
+    is_drift = batch["settlement_id"] in drift_batch_ids
+    # For drift batches, pick 2-3 random rows to use unrounded-net calculation
+    drift_row_count = 0
+    if is_drift:
+        n = len(batch["orders"])
+        drift_row_count = rng.randint(2, min(3, n)) if n >= 2 else 0
+    drift_rows_picked = set(rng.sample(range(len(batch["orders"])), drift_row_count)) if drift_row_count > 0 else set()
+
+    for idx, order in enumerate(batch["orders"]):
         # For USD orders, gross_amount in settlement is INR-converted
         if order["currency"] == "USD":
             gross_inr = round(order["gross_amount"] * FX_RATE, 2)
@@ -332,9 +362,12 @@ for batch in settlements:
             gross_inr = order["gross_amount"]
 
         fee_rate = FEE_RATES[order["payment_method"]]
-        fee, gst = calc_fee(gross_inr, fee_rate)
+        if idx in drift_rows_picked:
+            fee, gst, net = calc_fee_with_drift(gross_inr, fee_rate)
+        else:
+            fee, gst = calc_fee(gross_inr, fee_rate)
+            net = round(gross_inr - fee - gst, 2)
         refund_ded = 0.0
-        net = round(gross_inr - fee - gst + refund_ded, 2)
 
         settlement_rows.append({
             "settlement_id": batch["settlement_id"],

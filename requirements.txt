@@ -1,0 +1,14 @@
+# Finance Controller — Python Dependencies
+#
+# Stack is locked -- see project conventions. Do not add dependencies
+# without explicit approval.
+#
+# Currently confirmed: Python 3.8+ stdlib + openai SDK (Phase 3).
+# All imports across the codebase verified: csv, json, os, sys, random,
+# datetime, collections -- all stdlib.
+#
+# Approved additions:
+#   - openai (official SDK) -- Phase 3 LLM integration (Groq-compatible)
+#   - streamlit -- Phase 8 demo/UI layer
+#
+# See README.md for the full locked stack definition.

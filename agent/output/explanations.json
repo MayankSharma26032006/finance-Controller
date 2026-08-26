@@ -1,0 +1,300 @@
+[
+  {
+    "case_id": "ord_0EE1Z6jjCFojTQpT",
+    "case_type": "order",
+    "status": "matched_with_note",
+    "exception_code": "CURRENCY_MISMATCH",
+    "explanation": "The order ord_0EE1Z6jjCFojTQpT was recorded in the ledger with a gross amount of 424.24 USD, which was converted at the fixed rate (1 USD = 83 INR) to 35,211.92 INR for settlement. The settlement batch set_Ug9C5dqtELc0MalO shows a fee of 1,056.36 INR, GST of 190.14 INR, and a net credit of 33,965.42 INR, reflected in the bank transfer with UTR 9136817203136955. The case is flagged with a CURRENCY_MISMATCH exception because the ledger amount is stored in USD while the settlement and bank records are in INR.",
+    "suggested_action": "No action required - amounts match after applying FX rate of 83.00 INR/USD.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "83",
+        "35211.92",
+        "1056.36",
+        "190.14",
+        "33965.42",
+        "424.24"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_41EOpNI6jdwyLGaa",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_41EOpNI6jdwyLGaa, created on 2025\u201108\u201111 19:03:43, shows a gross amount of \u20b94,445.40 with a payment status of authorized. Because the payment was authorized but never captured, no settlement row or bank credit appears for this order. Consequently, the amount will remain pending and will be settled in the next settlement cycle according to Razorpay\u2019s settlement rules.",
+    "suggested_action": "Check if authorization will be captured in future cycle. If stale (>7 days), consider voiding.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "4445.40"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_EnDJiS9HvlxNgbb1",
+    "case_type": "order",
+    "status": "needs_review",
+    "exception_code": "DUPLICATE_ORDER",
+    "explanation": "The order ord_EnDJiS9HvlxNgbb1 shows two line items created on 2025\u201108\u201110 at 11:39:03.624 for the same customer cust_7GvmQFOiJZ and identical quantity (5), but with different gross amounts of \u20b91,130.56 and \u20b91,202.36. No settlement rows are linked to this order_id, and the system flagged it as a DUPLICATE_ORDER exception, indicating that a human must review why two seemingly identical entries have differing amounts.",
+    "suggested_action": "Escalate to payment ops to verify correct gross_amount against source system.",
+    "confidence_note": "Cannot determine which amount is correct. Requires manual verification.",
+    "hallucination_check": {
+      "stated_figures": [
+        "1130.56",
+        "1202.36"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_GohAFuOZd13KAY5w",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_GohAFuOZd13KAY5w was created on 2025\u201108\u201108 at 13:46:50.569 with a gross amount of \u20b9968.62 and its payment status is \u201cauthorized.\u201d Because the payment has not been captured, there are no settlement rows or bank credits linked to this order yet. As noted, the authorized payment will be captured and settled in the next settlement cycle.",
+    "suggested_action": "Check if authorization will be captured in future cycle. If stale (>7 days), consider voiding.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "968.62"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_H5ESm2WLEov911Xc",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_H5ESm2WLEov911Xc, created on 2025\u201108\u201117 at 12:23:22 IST, shows a gross amount of \u20b9459.43 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+    "suggested_action": "No action required - payment failed. Order should be voided or retried.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "459.43"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_OOjEty8hHo6Kgl75",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_OOjEty8hHo6Kgl75, created on 2025\u201108\u201116 at 17:12:45 IST, shows a gross amount of \u20b95,588.74 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+    "suggested_action": "No action required - payment failed. Order should be voided or retried.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "5588.74"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_Pi6qH2uvVSJAss8v",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_Pi6qH2uvVSJAss8v, created on 2025\u201108\u201112 at 20:55:40 IST, shows a gross amount of \u20b944,108.29 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+    "suggested_action": "No action required - payment failed. Order should be voided or retried.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "44108.29"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_bhS8ygpi5G2Q3uJR",
+    "case_type": "order",
+    "status": "matched_with_note",
+    "exception_code": "CURRENCY_MISMATCH",
+    "explanation": "The order ord_bhS8ygpi5G2Q3uJR was recorded in the ledger as a gross 341.91 USD payment using an international card, which converts to 28,378.53 INR at the fixed rate of 1 USD = 83 INR. In the settlement batch set_IKI2HSJNZIzVorQJ, Razorpay applied the international fee of 851.36 INR plus 18 % GST ( 153.24 INR), resulting in a net credit of 27,373.93 INR that was transferred under bank UTR 8808799196234199. Because the ledger stores the amount in USD while the settlement and bank records are in INR, the case is flagged with a CURRENCY_MISMATCH exception.",
+    "suggested_action": "No action required - amounts match after applying FX rate of 83.00 INR/USD.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "28378.53",
+        "83",
+        "851.36",
+        "153.24",
+        "27373.93",
+        "341.91"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_nBRNtp3FaBNfBMoh",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_nBRNtp3FaBNfBMoh, created on 2025\u201108\u201107 at 13:17:51.890, shows a gross amount of \u20b912,297.32 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+    "suggested_action": "No action required - payment failed. Order should be voided or retried.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "12297.32"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_ohZLWumvMi5brH8l",
+    "case_type": "order",
+    "status": "matched_with_note",
+    "exception_code": "REFUND_SPLIT",
+    "explanation": "The order ord_ohZLWumvMi5brH8l (created 2025\u201108\u201107 16:19:35) was settled in two batches: batch set_V4wg4sqjavfNXiFk credited the full gross \u20b914,802.45, deducted a fee of \u20b9296.05 and GST of \u20b953.29, resulting in a net \u20b914,453.11; batch set_ZxZYr1ol75jKh16f recorded a partial refund of \u20b92,558.65 (net \u2011\u20b92,558.65). After accounting for the refund, the order\u2019s residual net amount is \u20b911,894.46. The refund was split into a separate settlement batch (exception REFUND_SPLIT) and the NEFT credit is identified by UTR 5977216880053789.",
+    "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "14802.45",
+        "296.05",
+        "53.29",
+        "14453.11",
+        "2558.65",
+        "11894.46"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_rrcq5wmo5aho4zEK",
+    "case_type": "order",
+    "status": "matched_with_note",
+    "exception_code": "REFUND_SPLIT",
+    "explanation": "The order ord_rrcq5wmo5aho4zEK (\u20b9273.06, UPI, created 2025\u201108\u201108 15:52:36) was settled in two batches: the first settlement set_rgY4BnjnePHXmz1q credited the full gross amount after deducting a \u20b95.46 fee and \u20b90.98 GST, resulting in a net of \u20b9266.62, while the second settlement set_embvELIFCg7Cr8iy recorded a partial refund of \u20b9103.36 (shown as a \u2013\u20b9103.36 net). This split\u2011refund caused the order\u2019s residual net balance to be \u20b9163.26, and the NEFT credit is identified by UTR 3222739389920457. The \u201cREFUND_SPLIT\u201d exception indicates the refund was processed in a separate batch from the original payment.",
+    "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "273.06",
+        "5.46",
+        "0.98",
+        "266.62",
+        "103.36",
+        "163.26"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_u6qLtRkvl8zSWSrH",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_u6qLtRkvl8zSWSrH was captured for a gross amount of \u20b9252.27 on 2025\u201108\u201104 22:35:18, but the settlement report contains no row for this order_id and no NEFT credit (bank UTR) is linked to it. Because settlements are processed in batches (T+2 working days) and a missing entry means the order has not yet been included in any settlement batch, the captured payment is currently absent from the settlement and bank records.",
+    "suggested_action": "Escalate to payment ops - data integrity issue. Captured order missing from settlement.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "252.27"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_wOBTQN62ToY4cQPi",
+    "case_type": "order",
+    "status": "hard_exception",
+    "exception_code": "UNMATCHED_ORDER",
+    "explanation": "The order ord_wOBTQN62ToY4cQPi, created on 2025\u201108\u201108 at 17:27:57.597, shows a gross amount of \u20b94,984.49 but its payment_status is failed. Because the transaction did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this order.",
+    "suggested_action": "No action required - payment failed. Order should be voided or retried.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "4984.49"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "ord_zj69pQCudo4LkneF",
+    "case_type": "order",
+    "status": "matched_with_note",
+    "exception_code": "REFUND_SPLIT",
+    "explanation": "The order ord_zj69pQCudo4LkneF, created on 2025\u201108\u201109, was settled in two batches. In the first batch (settlement_id set_tFT6jua6ZgoZjgNK) the full gross of 43,872.45 INR incurred a fee of 877.45 INR and GST of 157.94 INR, resulting in a net credit of 42,837.06 INR (UTR 7731922760759889). A partial refund of 9,039.72 INR was processed in a separate batch (settlement_id set_Na3sPb5gFFlorUIj), giving a negative net of \u20119,039.72 INR, leaving the order\u2019s residual net amount at 33,797.34 INR, which is flagged as a REFUND_SPLIT exception.",
+    "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "43872.45",
+        "877.45",
+        "157.94",
+        "42837.06",
+        "9039.72",
+        "33797.34"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "set_1E8lJ4dKfU21o9Is",
+    "case_type": "settlement",
+    "status": "needs_review",
+    "exception_code": "GHOST_TRANSACTION",
+    "explanation": "The settlement batch set_1E8lJ4dKfU21o9Is was credited with a net amount of \u20b914,420.72 (UTR 7200283948232204), matching the bank credit. Six orders are listed in the batch, but ord_HPM8Q5WQdYvGi5l7 does not appear in the order ledger, creating a GHOST_TRANSACTION exception while the other five orders (ord_B2isTsjSspJxHl1P, ord_Is9f9lgvbISm6Csq, ord_KXth3FkmdB6K3JGM, ord_BNaQNpUcpvjV21Jv, ord_w3zeQSzElIc0Jwfe) are legitimate. This mismatch explains why the batch cannot be fully reconciled despite the correct total amount.",
+    "suggested_action": "Investigate ghost order_id in settlement report. Could be data entry error or order not yet in ledger.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "14420.72"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "set_7oqQnmBR7evr0ci5",
+    "case_type": "settlement",
+    "status": "hard_exception",
+    "exception_code": "NEFT_FAILED",
+    "explanation": "The settlement batch set_7oqQnmBR7evr0ci5, covering five orders, was supposed to credit \u20b962,386.14 via NEFT on the expected settlement date, with the bank UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the exception NEFT_FAILED, meaning the credit was never received despite the positive net amount.",
+    "suggested_action": "Escalate to bank ops to trace NEFT credit for UTR 9503100649340391.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "62386.14"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  },
+  {
+    "case_id": "set_vlVzIbTfj7VNQanv",
+    "case_type": "settlement",
+    "status": "hard_exception",
+    "exception_code": "NO_CREDIT_EXPECTED",
+    "explanation": "The settlement batch set_vlVzIbTfj7VNQanv has a net amount of \u2011446.18 INR, which is negative because refund deductions exceeded the gross transaction value. Consequently, the expected bank credit is zero and the batch\u2019s UTR 4299074729669417 does not appear on the bank statement, matching the NO_CREDIT_EXPECTED status.",
+    "suggested_action": "No action required - negative net correctly produces no bank credit.",
+    "confidence_note": null,
+    "hallucination_check": {
+      "stated_figures": [
+        "446.18"
+      ],
+      "verified": true,
+      "mismatches": []
+    }
+  }
+]
