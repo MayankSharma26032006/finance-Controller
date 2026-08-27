@@ -40,18 +40,22 @@ def match_orders(ledger_by_id, settlement_by_id):
                     "payment_status": r["payment_status"],
                 })
             amounts = list(set(r["gross_amount"] for r in rows))
+            # CLAIM 1 FIX: Look up real settlement data even for duplicates
+            dup_setl_rows = settlement_by_id.get(oid, [])
+            dup_settlement_ids = list(set(r["settlement_id"] for r in dup_setl_rows)) if dup_setl_rows else []
+            dup_bank_utr = dup_setl_rows[0]["bank_utr"] if dup_setl_rows else None
             order_results[oid] = {
                 "order_id": oid,
                 "result_type": "order",
                 "match_status": "exception",
                 "exception_code": "DUPLICATE_ORDER",
-                "settlement_ids": [],
-                "bank_utr": None,
+                "settlement_ids": dup_settlement_ids,
+                "bank_utr": dup_bank_utr,
                 "refund_type": None,
                 "order_residual": None,
                 "expected_residual": None,
                 "confidence": "needs_review",
-                "detail": f"Order appears {order_id_counts[oid]} times in ledger with conflicting amounts: {amounts}",
+                "detail": f"Order appears {order_id_counts[oid]} times in ledger with conflicting amounts: {amounts}" + (f"; settlement rows found: {len(dup_setl_rows)} (settlement_ids={dup_settlement_ids})" if dup_setl_rows else "; no settlement rows found"),
                 "conflicting_ledger_rows": conflicting_rows,
                 "soft_flags": [],
             }
@@ -192,6 +196,14 @@ def match_orders(ledger_by_id, settlement_by_id):
             exception_code = "CURRENCY_MISMATCH"
             confidence = "matched_with_note"
             detail = f"USD order converted at {FX_RATE}: {order['gross_amount']} USD -> {ledger_gross:.2f} INR"
+
+        # CLAIM 3 FIX: UNRECORDED_REFUND - ledger claims refund but no settlement refund evidence
+        ledger_refund_status = order.get("refund_status", "none")
+        ledger_refund_amount = to_float(order.get("refund_amount", "0"))
+        if ledger_refund_status in ("partial", "full") and refund_type == "none" and ledger_refund_amount > 0:
+            exception_code = "UNRECORDED_REFUND"
+            confidence = "needs_review"
+            detail = f"Ledger claims {ledger_refund_status} refund of {ledger_refund_amount:.2f} but no refund_deduction row in settlement report"
 
         match_status = "exception" if exception_code else "matched"
         bank_utr = setl_rows[0]["bank_utr"] if setl_rows else None

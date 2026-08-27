@@ -259,8 +259,8 @@
   {
     "order_id": "ord_2ozm6RqNbOW8W3nD",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_Ug9C5dqtELc0MalO"
     ],
@@ -268,8 +268,8 @@
     "refund_type": "none",
     "order_residual": 363.96,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 134.57 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -626,8 +626,8 @@
   {
     "order_id": "ord_59uaGn2br4CxSXJg",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_8RtNKz3DtYo65Esd"
     ],
@@ -635,8 +635,8 @@
     "refund_type": "none",
     "order_residual": 37802.67,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 7455.12 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -997,8 +997,8 @@
     "match_status": "matched",
     "exception_code": null,
     "settlement_ids": [
-      "set_V7F9hKTGqzpLcAYZ",
-      "set_R1Y2DlNQZDHPIFF2"
+      "set_R1Y2DlNQZDHPIFF2",
+      "set_V7F9hKTGqzpLcAYZ"
     ],
     "bank_utr": "6562241976878494",
     "refund_type": "FULL_REFUND",
@@ -1030,8 +1030,8 @@
     "match_status": "matched",
     "exception_code": null,
     "settlement_ids": [
-      "set_9ToTHsCDgzx1sCU2",
-      "set_Sw3LIoAVNkuIt6tk"
+      "set_Sw3LIoAVNkuIt6tk",
+      "set_9ToTHsCDgzx1sCU2"
     ],
     "bank_utr": "4772690326551327",
     "refund_type": "FULL_REFUND",
@@ -1108,8 +1108,8 @@
   {
     "order_id": "ord_8ymnB5zQLrTVA1jY",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_dXl1JugHwQ0tyEYK"
     ],
@@ -1117,15 +1117,15 @@
     "refund_type": "none",
     "order_residual": 259.0,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 30.48 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
     "order_id": "ord_90aGsb3TJHmksXlS",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_KwvDbhazu51Ki32f"
     ],
@@ -1133,8 +1133,8 @@
     "refund_type": "none",
     "order_residual": 2196.99,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 651.85 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -1828,8 +1828,8 @@
   {
     "order_id": "ord_E69S7qcS90GXWSrB",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_uHgGkLEuchopnEIg"
     ],
@@ -1837,8 +1837,8 @@
     "refund_type": "none",
     "order_residual": 3623.48,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 697.18 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -1910,13 +1910,15 @@
     "result_type": "order",
     "match_status": "exception",
     "exception_code": "DUPLICATE_ORDER",
-    "settlement_ids": [],
-    "bank_utr": null,
+    "settlement_ids": [
+      "set_NvO7qBhqH6y5IHWi"
+    ],
+    "bank_utr": "1845235426874470",
     "refund_type": null,
     "order_residual": null,
     "expected_residual": null,
     "confidence": "needs_review",
-    "detail": "Order appears 2 times in ledger with conflicting amounts: ['1130.56', '1202.36']",
+    "detail": "Order appears 2 times in ledger with conflicting amounts: ['1202.36', '1130.56']; settlement rows found: 1 (settlement_ids=['set_NvO7qBhqH6y5IHWi'])",
     "conflicting_ledger_rows": [
       {
         "gross_amount": "1130.56",
@@ -2082,8 +2084,8 @@
   {
     "order_id": "ord_FYQHWuQXnXpdm6Ul",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_U2nSzCXHLiAeNQeM"
     ],
@@ -2091,8 +2093,8 @@
     "refund_type": "none",
     "order_residual": 3875.41,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 522.00 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -4043,8 +4045,8 @@
   {
     "order_id": "ord_UJ3A1IIPKoBAwOUK",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_WiMaMiXsjZYcAOai"
     ],
@@ -4052,8 +4054,8 @@
     "refund_type": "none",
     "order_residual": 4741.5,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 1605.69 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -4363,8 +4365,8 @@
   {
     "order_id": "ord_XJ5EzFFtyikiUHVp",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_U2nSzCXHLiAeNQeM"
     ],
@@ -4372,8 +4374,8 @@
     "refund_type": "none",
     "order_residual": 4129.09,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 518.69 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -4571,8 +4573,8 @@
   {
     "order_id": "ord_Xpy8eCfk12bgcsZo",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_gZQhCaMh9935fh7T"
     ],
@@ -4580,8 +4582,8 @@
     "refund_type": "none",
     "order_residual": 1893.32,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 307.32 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -5131,8 +5133,8 @@
   {
     "order_id": "ord_cILluIEv0VwQAtzj",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_x79wu0ywvCSMfgEe"
     ],
@@ -5140,8 +5142,8 @@
     "refund_type": "none",
     "order_residual": 2823.66,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 353.94 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -5503,8 +5505,8 @@
     "match_status": "matched",
     "exception_code": null,
     "settlement_ids": [
-      "set_dXl1JugHwQ0tyEYK",
-      "set_Kn5g1yPEHl7H4rVk"
+      "set_Kn5g1yPEHl7H4rVk",
+      "set_dXl1JugHwQ0tyEYK"
     ],
     "bank_utr": "9131670805685667",
     "refund_type": "FULL_REFUND",
@@ -6529,8 +6531,8 @@
     "match_status": "exception",
     "exception_code": "REFUND_SPLIT",
     "settlement_ids": [
-      "set_ZxZYr1ol75jKh16f",
-      "set_V4wg4sqjavfNXiFk"
+      "set_V4wg4sqjavfNXiFk",
+      "set_ZxZYr1ol75jKh16f"
     ],
     "bank_utr": "5977216880053789",
     "refund_type": "REFUND_SPLIT",
@@ -6687,8 +6689,8 @@
   {
     "order_id": "ord_pebQuHaRqepCYlAS",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_rgY4BnjnePHXmz1q"
     ],
@@ -6696,8 +6698,8 @@
     "refund_type": "none",
     "order_residual": 2772.02,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 1478.10 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -7406,8 +7408,8 @@
   {
     "order_id": "ord_vqIGmCwCWI4UZMw2",
     "result_type": "order",
-    "match_status": "matched",
-    "exception_code": null,
+    "match_status": "exception",
+    "exception_code": "UNRECORDED_REFUND",
     "settlement_ids": [
       "set_dhV066q3rTHFvUL7"
     ],
@@ -7415,8 +7417,8 @@
     "refund_type": "none",
     "order_residual": 166659.91,
     "expected_residual": null,
-    "confidence": "matched",
-    "detail": null,
+    "confidence": "needs_review",
+    "detail": "Ledger claims partial refund of 17249.11 but no refund_deduction row in settlement report",
     "soft_flags": []
   },
   {
@@ -8017,12 +8019,12 @@
     "batch_net": 14420.72,
     "row_count": 6,
     "order_ids": [
-      "ord_HPM8Q5WQdYvGi5l7",
-      "ord_B2isTsjSspJxHl1P",
-      "ord_Is9f9lgvbISm6Csq",
       "ord_KXth3FkmdB6K3JGM",
+      "ord_Is9f9lgvbISm6Csq",
+      "ord_w3zeQSzElIc0Jwfe",
+      "ord_HPM8Q5WQdYvGi5l7",
       "ord_BNaQNpUcpvjV21Jv",
-      "ord_w3zeQSzElIc0Jwfe"
+      "ord_B2isTsjSspJxHl1P"
     ],
     "ghost_order_ids": [
       "ord_HPM8Q5WQdYvGi5l7"
@@ -8043,11 +8045,11 @@
     "batch_net": 20018.51,
     "row_count": 5,
     "order_ids": [
-      "ord_otLlMAZdNkF7JDJJ",
-      "ord_JNr2xcrgSNriKCOC",
       "ord_5PXdrQR8HsZAmNWx",
+      "ord_9Q3UXJt0uxnx8Anz",
+      "ord_JNr2xcrgSNriKCOC",
       "ord_8K2Frn2bQPEPGAXt",
-      "ord_9Q3UXJt0uxnx8Anz"
+      "ord_otLlMAZdNkF7JDJJ"
     ],
     "ghost_order_ids": [],
     "bank_amount": 20018.51,
@@ -8064,11 +8066,11 @@
     "batch_net": 51616.94,
     "row_count": 5,
     "order_ids": [
-      "ord_Zu3OGOOZM3EkDbNl",
-      "ord_vyMTZrHfQXDeDkoS",
+      "ord_XhdJrnSppQlIzGsH",
       "ord_HhjSuYYAy2cDDzoU",
       "ord_FmxsFJsntTGATWQI",
-      "ord_XhdJrnSppQlIzGsH"
+      "ord_Zu3OGOOZM3EkDbNl",
+      "ord_vyMTZrHfQXDeDkoS"
     ],
     "ghost_order_ids": [],
     "bank_amount": 51616.94,
@@ -8086,10 +8088,10 @@
     "row_count": 5,
     "order_ids": [
       "ord_tVyTZjKMm6mUlBsx",
-      "ord_IJ6x7oK8r5wNkKTq",
-      "ord_MZzoPlZHLPzciboC",
       "ord_kmUPGOVDUx6wmvmj",
-      "ord_C2QJqfpr5bc0GGlw"
+      "ord_MZzoPlZHLPzciboC",
+      "ord_C2QJqfpr5bc0GGlw",
+      "ord_IJ6x7oK8r5wNkKTq"
     ],
     "ghost_order_ids": [],
     "bank_amount": null,
@@ -8107,11 +8109,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_epVG7rlIgeNe7nUT",
-      "ord_NUotfg39lla6xcsh",
+      "ord_o72ssMQp7Lqy9Ci1",
       "ord_c6Eop4WGS2X8fs4e",
+      "ord_NUotfg39lla6xcsh",
       "ord_zE9oBZXdnrF0nU88",
-      "ord_59uaGn2br4CxSXJg",
-      "ord_o72ssMQp7Lqy9Ci1"
+      "ord_59uaGn2br4CxSXJg"
     ],
     "ghost_order_ids": [],
     "bank_amount": 222370.0,
@@ -8128,9 +8130,9 @@
     "batch_net": 18424.75,
     "row_count": 3,
     "order_ids": [
-      "ord_A0SJYEYcFcn3cFt4",
+      "ord_Sl1Tcv1g26nmDWnQ",
       "ord_trgi9dX7chhp1qxQ",
-      "ord_Sl1Tcv1g26nmDWnQ"
+      "ord_A0SJYEYcFcn3cFt4"
     ],
     "ghost_order_ids": [],
     "bank_amount": 18424.75,
@@ -8147,12 +8149,12 @@
     "batch_net": 63431.93,
     "row_count": 6,
     "order_ids": [
+      "ord_g9VIigneLlr8ABmH",
+      "ord_ahMYmcvLBr1jN7uc",
       "ord_E7tHCRQJ0Ac6C5lv",
       "ord_lDXMP4MABAyqD7Fz",
-      "ord_ahMYmcvLBr1jN7uc",
       "ord_YKtYXQaOv4yqRuyZ",
-      "ord_P8oSl0liEFVmf7uC",
-      "ord_g9VIigneLlr8ABmH"
+      "ord_P8oSl0liEFVmf7uC"
     ],
     "ghost_order_ids": [],
     "bank_amount": 63431.93,
@@ -8169,8 +8171,8 @@
     "batch_net": 5521.54,
     "row_count": 2,
     "order_ids": [
-      "ord_rQzfnHBXkL1kVK3u",
-      "ord_H6D5aseXaV4RbJmm"
+      "ord_H6D5aseXaV4RbJmm",
+      "ord_rQzfnHBXkL1kVK3u"
     ],
     "ghost_order_ids": [],
     "bank_amount": 5521.54,
@@ -8187,12 +8189,12 @@
     "batch_net": 23711.85,
     "row_count": 6,
     "order_ids": [
+      "ord_5w4qKyGolT2ZlqPY",
       "ord_ejntj8wgx0F5l9uv",
       "ord_BXa7GWTE6oOroy2A",
-      "ord_byV4yNE8QpaBYAoc",
-      "ord_5w4qKyGolT2ZlqPY",
       "ord_9xGomZeu5GbkCRaN",
-      "ord_d8q48pJbuIXXKBqy"
+      "ord_d8q48pJbuIXXKBqy",
+      "ord_byV4yNE8QpaBYAoc"
     ],
     "ghost_order_ids": [],
     "bank_amount": 23711.85,
@@ -8210,12 +8212,12 @@
     "row_count": 7,
     "order_ids": [
       "ord_9MCY1HTC02U3GvuB",
-      "ord_TFJg8zv0qxTdtQqz",
+      "ord_WStzTTivA6DZoIcR",
+      "ord_I8ZjQm3rPlAHkuqj",
       "ord_WdIG4W0wIczi5aNN",
       "ord_8Egf9iYdn8PBwVtm",
-      "ord_VjI6zy8hKCDlBdUm",
-      "ord_WStzTTivA6DZoIcR",
-      "ord_I8ZjQm3rPlAHkuqj"
+      "ord_TFJg8zv0qxTdtQqz",
+      "ord_VjI6zy8hKCDlBdUm"
     ],
     "ghost_order_ids": [],
     "bank_amount": 19474.16,
@@ -8232,11 +8234,11 @@
     "batch_net": 44930.0,
     "row_count": 5,
     "order_ids": [
-      "ord_XVykwawhOpE5jekc",
-      "ord_hy0FIv3yTdPhQhBC",
       "ord_Aapo0U0ZHgegCsC4",
+      "ord_hy0FIv3yTdPhQhBC",
+      "ord_JxKe90gswSijYqDy",
       "ord_F00XFkFoFJ3pkxla",
-      "ord_JxKe90gswSijYqDy"
+      "ord_XVykwawhOpE5jekc"
     ],
     "ghost_order_ids": [],
     "bank_amount": 44930.0,
@@ -8253,10 +8255,10 @@
     "batch_net": 26755.84,
     "row_count": 5,
     "order_ids": [
-      "ord_lqkwKcj5FSWXEaiS",
-      "ord_X8y7xSRsVbPdMh5r",
-      "ord_8v9zB5tUFZrqxXd0",
       "ord_ttMMIcpNIH4Mm2Sq",
+      "ord_8v9zB5tUFZrqxXd0",
+      "ord_X8y7xSRsVbPdMh5r",
+      "ord_lqkwKcj5FSWXEaiS",
       "ord_WI3bzXbutXbYMXyF"
     ],
     "ghost_order_ids": [],
@@ -8274,8 +8276,8 @@
     "batch_net": 145536.88,
     "row_count": 2,
     "order_ids": [
-      "ord_rSINutAtjq9J6a05",
-      "ord_31bSWi1P3ThGVZ6e"
+      "ord_31bSWi1P3ThGVZ6e",
+      "ord_rSINutAtjq9J6a05"
     ],
     "ghost_order_ids": [],
     "bank_amount": 145536.88,
@@ -8292,12 +8294,12 @@
     "batch_net": 12762.69,
     "row_count": 6,
     "order_ids": [
-      "ord_4dzvdm4BNJ6lawOH",
       "ord_A9NTv6y4fjjFcJQ3",
-      "ord_yVEZt53dIsGeNVdw",
-      "ord_z7an1RsRPfaz8FGx",
       "ord_wthxJ5BhnqAUvXtT",
-      "ord_zxiq70srxZ4HIBVq"
+      "ord_z7an1RsRPfaz8FGx",
+      "ord_4dzvdm4BNJ6lawOH",
+      "ord_zxiq70srxZ4HIBVq",
+      "ord_yVEZt53dIsGeNVdw"
     ],
     "ghost_order_ids": [],
     "bank_amount": 12762.69,
@@ -8314,11 +8316,11 @@
     "batch_net": 28494.04,
     "row_count": 5,
     "order_ids": [
-      "ord_kS7D0XBXbNXohoBv",
-      "ord_1byuro7u1L1KPF2U",
+      "ord_YcEyoWENSl8Gh90K",
       "ord_LqfZIXLnqo9ieITb",
       "ord_XLB1wOsohYgeimUn",
-      "ord_YcEyoWENSl8Gh90K"
+      "ord_kS7D0XBXbNXohoBv",
+      "ord_1byuro7u1L1KPF2U"
     ],
     "ghost_order_ids": [],
     "bank_amount": 28494.04,
@@ -8335,12 +8337,12 @@
     "batch_net": 64897.97,
     "row_count": 6,
     "order_ids": [
-      "ord_Rn194R0Y34CnEFxs",
       "ord_9MWMkU44fAQonY9r",
-      "ord_FK1ePImdsjOvPTUJ",
+      "ord_Rn194R0Y34CnEFxs",
+      "ord_hCOGfHEMjzqEaRBl",
       "ord_wnlK81F1e9kzRttP",
       "ord_SicBAQ7zdo3ZeqPH",
-      "ord_hCOGfHEMjzqEaRBl"
+      "ord_FK1ePImdsjOvPTUJ"
     ],
     "ghost_order_ids": [],
     "bank_amount": 64897.97,
@@ -8358,10 +8360,10 @@
     "row_count": 5,
     "order_ids": [
       "ord_3oNN2a2XkcHDnjmd",
+      "ord_yHatIUHvVed8lnI6",
       "ord_tk1bfE8Q2jLHvL0u",
       "ord_vpF1VqyMGOTSvdq5",
-      "ord_xb1bHeoGZiAFlmSf",
-      "ord_yHatIUHvVed8lnI6"
+      "ord_xb1bHeoGZiAFlmSf"
     ],
     "ghost_order_ids": [],
     "bank_amount": 11609.75,
@@ -8378,11 +8380,11 @@
     "batch_net": 10776.71,
     "row_count": 6,
     "order_ids": [
-      "ord_XdU7nSKpLzlBM4XM",
       "ord_PQOzzWwHE7eA170X",
-      "ord_RryWmodZL97yBWCy",
       "ord_TPHGKIPFTZKmUBDY",
+      "ord_RryWmodZL97yBWCy",
       "ord_UWNug9z8Apb4mm7q",
+      "ord_XdU7nSKpLzlBM4XM",
       "ord_6rEKGD2iBYvFQJo2"
     ],
     "ghost_order_ids": [],
@@ -8400,11 +8402,11 @@
     "batch_net": 5403.85,
     "row_count": 5,
     "order_ids": [
-      "ord_R6eaCAGtWGk1GVDF",
-      "ord_2TTYydCoR1CoQxbY",
       "ord_h1iYosyDL2xOD1hE",
-      "ord_sX0eILBvAQZu9uE5",
-      "ord_c332FUosKtFrnFrt"
+      "ord_2TTYydCoR1CoQxbY",
+      "ord_c332FUosKtFrnFrt",
+      "ord_R6eaCAGtWGk1GVDF",
+      "ord_sX0eILBvAQZu9uE5"
     ],
     "ghost_order_ids": [],
     "bank_amount": 5403.85,
@@ -8421,8 +8423,8 @@
     "batch_net": 29568.91,
     "row_count": 2,
     "order_ids": [
-      "ord_bhS8ygpi5G2Q3uJR",
-      "ord_LR3h8GNfrWkb7LVX"
+      "ord_LR3h8GNfrWkb7LVX",
+      "ord_bhS8ygpi5G2Q3uJR"
     ],
     "ghost_order_ids": [],
     "bank_amount": 29568.91,
@@ -8439,13 +8441,13 @@
     "batch_net": 12765.85,
     "row_count": 7,
     "order_ids": [
-      "ord_NyeHV1Zjj3wdslvf",
       "ord_g7yxIPn2iG00RvQ4",
       "ord_fHiXXdTgg2076zs0",
-      "ord_scON1m4Yrpw2cBdV",
+      "ord_NyeHV1Zjj3wdslvf",
       "ord_ejk1G2wMxmcAuleK",
-      "ord_KJvE6mcijq2n9U8T",
-      "ord_MXu0GD651yArGbBM"
+      "ord_MXu0GD651yArGbBM",
+      "ord_scON1m4Yrpw2cBdV",
+      "ord_KJvE6mcijq2n9U8T"
     ],
     "ghost_order_ids": [],
     "bank_amount": 12765.85,
@@ -8462,11 +8464,11 @@
     "batch_net": 4124.58,
     "row_count": 5,
     "order_ids": [
+      "ord_BnvTnnF7hu7gufBo",
+      "ord_90aGsb3TJHmksXlS",
       "ord_U3PyeippVgDWn7HO",
       "ord_T01q8OSuvTtlFb4Z",
-      "ord_9d4VKjZk1NgwWN9f",
-      "ord_BnvTnnF7hu7gufBo",
-      "ord_90aGsb3TJHmksXlS"
+      "ord_9d4VKjZk1NgwWN9f"
     ],
     "ghost_order_ids": [],
     "bank_amount": 4124.58,
@@ -8483,11 +8485,11 @@
     "batch_net": 35729.41,
     "row_count": 5,
     "order_ids": [
-      "ord_tTyegr1il3K6YVt8",
       "ord_jzi3MsjIpztztA35",
+      "ord_l9x8fGlU5Jc7ACp1",
       "ord_1wauScG8jXaNZRRr",
-      "ord_Po9nKyMZOdZALP4T",
-      "ord_l9x8fGlU5Jc7ACp1"
+      "ord_tTyegr1il3K6YVt8",
+      "ord_Po9nKyMZOdZALP4T"
     ],
     "ghost_order_ids": [],
     "bank_amount": 35729.41,
@@ -8504,12 +8506,12 @@
     "batch_net": 94497.05,
     "row_count": 6,
     "order_ids": [
-      "ord_KWN9xOeWjc8I2EYs",
-      "ord_iQw5qM3jAUmRaOmj",
-      "ord_Q7pwCNxXg7QeulUq",
-      "ord_h7fPhXmj9gw2vlS9",
       "ord_NQ5gndcUio3TGW3J",
-      "ord_K0nly08WvF4FrDE5"
+      "ord_K0nly08WvF4FrDE5",
+      "ord_h7fPhXmj9gw2vlS9",
+      "ord_Q7pwCNxXg7QeulUq",
+      "ord_iQw5qM3jAUmRaOmj",
+      "ord_KWN9xOeWjc8I2EYs"
     ],
     "ghost_order_ids": [],
     "bank_amount": 94497.05,
@@ -8527,11 +8529,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_jbWMrp8Jb8hHB5v6",
-      "ord_Xce7YvSQnlxbXdUh",
-      "ord_wmgaZJkv65iGRhVZ",
-      "ord_pQJytRM261uAEiML",
+      "ord_FCIAwj1Vq7tgLMzf",
       "ord_eDWCM4WdcC8Urgzz",
-      "ord_FCIAwj1Vq7tgLMzf"
+      "ord_pQJytRM261uAEiML",
+      "ord_wmgaZJkv65iGRhVZ",
+      "ord_Xce7YvSQnlxbXdUh"
     ],
     "ghost_order_ids": [],
     "bank_amount": 36447.64,
@@ -8548,13 +8550,13 @@
     "batch_net": 131115.68,
     "row_count": 7,
     "order_ids": [
-      "ord_Ilz3wogWCgOxwXkt",
-      "ord_3SQ53xM5uqB5dAFO",
-      "ord_kO5UOL8LUpRlpLmw",
-      "ord_312wNxrci4HIcgiT",
       "ord_zj69pQCudo4LkneF",
+      "ord_kO5UOL8LUpRlpLmw",
+      "ord_SNwlTbpfx7toRpmF",
+      "ord_Ilz3wogWCgOxwXkt",
       "ord_rgzRsIlrpVRn9SMN",
-      "ord_SNwlTbpfx7toRpmF"
+      "ord_312wNxrci4HIcgiT",
+      "ord_3SQ53xM5uqB5dAFO"
     ],
     "ghost_order_ids": [],
     "bank_amount": 131115.68,
@@ -8571,11 +8573,11 @@
     "batch_net": 28724.06,
     "row_count": 6,
     "order_ids": [
-      "ord_LBxzgUjowepgicj3",
-      "ord_KRWFLvPdP2oIHjC1",
-      "ord_4ShIeT49lfqpCCI1",
       "ord_Ot2WVf4olbZjzHhw",
+      "ord_KRWFLvPdP2oIHjC1",
+      "ord_LBxzgUjowepgicj3",
       "ord_EnDJiS9HvlxNgbb1",
+      "ord_4ShIeT49lfqpCCI1",
       "ord_DYFfvIIieoMmtPEw"
     ],
     "ghost_order_ids": [],
@@ -8594,11 +8596,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_wVaWfV0yG7nzrbt7",
-      "ord_DY9QyLE8MYoGhamG",
       "ord_NW81fwLRKT1oJ2uO",
+      "ord_3IiTY0bFDnkN6RBh",
       "ord_T1ebhBb7v7LflaPw",
       "ord_fdta7xRC5utiDdKD",
-      "ord_3IiTY0bFDnkN6RBh"
+      "ord_DY9QyLE8MYoGhamG"
     ],
     "ghost_order_ids": [],
     "bank_amount": 22843.68,
@@ -8615,11 +8617,11 @@
     "batch_net": 35025.87,
     "row_count": 6,
     "order_ids": [
-      "ord_2ITgIHCH2zu5R2mv",
-      "ord_ORyupimxgLegJBvv",
       "ord_58j5EwB6pQ8McFI5",
-      "ord_eiPepyiNsVwcxxpY",
+      "ord_ORyupimxgLegJBvv",
+      "ord_2ITgIHCH2zu5R2mv",
       "ord_BvEwsT04b2LdcUqr",
+      "ord_eiPepyiNsVwcxxpY",
       "ord_nk2EOnz9HUTMUdgn"
     ],
     "ghost_order_ids": [],
@@ -8637,13 +8639,13 @@
     "batch_net": 114915.85,
     "row_count": 7,
     "order_ids": [
+      "ord_uvak26q9X7vFPFPz",
+      "ord_2A11wtfsYdR40VKP",
       "ord_bsp5v5MmtCjaUhoc",
-      "ord_dYC5O55GaQjkKKSl",
-      "ord_rJ7AFJ5aDNECX9mg",
       "ord_GvZZRaKLIefGjNMu",
       "ord_7lJFp4TopHrFinUH",
-      "ord_uvak26q9X7vFPFPz",
-      "ord_2A11wtfsYdR40VKP"
+      "ord_rJ7AFJ5aDNECX9mg",
+      "ord_dYC5O55GaQjkKKSl"
     ],
     "ghost_order_ids": [],
     "bank_amount": 114915.85,
@@ -8660,10 +8662,10 @@
     "batch_net": 88022.53,
     "row_count": 6,
     "order_ids": [
+      "ord_t0qKqKUc7paB82Kv",
       "ord_5s0IgzAZJE8TLrhU",
       "ord_ZKgJypW5wBMZX0mB",
       "ord_MnSxwV8emk9WPf84",
-      "ord_t0qKqKUc7paB82Kv",
       "ord_tILskeDhThzb9CDw",
       "ord_LnvuE9Oo4evYnMCc"
     ],
@@ -8682,12 +8684,12 @@
     "batch_net": 120625.13,
     "row_count": 6,
     "order_ids": [
-      "ord_3U1WvheaiqG3O1MZ",
-      "ord_K3Ku0QLgcYIzlLP7",
-      "ord_G7WmH553lLglqJpS",
+      "ord_MoobmwLScdBKJr7d",
       "ord_C9dCFT8u7fTYWIpU",
+      "ord_K3Ku0QLgcYIzlLP7",
       "ord_bZvPyVfFXuWpJuaO",
-      "ord_MoobmwLScdBKJr7d"
+      "ord_G7WmH553lLglqJpS",
+      "ord_3U1WvheaiqG3O1MZ"
     ],
     "ghost_order_ids": [],
     "bank_amount": 120625.13,
@@ -8722,12 +8724,12 @@
     "batch_net": 33125.28,
     "row_count": 6,
     "order_ids": [
-      "ord_Ftb9xRx8a3IkFMd1",
-      "ord_F2tD6p3GWmWKiErM",
       "ord_OZ9a13x6WAppYgpH",
-      "ord_IGOXiyvHNmiEo46n",
+      "ord_F2tD6p3GWmWKiErM",
       "ord_YC5Jj88x28Z2r2sT",
-      "ord_5Nt5w1tSy4JBYadV"
+      "ord_5Nt5w1tSy4JBYadV",
+      "ord_IGOXiyvHNmiEo46n",
+      "ord_Ftb9xRx8a3IkFMd1"
     ],
     "ghost_order_ids": [],
     "bank_amount": 33125.28,
@@ -8744,12 +8746,12 @@
     "batch_net": 14275.88,
     "row_count": 6,
     "order_ids": [
-      "ord_8Egf9iYdn8PBwVtm",
-      "ord_h7Ba4XTXcCi1SreI",
-      "ord_TlaqVC1V9R86EnWx",
       "ord_y5sLJ9c2eFYcOkDR",
+      "ord_TlaqVC1V9R86EnWx",
+      "ord_h7Ba4XTXcCi1SreI",
       "ord_c7d0ND6RlTDLvR1H",
-      "ord_OeWR4rMMyY1jeioj"
+      "ord_OeWR4rMMyY1jeioj",
+      "ord_8Egf9iYdn8PBwVtm"
     ],
     "ghost_order_ids": [],
     "bank_amount": 14275.88,
@@ -8766,12 +8768,12 @@
     "batch_net": 45432.95,
     "row_count": 6,
     "order_ids": [
+      "ord_RwjvefjQh9huvbNa",
       "ord_ggvlObyhlJ2us26C",
       "ord_LNxV2rRA6Fsevqoe",
       "ord_irwvCRRo9Vzl41de",
-      "ord_shtTKR0Bvwwq1sFK",
-      "ord_RwjvefjQh9huvbNa",
-      "ord_a6Zb0BI2SteoVNau"
+      "ord_a6Zb0BI2SteoVNau",
+      "ord_shtTKR0Bvwwq1sFK"
     ],
     "ghost_order_ids": [],
     "bank_amount": 45432.95,
@@ -8788,12 +8790,12 @@
     "batch_net": 89266.79,
     "row_count": 6,
     "order_ids": [
-      "ord_AJ9wVYkgtEFRz4V7",
       "ord_uT2wJTVWAkqDfz1a",
-      "ord_Lv46F3kWoXbfk6GS",
-      "ord_XgrZSLhON1IcDZZg",
       "ord_QLJBM1Xgr8NaDaDG",
-      "ord_7AvAeeyleNocblA2"
+      "ord_7AvAeeyleNocblA2",
+      "ord_XgrZSLhON1IcDZZg",
+      "ord_Lv46F3kWoXbfk6GS",
+      "ord_AJ9wVYkgtEFRz4V7"
     ],
     "ghost_order_ids": [],
     "bank_amount": 89266.79,
@@ -8810,12 +8812,12 @@
     "batch_net": 64224.64,
     "row_count": 6,
     "order_ids": [
+      "ord_s6p0OSpyjIXtGgLw",
+      "ord_vR9qH8YxV6uMffCI",
       "ord_UoqJjy7KTwsnRWqU",
-      "ord_KJvE6mcijq2n9U8T",
       "ord_GPnuEXAcxqYhZg76",
       "ord_B3hnSPyZcqJZcVI1",
-      "ord_vR9qH8YxV6uMffCI",
-      "ord_s6p0OSpyjIXtGgLw"
+      "ord_KJvE6mcijq2n9U8T"
     ],
     "ghost_order_ids": [],
     "bank_amount": 64224.64,
@@ -8832,12 +8834,12 @@
     "batch_net": 23842.7,
     "row_count": 6,
     "order_ids": [
-      "ord_hkcu2anh4dOFTZJA",
-      "ord_GI8WvzZhHfjwNhhf",
+      "ord_BtVlJ1gxWO6gXGKn",
       "ord_uocSmbM2Sxq46s49",
-      "ord_MLKRlgGDPGH3jOgR",
       "ord_w9pFcyXnbAHHn4Nk",
-      "ord_BtVlJ1gxWO6gXGKn"
+      "ord_GI8WvzZhHfjwNhhf",
+      "ord_hkcu2anh4dOFTZJA",
+      "ord_MLKRlgGDPGH3jOgR"
     ],
     "ghost_order_ids": [],
     "bank_amount": 23842.7,
@@ -8854,12 +8856,12 @@
     "batch_net": 117009.06,
     "row_count": 6,
     "order_ids": [
-      "ord_L9xfRa62yS16ZTFE",
-      "ord_XJ5EzFFtyikiUHVp",
-      "ord_UgHMkFfycfcDcysY",
       "ord_FYQHWuQXnXpdm6Ul",
+      "ord_2wsBeFz99c37dhPK",
       "ord_5eEc3m807Qi3yUpg",
-      "ord_2wsBeFz99c37dhPK"
+      "ord_XJ5EzFFtyikiUHVp",
+      "ord_L9xfRa62yS16ZTFE",
+      "ord_UgHMkFfycfcDcysY"
     ],
     "ghost_order_ids": [],
     "bank_amount": 117009.06,
@@ -8877,10 +8879,10 @@
     "row_count": 6,
     "order_ids": [
       "ord_mZ1wmccamGopBgkG",
+      "ord_NtjNS5nzCcmeWmUV",
       "ord_3hQ9obIuA2rGRIaU",
       "ord_3OyMsEGyLHcvsJ5P",
       "ord_8m19fcmMDGJ04eJ5",
-      "ord_NtjNS5nzCcmeWmUV",
       "ord_yGpUfvVmWbe0w0hR"
     ],
     "ghost_order_ids": [],
@@ -8898,12 +8900,12 @@
     "batch_net": 57017.48,
     "row_count": 6,
     "order_ids": [
-      "ord_2ozm6RqNbOW8W3nD",
-      "ord_KSF0TYeoFhL2WbQc",
       "ord_GIt6ibWrBgrnGdRi",
       "ord_HPZPl34RApa10bO0",
+      "ord_2ozm6RqNbOW8W3nD",
+      "ord_0EE1Z6jjCFojTQpT",
       "ord_dsd8Coq4eRlXGnRW",
-      "ord_0EE1Z6jjCFojTQpT"
+      "ord_KSF0TYeoFhL2WbQc"
     ],
     "ghost_order_ids": [],
     "bank_amount": 57017.48,
@@ -8920,12 +8922,12 @@
     "batch_net": 19548.18,
     "row_count": 6,
     "order_ids": [
-      "ord_HVAqDzalAdRFamtL",
-      "ord_gbzC9gYtifnDSYSz",
-      "ord_gjo8TtOQSFi2otME",
       "ord_u7UGk4riuhYrMFl2",
+      "ord_HVAqDzalAdRFamtL",
+      "ord_smBKUUp4xodm3hUw",
       "ord_Yczqda2KIt80G4dj",
-      "ord_smBKUUp4xodm3hUw"
+      "ord_gjo8TtOQSFi2otME",
+      "ord_gbzC9gYtifnDSYSz"
     ],
     "ghost_order_ids": [],
     "bank_amount": 19548.18,
@@ -8942,12 +8944,12 @@
     "batch_net": 52825.05,
     "row_count": 6,
     "order_ids": [
+      "ord_ss2g3k7kUczkoNbK",
       "ord_jLggWaaPBHAMp2MY",
       "ord_yZGJ63PUL4rGydtH",
+      "ord_I54Ti6HT2tv2ZZb5",
       "ord_XJ8n2X8E5uaB6Po2",
-      "ord_h6Su4VZofJNzMLx0",
-      "ord_ss2g3k7kUczkoNbK",
-      "ord_I54Ti6HT2tv2ZZb5"
+      "ord_h6Su4VZofJNzMLx0"
     ],
     "ghost_order_ids": [],
     "bank_amount": 52825.05,
@@ -8964,11 +8966,11 @@
     "batch_net": 168754.33,
     "row_count": 5,
     "order_ids": [
-      "ord_4dzvdm4BNJ6lawOH",
-      "ord_5Yl9noMkqyXiSZXG",
-      "ord_DqMwt5o775UKjjmt",
       "ord_WsfoaHJQzuGKZV4x",
-      "ord_ohZLWumvMi5brH8l"
+      "ord_ohZLWumvMi5brH8l",
+      "ord_DqMwt5o775UKjjmt",
+      "ord_5Yl9noMkqyXiSZXG",
+      "ord_4dzvdm4BNJ6lawOH"
     ],
     "ghost_order_ids": [],
     "bank_amount": 168754.33,
@@ -8985,12 +8987,12 @@
     "batch_net": 53562.93,
     "row_count": 7,
     "order_ids": [
+      "ord_XtGT2IvuI9IgAobs",
+      "ord_V7RP3BlavIYpTrSO",
+      "ord_o1deXpENMJltHMej",
+      "ord_7lJFp4TopHrFinUH",
       "ord_KIMMDVRhUrRQ19qF",
       "ord_fhtgp2mlJLqm3sCW",
-      "ord_o1deXpENMJltHMej",
-      "ord_V7RP3BlavIYpTrSO",
-      "ord_XtGT2IvuI9IgAobs",
-      "ord_7lJFp4TopHrFinUH",
       "ord_p2Y00OjfHpjwgeFl"
     ],
     "ghost_order_ids": [],
@@ -9010,10 +9012,10 @@
     "order_ids": [
       "ord_X6WadD17qQnFEZSs",
       "ord_klqyesgaTD3Zde6V",
-      "ord_JLvc7doTITEBER8F",
-      "ord_H3eb9icGsJVMRzuy",
       "ord_GJNw2P45rfZYjSPm",
-      "ord_3xxloqso9QZYCrjL"
+      "ord_H3eb9icGsJVMRzuy",
+      "ord_3xxloqso9QZYCrjL",
+      "ord_JLvc7doTITEBER8F"
     ],
     "ghost_order_ids": [],
     "bank_amount": 296392.39,
@@ -9030,12 +9032,12 @@
     "batch_net": 53837.56,
     "row_count": 6,
     "order_ids": [
-      "ord_NmNLui0ydTnzKxoM",
+      "ord_FbBzfkRpByEhYQhJ",
+      "ord_Et9rLXoylaJ9aBlE",
+      "ord_q6tZKfec8fgrcCJi",
       "ord_gYoPHteXiQQb9R4e",
       "ord_6NlddNZIkvmfKq5k",
-      "ord_FbBzfkRpByEhYQhJ",
-      "ord_q6tZKfec8fgrcCJi",
-      "ord_Et9rLXoylaJ9aBlE"
+      "ord_NmNLui0ydTnzKxoM"
     ],
     "ghost_order_ids": [],
     "bank_amount": 53837.56,
@@ -9052,11 +9054,11 @@
     "batch_net": 19402.32,
     "row_count": 6,
     "order_ids": [
-      "ord_AmQ1L6e5fXvgDQJE",
       "ord_b9H3LCbgyq6tMa65",
-      "ord_c3cIuaBIT9nYAxpK",
-      "ord_egXJm4fsJzTjeuxg",
       "ord_zgSK5N6gREM7RmmF",
+      "ord_egXJm4fsJzTjeuxg",
+      "ord_c3cIuaBIT9nYAxpK",
+      "ord_AmQ1L6e5fXvgDQJE",
       "ord_PM3Yocb7pvMGYG5M"
     ],
     "ghost_order_ids": [],
@@ -9075,10 +9077,10 @@
     "row_count": 6,
     "order_ids": [
       "ord_UJ3A1IIPKoBAwOUK",
-      "ord_mpiNoYfxrqCXZwq7",
       "ord_6Pq5YhRjGHz26ieH",
-      "ord_7Q0rnG6xCVcm6Hkd",
+      "ord_mpiNoYfxrqCXZwq7",
       "ord_RlKJUXFFxAheF8yo",
+      "ord_7Q0rnG6xCVcm6Hkd",
       "ord_pqvIWyuklORkFGnl"
     ],
     "ghost_order_ids": [],
@@ -9096,11 +9098,11 @@
     "batch_net": 30473.2,
     "row_count": 5,
     "order_ids": [
-      "ord_lVfd51dVL5K9JsQB",
       "ord_EwuCGxfDHPEpuw5M",
-      "ord_NzHeAVzDI2wf7i7s",
       "ord_GqkKGLJmUcozw6pE",
-      "ord_1hIlnTd3HoWmsdu0"
+      "ord_NzHeAVzDI2wf7i7s",
+      "ord_1hIlnTd3HoWmsdu0",
+      "ord_lVfd51dVL5K9JsQB"
     ],
     "ghost_order_ids": [],
     "bank_amount": 30473.2,
@@ -9117,12 +9119,12 @@
     "batch_net": 213242.84,
     "row_count": 6,
     "order_ids": [
-      "ord_LjY6O1QmS4rsNe9i",
       "ord_UfwbEmc71n5alZ4E",
-      "ord_0ypjYAONyOACExh3",
-      "ord_bOfRJJlyoZUHpdko",
+      "ord_PC07niVM9WSTpBmK",
+      "ord_LjY6O1QmS4rsNe9i",
       "ord_0Avn4Yk3gLazPS7o",
-      "ord_PC07niVM9WSTpBmK"
+      "ord_bOfRJJlyoZUHpdko",
+      "ord_0ypjYAONyOACExh3"
     ],
     "ghost_order_ids": [],
     "bank_amount": 213242.84,
@@ -9139,12 +9141,12 @@
     "batch_net": 65044.04,
     "row_count": 6,
     "order_ids": [
-      "ord_nYDzu9vMRS5oy1jG",
-      "ord_uf9JzUstnIvMmRNC",
-      "ord_dLGKcPLtxjuK13zf",
       "ord_4BqXwG6SOyo68922",
+      "ord_dLGKcPLtxjuK13zf",
+      "ord_yJNlJORUEPCutIh6",
       "ord_UNj5EV4usow7bOQS",
-      "ord_yJNlJORUEPCutIh6"
+      "ord_nYDzu9vMRS5oy1jG",
+      "ord_uf9JzUstnIvMmRNC"
     ],
     "ghost_order_ids": [],
     "bank_amount": 65044.04,
@@ -9161,12 +9163,12 @@
     "batch_net": 6551.03,
     "row_count": 6,
     "order_ids": [
-      "ord_5HpkGA0TySNqJRu0",
-      "ord_14XqphoVLhgtNABS",
+      "ord_uqZNWO9ApKcjk8cI",
       "ord_XenkZC5XjMbP4sfe",
       "ord_Sb4dJH30gSCECGaF",
-      "ord_ON34n2vZC1z6dZ0s",
-      "ord_uqZNWO9ApKcjk8cI"
+      "ord_5HpkGA0TySNqJRu0",
+      "ord_14XqphoVLhgtNABS",
+      "ord_ON34n2vZC1z6dZ0s"
     ],
     "ghost_order_ids": [],
     "bank_amount": 6551.03,
@@ -9183,13 +9185,13 @@
     "batch_net": 27477.7,
     "row_count": 7,
     "order_ids": [
-      "ord_sA5o5zdnWu3yxDmg",
       "ord_LITOL2KSrQejVnbn",
-      "ord_ERQThIOrrDZhZMa4",
       "ord_EOMFPq0XdVdqr4pz",
-      "ord_SI8Zi6Zr9dYHv8Bb",
+      "ord_ohZLWumvMi5brH8l",
+      "ord_ERQThIOrrDZhZMa4",
+      "ord_sA5o5zdnWu3yxDmg",
       "ord_Wcp2KLYUJ9bVT9UX",
-      "ord_ohZLWumvMi5brH8l"
+      "ord_SI8Zi6Zr9dYHv8Bb"
     ],
     "ghost_order_ids": [],
     "bank_amount": 27477.7,
@@ -9206,10 +9208,10 @@
     "batch_net": 34623.0,
     "row_count": 5,
     "order_ids": [
-      "ord_tBX4XCprUx0wZV6s",
       "ord_hGeTinV3tBXsPCri",
-      "ord_k6bwAxb9ZQKyEt5D",
       "ord_9TDcMvjJwwIaaadA",
+      "ord_k6bwAxb9ZQKyEt5D",
+      "ord_tBX4XCprUx0wZV6s",
       "ord_48wijUMHTn8OkOye"
     ],
     "ghost_order_ids": [],
@@ -9227,12 +9229,12 @@
     "batch_net": 222941.34,
     "row_count": 6,
     "order_ids": [
-      "ord_ClrDtYON1DfRytTl",
+      "ord_jHvWp4aYuVw0jg6y",
       "ord_etsQ5jCCdWj7Etg1",
       "ord_oAaUPdG5tKSPKatW",
       "ord_oEJtRQGxkvUvkRy2",
-      "ord_jHvWp4aYuVw0jg6y",
-      "ord_ZVbJoHW8XgRp1JYL"
+      "ord_ZVbJoHW8XgRp1JYL",
+      "ord_ClrDtYON1DfRytTl"
     ],
     "ghost_order_ids": [],
     "bank_amount": 222941.34,
@@ -9249,11 +9251,11 @@
     "batch_net": 19793.64,
     "row_count": 5,
     "order_ids": [
-      "ord_P20483bs4EZ5fBlr",
       "ord_zZvdIg6dsbnAGDnl",
+      "ord_2dE3sf3xqmHuK98y",
       "ord_PcCY6nJ6XS2LwsWh",
       "ord_TVKReNK6QlGORFif",
-      "ord_2dE3sf3xqmHuK98y"
+      "ord_P20483bs4EZ5fBlr"
     ],
     "ghost_order_ids": [],
     "bank_amount": 19793.64,
@@ -9270,12 +9272,12 @@
     "batch_net": 109019.89,
     "row_count": 7,
     "order_ids": [
+      "ord_JNcDn54oAgZBshRf",
+      "ord_N73vabPaK7oVYH20",
       "ord_DuC0WfRqlR5XyBJN",
       "ord_h492K4VUk6RLjrzH",
       "ord_8okHCMSuYXfAgQgS",
       "ord_BmMkYrMuyDG2LUcQ",
-      "ord_JNcDn54oAgZBshRf",
-      "ord_N73vabPaK7oVYH20",
       "ord_1jjrZHBUxmz5F0Pk"
     ],
     "ghost_order_ids": [],
@@ -9293,11 +9295,11 @@
     "batch_net": 8891.44,
     "row_count": 5,
     "order_ids": [
-      "ord_m4Ze4nW3TEbp9XaK",
-      "ord_g7yxIPn2iG00RvQ4",
       "ord_8ymnB5zQLrTVA1jY",
+      "ord_g7yxIPn2iG00RvQ4",
+      "ord_CG0lwAeALFo2Zyvq",
       "ord_ix3byoTdJDG3VsfK",
-      "ord_CG0lwAeALFo2Zyvq"
+      "ord_m4Ze4nW3TEbp9XaK"
     ],
     "ghost_order_ids": [],
     "bank_amount": 8891.44,
@@ -9314,12 +9316,12 @@
     "batch_net": 237084.68,
     "row_count": 6,
     "order_ids": [
-      "ord_Hiuf2Wu6CpaSWoUJ",
-      "ord_Ef9jPu0WNQDa1wBp",
-      "ord_vqIGmCwCWI4UZMw2",
-      "ord_SBeuNwubkvIxYI34",
       "ord_4fYLTN3wD9gv98Go",
-      "ord_5L7CxsoNP4TzjHpD"
+      "ord_Ef9jPu0WNQDa1wBp",
+      "ord_Hiuf2Wu6CpaSWoUJ",
+      "ord_5L7CxsoNP4TzjHpD",
+      "ord_SBeuNwubkvIxYI34",
+      "ord_vqIGmCwCWI4UZMw2"
     ],
     "ghost_order_ids": [],
     "bank_amount": 237084.68,
@@ -9337,8 +9339,8 @@
     "row_count": 3,
     "order_ids": [
       "ord_3Duap3b8pTv4rl7j",
-      "ord_1yQwG21NycSxOBLU",
-      "ord_iG6qJCWiaCW58CWq"
+      "ord_iG6qJCWiaCW58CWq",
+      "ord_1yQwG21NycSxOBLU"
     ],
     "ghost_order_ids": [],
     "bank_amount": 16810.02,
@@ -9355,12 +9357,12 @@
     "batch_net": 17953.35,
     "row_count": 6,
     "order_ids": [
-      "ord_kZuhR1Irf83RntaW",
-      "ord_yQrex1VFI5Je9vOb",
-      "ord_YaQFW6Hsa5cpHsL1",
       "ord_vwcHpRFwVYL6s4m8",
+      "ord_Ok9Om3TtumDXSJMC",
+      "ord_yQrex1VFI5Je9vOb",
       "ord_YLRAMwoRcwnGNrNl",
-      "ord_Ok9Om3TtumDXSJMC"
+      "ord_YaQFW6Hsa5cpHsL1",
+      "ord_kZuhR1Irf83RntaW"
     ],
     "ghost_order_ids": [],
     "bank_amount": 17953.35,
@@ -9377,12 +9379,12 @@
     "batch_net": 50899.16,
     "row_count": 6,
     "order_ids": [
-      "ord_rTuSMn6LBSMzqEcH",
+      "ord_Xw5U2a5Hvu05nnDg",
       "ord_OfpIejVHNEpSQD71",
       "ord_iPA0ugfxCRBnqCuy",
+      "ord_ywgDzhyouMoH1rAb",
       "ord_3HIrlVi0JkWpaQwX",
-      "ord_Xw5U2a5Hvu05nnDg",
-      "ord_ywgDzhyouMoH1rAb"
+      "ord_rTuSMn6LBSMzqEcH"
     ],
     "ghost_order_ids": [],
     "bank_amount": 50899.16,
@@ -9399,13 +9401,13 @@
     "batch_net": 15226.89,
     "row_count": 7,
     "order_ids": [
-      "ord_ouQFyljde4EKvfwT",
-      "ord_ypJjTMscM9bzlPUj",
-      "ord_gHsqhSmx6y6E3cE3",
       "ord_rrcq5wmo5aho4zEK",
-      "ord_koFd28YNXalEiD5d",
       "ord_Is8Lhnsvik6sp3h2",
-      "ord_sZaNKIi0WZR2HAoI"
+      "ord_sZaNKIi0WZR2HAoI",
+      "ord_koFd28YNXalEiD5d",
+      "ord_ypJjTMscM9bzlPUj",
+      "ord_ouQFyljde4EKvfwT",
+      "ord_gHsqhSmx6y6E3cE3"
     ],
     "ghost_order_ids": [],
     "bank_amount": 15226.89,
@@ -9422,12 +9424,12 @@
     "batch_net": 33469.17,
     "row_count": 6,
     "order_ids": [
+      "ord_Ww9bXJbT6cMlRkUB",
       "ord_6Wp69fJcHeO6Btze",
-      "ord_yy5Sij0phXtxqEuV",
       "ord_0jYk1urTBZeOc6NS",
       "ord_kKMsabkQTGXMV3yb",
-      "ord_Ww9bXJbT6cMlRkUB",
-      "ord_Js8YDSyK70iiFGxH"
+      "ord_Js8YDSyK70iiFGxH",
+      "ord_yy5Sij0phXtxqEuV"
     ],
     "ghost_order_ids": [],
     "bank_amount": 33469.17,
@@ -9446,8 +9448,8 @@
     "order_ids": [
       "ord_lAgPHlhgvNW3BIFq",
       "ord_sSZuI09r4R6ENyry",
-      "ord_Xpy8eCfk12bgcsZo",
       "ord_e3Uji4PJyuGxYx1h",
+      "ord_Xpy8eCfk12bgcsZo",
       "ord_nRHfketwxmKY2uXg"
     ],
     "ghost_order_ids": [],
@@ -9465,12 +9467,12 @@
     "batch_net": 48539.52,
     "row_count": 6,
     "order_ids": [
-      "ord_OJ1fUupBvepriCkM",
       "ord_vjj8pUgrFpPVpX0i",
-      "ord_iTZent2NyR6jQPyw",
       "ord_AeVgyQXu2tH3UagQ",
+      "ord_Bn4BikGvoHjb0fwI",
       "ord_pQez8POoNAPBlzZi",
-      "ord_Bn4BikGvoHjb0fwI"
+      "ord_iTZent2NyR6jQPyw",
+      "ord_OJ1fUupBvepriCkM"
     ],
     "ghost_order_ids": [],
     "bank_amount": 48539.52,
@@ -9487,12 +9489,12 @@
     "batch_net": 33113.41,
     "row_count": 6,
     "order_ids": [
-      "ord_K0FzHbsT1R0otUp3",
-      "ord_3wB95aWKOeDlDs7a",
-      "ord_fhtgp2mlJLqm3sCW",
       "ord_Taq726WsyB7l0p6q",
       "ord_yKj6LRT2yqLIacnY",
-      "ord_LRjxhsPHgKc0Claq"
+      "ord_LRjxhsPHgKc0Claq",
+      "ord_fhtgp2mlJLqm3sCW",
+      "ord_3wB95aWKOeDlDs7a",
+      "ord_K0FzHbsT1R0otUp3"
     ],
     "ghost_order_ids": [],
     "bank_amount": 33113.41,
@@ -9510,11 +9512,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_I91sOFsyyhAqD2CC",
-      "ord_Z0dt35EfrkjhCh4A",
+      "ord_YKbftvyxBX0v5kJt",
       "ord_qZJEo6EjUYckCkvQ",
       "ord_vsdG1zBKEfgYaHrO",
       "ord_j6XiIFbVkcmacZxT",
-      "ord_YKbftvyxBX0v5kJt"
+      "ord_Z0dt35EfrkjhCh4A"
     ],
     "ghost_order_ids": [],
     "bank_amount": 202434.54,
@@ -9531,12 +9533,12 @@
     "batch_net": 23240.17,
     "row_count": 6,
     "order_ids": [
-      "ord_I19PhH8wfdTylssn",
       "ord_yEja7OQTxrtTQEMw",
-      "ord_mmvjXwSilltq8c3S",
       "ord_6YRsvaYnhJFE58JU",
+      "ord_I19PhH8wfdTylssn",
+      "ord_xP8Ymb5XT3FVQToG",
       "ord_IrRPEmVbIdpGDaLk",
-      "ord_xP8Ymb5XT3FVQToG"
+      "ord_mmvjXwSilltq8c3S"
     ],
     "ghost_order_ids": [],
     "bank_amount": 23240.17,
@@ -9553,12 +9555,12 @@
     "batch_net": 67018.56,
     "row_count": 6,
     "order_ids": [
-      "ord_zJFzoc7kA8o6Utt7",
-      "ord_lXrlrXwMTZPSOldB",
+      "ord_WwdNAWmiw7eT2MyL",
+      "ord_fKuzAQVVjrjcHFtL",
       "ord_M6YU9lKeiR91Pm20",
       "ord_p7epYrGZaBciASn3",
-      "ord_fKuzAQVVjrjcHFtL",
-      "ord_WwdNAWmiw7eT2MyL"
+      "ord_zJFzoc7kA8o6Utt7",
+      "ord_lXrlrXwMTZPSOldB"
     ],
     "ghost_order_ids": [],
     "bank_amount": 67018.56,
@@ -9575,12 +9577,12 @@
     "batch_net": 17523.94,
     "row_count": 6,
     "order_ids": [
-      "ord_h51ZC8ryk4GPpKli",
-      "ord_gMY2F2BJcTuGKN3W",
-      "ord_XVnkfCtiSYHIiRal",
-      "ord_A5bq7qC4n7a41UQG",
       "ord_KYcVSyuehWal2UWc",
-      "ord_VsPCmDk3NlH7FlXv"
+      "ord_VsPCmDk3NlH7FlXv",
+      "ord_h51ZC8ryk4GPpKli",
+      "ord_A5bq7qC4n7a41UQG",
+      "ord_gMY2F2BJcTuGKN3W",
+      "ord_XVnkfCtiSYHIiRal"
     ],
     "ghost_order_ids": [],
     "bank_amount": 17523.94,
@@ -9597,11 +9599,11 @@
     "batch_net": 31733.97,
     "row_count": 5,
     "order_ids": [
-      "ord_gqKQQJKRSwW6semc",
+      "ord_bgPxL61OsL8QRut4",
       "ord_s6XkoJvo779j9nth",
       "ord_ytO3K3uaDlH0Evl0",
-      "ord_bgPxL61OsL8QRut4",
-      "ord_wcHgTApXGW1LQQ7V"
+      "ord_wcHgTApXGW1LQQ7V",
+      "ord_gqKQQJKRSwW6semc"
     ],
     "ghost_order_ids": [],
     "bank_amount": 31733.97,
@@ -9619,11 +9621,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_2IKQa4WRg6fvLFuh",
-      "ord_FANaweXrBEuJQYhL",
-      "ord_4H3eFIRp8xuNEJUc",
-      "ord_KvdvEcSNM107QdbI",
       "ord_XVhzqaf0fqCNcLNT",
-      "ord_EyQ207INDc40GZ0o"
+      "ord_4H3eFIRp8xuNEJUc",
+      "ord_EyQ207INDc40GZ0o",
+      "ord_FANaweXrBEuJQYhL",
+      "ord_KvdvEcSNM107QdbI"
     ],
     "ghost_order_ids": [],
     "bank_amount": 16399.19,
@@ -9640,12 +9642,12 @@
     "batch_net": 59528.04,
     "row_count": 6,
     "order_ids": [
-      "ord_DXK7gAXB4i17LmLN",
+      "ord_5R9hasvQ7c9O4RqR",
       "ord_pZ3rvhwoEBzppVyz",
-      "ord_Yo7JSxt54lWFWMbY",
-      "ord_5PrE28Ej05fYDrGd",
       "ord_OFqeIn9CZCEFuve7",
-      "ord_5R9hasvQ7c9O4RqR"
+      "ord_DXK7gAXB4i17LmLN",
+      "ord_Yo7JSxt54lWFWMbY",
+      "ord_5PrE28Ej05fYDrGd"
     ],
     "ghost_order_ids": [],
     "bank_amount": 59528.04,
@@ -9662,8 +9664,8 @@
     "batch_net": 123515.11,
     "row_count": 5,
     "order_ids": [
-      "ord_ivu7cckBHEn9pOT7",
       "ord_Jq53vqn6WN7dc9Xr",
+      "ord_ivu7cckBHEn9pOT7",
       "ord_DsIDEJg6Ou8UZueh",
       "ord_B91G5HIQLE04MGxZ",
       "ord_1jjrZHBUxmz5F0Pk"
@@ -9683,12 +9685,12 @@
     "batch_net": 7109.51,
     "row_count": 6,
     "order_ids": [
-      "ord_pebQuHaRqepCYlAS",
-      "ord_rrcq5wmo5aho4zEK",
       "ord_FfR6W6UAvttcpWDh",
-      "ord_irgunRIvSmZXeeTe",
       "ord_w1AAy1mJm2c2wGHr",
-      "ord_6cggaqI9euK4yBN9"
+      "ord_6cggaqI9euK4yBN9",
+      "ord_rrcq5wmo5aho4zEK",
+      "ord_pebQuHaRqepCYlAS",
+      "ord_irgunRIvSmZXeeTe"
     ],
     "ghost_order_ids": [],
     "bank_amount": 7109.51,
@@ -9705,12 +9707,12 @@
     "batch_net": 27892.04,
     "row_count": 6,
     "order_ids": [
-      "ord_sCAJ1PKc3DX6fNmU",
-      "ord_FQU3LNxOR0ih1yij",
-      "ord_7mBEHbec4CuQOviy",
       "ord_zpJFfsGPO9ScGKCS",
       "ord_rIpccFosbdRKzlKH",
-      "ord_5jZJUXzeoqPy7neK"
+      "ord_7mBEHbec4CuQOviy",
+      "ord_5jZJUXzeoqPy7neK",
+      "ord_sCAJ1PKc3DX6fNmU",
+      "ord_FQU3LNxOR0ih1yij"
     ],
     "ghost_order_ids": [],
     "bank_amount": 27892.04,
@@ -9727,12 +9729,12 @@
     "batch_net": 47852.08,
     "row_count": 6,
     "order_ids": [
-      "ord_xmMEJ2gPGBfY5SdL",
+      "ord_v98iVN3Rvnpqnnfh",
       "ord_HxxhnvCqhorA0yNZ",
-      "ord_zj69pQCudo4LkneF",
-      "ord_YJkv0Q30zKuApfl4",
       "ord_vWVzlu4oILNaVoaR",
-      "ord_v98iVN3Rvnpqnnfh"
+      "ord_YJkv0Q30zKuApfl4",
+      "ord_xmMEJ2gPGBfY5SdL",
+      "ord_zj69pQCudo4LkneF"
     ],
     "ghost_order_ids": [],
     "bank_amount": 47852.08,
@@ -9750,11 +9752,11 @@
     "row_count": 6,
     "order_ids": [
       "ord_eVhpPczSUgp10eQg",
-      "ord_APiT5m7DZIyvy6Pw",
-      "ord_ZnmIm9lt6UPjdFWu",
       "ord_eb0wwhA7ydj5WqYn",
-      "ord_x9wVO14tgZNnmHGW",
-      "ord_vPSnueB1iXKEdsoD"
+      "ord_vPSnueB1iXKEdsoD",
+      "ord_ZnmIm9lt6UPjdFWu",
+      "ord_APiT5m7DZIyvy6Pw",
+      "ord_x9wVO14tgZNnmHGW"
     ],
     "ghost_order_ids": [],
     "bank_amount": 194661.03,
@@ -9771,12 +9773,12 @@
     "batch_net": 22912.94,
     "row_count": 6,
     "order_ids": [
-      "ord_7Bwksaq9crY6OZwJ",
-      "ord_LzAahV9o596qCbK5",
-      "ord_E69S7qcS90GXWSrB",
       "ord_dS5FztVVwgVGscEC",
+      "ord_38WMbDOkOu3xj9As",
+      "ord_7Bwksaq9crY6OZwJ",
+      "ord_E69S7qcS90GXWSrB",
       "ord_CUstH9RFiguJBxkO",
-      "ord_38WMbDOkOu3xj9As"
+      "ord_LzAahV9o596qCbK5"
     ],
     "ghost_order_ids": [],
     "bank_amount": 22912.94,
@@ -9793,11 +9795,11 @@
     "batch_net": 200646.34,
     "row_count": 5,
     "order_ids": [
-      "ord_XYs5cVPEHXiYEyPe",
-      "ord_MxZGakQhjl9YMiiL",
-      "ord_oWd8KMqFdKJex6eO",
+      "ord_29hgjPi6tqweUzX6",
       "ord_BkZk4ih9dwWNvtSc",
-      "ord_29hgjPi6tqweUzX6"
+      "ord_oWd8KMqFdKJex6eO",
+      "ord_MxZGakQhjl9YMiiL",
+      "ord_XYs5cVPEHXiYEyPe"
     ],
     "ghost_order_ids": [],
     "bank_amount": 200646.34,
@@ -9831,12 +9833,12 @@
     "batch_net": 43289.77,
     "row_count": 6,
     "order_ids": [
-      "ord_bCc9QxMvhTYVy01U",
-      "ord_cDlWapvBQSZbSCGt",
-      "ord_9xrN2gLnEe7D96HK",
-      "ord_T34pA4CBx0gtTKja",
+      "ord_lwq0oSgfuSD37eGe",
       "ord_lAPxS7naXVPcpzYG",
-      "ord_lwq0oSgfuSD37eGe"
+      "ord_9xrN2gLnEe7D96HK",
+      "ord_cDlWapvBQSZbSCGt",
+      "ord_T34pA4CBx0gtTKja",
+      "ord_bCc9QxMvhTYVy01U"
     ],
     "ghost_order_ids": [],
     "bank_amount": 43289.77,
@@ -9853,14 +9855,14 @@
     "batch_net": -446.18,
     "row_count": 2,
     "order_ids": [
-      "ord_ix3byoTdJDG3VsfK",
-      "ord_e5nqcNdvyyXYzAAW"
+      "ord_e5nqcNdvyyXYzAAW",
+      "ord_ix3byoTdJDG3VsfK"
     ],
     "ghost_order_ids": [],
     "bank_amount": null,
     "diff": null,
     "status": "batch_no_credit",
-    "confidence": "hard_exception",
+    "confidence": "matched",
     "detail": "UTR 4299074729669417 not in bank, batch net -446.18 <= 0 (credit correctly skipped)",
     "soft_flags": []
   },
@@ -9871,12 +9873,12 @@
     "batch_net": 85720.74,
     "row_count": 6,
     "order_ids": [
-      "ord_oic1Iwo5E0d7lLrf",
-      "ord_JJEkHGbJEvqjsaHn",
-      "ord_Wp8kxsqBd7wwjskK",
       "ord_RDPY9966NVYItgq2",
+      "ord_Wp8kxsqBd7wwjskK",
       "ord_92WBxIcshOY0V6aZ",
-      "ord_Puv0LlI1shQvRV96"
+      "ord_Puv0LlI1shQvRV96",
+      "ord_JJEkHGbJEvqjsaHn",
+      "ord_oic1Iwo5E0d7lLrf"
     ],
     "ghost_order_ids": [],
     "bank_amount": 85720.74,
@@ -9893,12 +9895,12 @@
     "batch_net": 149509.95,
     "row_count": 6,
     "order_ids": [
-      "ord_BCzVuB3VGVWVoPok",
-      "ord_5lt2pwFA1D0T3MJN",
       "ord_dM7To4Fjhs64K2K5",
-      "ord_SrejPXyYHikhqi7c",
       "ord_An4yGlzDyHkmDMUz",
-      "ord_pKLAKFeyhLmQ5ajV"
+      "ord_pKLAKFeyhLmQ5ajV",
+      "ord_SrejPXyYHikhqi7c",
+      "ord_5lt2pwFA1D0T3MJN",
+      "ord_BCzVuB3VGVWVoPok"
     ],
     "ghost_order_ids": [],
     "bank_amount": 149509.95,
@@ -9915,12 +9917,12 @@
     "batch_net": 244401.4,
     "row_count": 6,
     "order_ids": [
-      "ord_XBzM09VXxytA5sjV",
-      "ord_7SgrCKIssGlL5Ycw",
-      "ord_cBKdgFcw3dTuWmdX",
-      "ord_lNNLq7WWSTyHe9ZV",
       "ord_TAqsNjTOERNNis6y",
-      "ord_cILluIEv0VwQAtzj"
+      "ord_lNNLq7WWSTyHe9ZV",
+      "ord_7SgrCKIssGlL5Ycw",
+      "ord_cILluIEv0VwQAtzj",
+      "ord_XBzM09VXxytA5sjV",
+      "ord_cBKdgFcw3dTuWmdX"
     ],
     "ghost_order_ids": [],
     "bank_amount": 244401.4,
@@ -9937,12 +9939,12 @@
     "batch_net": 34161.81,
     "row_count": 6,
     "order_ids": [
-      "ord_CIPp2aj1mM2tQqZZ",
-      "ord_bA7MqIoJ5QoPX4KY",
       "ord_hAEpv1aGhr8wo6uJ",
+      "ord_CIPp2aj1mM2tQqZZ",
+      "ord_S9mAWtRPAo16ksq6",
       "ord_XTYdhc471ZMU3o6a",
       "ord_qTjqMIiSFjmhX2bI",
-      "ord_S9mAWtRPAo16ksq6"
+      "ord_bA7MqIoJ5QoPX4KY"
     ],
     "ghost_order_ids": [],
     "bank_amount": 34161.81,
@@ -9959,12 +9961,12 @@
     "batch_net": 76121.33,
     "row_count": 6,
     "order_ids": [
-      "ord_f9WDTKjtiCdZOlmc",
-      "ord_BP0mOdH6cPWl7swK",
-      "ord_XuKuKb8CaKxeuhYS",
+      "ord_M4S4NLtuu4rrYOTR",
       "ord_JtuiHdSWDp8OaAxk",
+      "ord_f9WDTKjtiCdZOlmc",
       "ord_BUqZKcHmBYiBnIcD",
-      "ord_M4S4NLtuu4rrYOTR"
+      "ord_BP0mOdH6cPWl7swK",
+      "ord_XuKuKb8CaKxeuhYS"
     ],
     "ghost_order_ids": [],
     "bank_amount": 76121.33,

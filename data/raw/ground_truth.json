@@ -252,135 +252,135 @@
   },
   {
     "order_id": "ord_cILluIEv0VwQAtzj",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_x79wu0ywvCSMfgEe"
     ],
     "expected_bank_utr": "8775833364770413",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_Xpy8eCfk12bgcsZo",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_gZQhCaMh9935fh7T"
     ],
     "expected_bank_utr": "3646280550774065",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_59uaGn2br4CxSXJg",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_8RtNKz3DtYo65Esd"
     ],
     "expected_bank_utr": "2772648839585585",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_E69S7qcS90GXWSrB",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_uHgGkLEuchopnEIg"
     ],
     "expected_bank_utr": "3971705984451436",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_vqIGmCwCWI4UZMw2",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_dhV066q3rTHFvUL7"
     ],
     "expected_bank_utr": "9523120219150576",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_FYQHWuQXnXpdm6Ul",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_U2nSzCXHLiAeNQeM"
     ],
     "expected_bank_utr": "2814447189395309",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_2ozm6RqNbOW8W3nD",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_Ug9C5dqtELc0MalO"
     ],
     "expected_bank_utr": "9136817203136955",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_UJ3A1IIPKoBAwOUK",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_WiMaMiXsjZYcAOai"
     ],
     "expected_bank_utr": "9178791505962571",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_90aGsb3TJHmksXlS",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_KwvDbhazu51Ki32f"
     ],
     "expected_bank_utr": "6337618518626713",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_XJ5EzFFtyikiUHVp",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_U2nSzCXHLiAeNQeM"
     ],
     "expected_bank_utr": "2814447189395309",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_8ymnB5zQLrTVA1jY",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_dXl1JugHwQ0tyEYK"
     ],
     "expected_bank_utr": "9131670805685667",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_pebQuHaRqepCYlAS",
-    "expected_match_status": "matched",
+    "expected_match_status": "exception",
     "expected_settlement_ids": [
       "set_rgY4BnjnePHXmz1q"
     ],
     "expected_bank_utr": "3222739389920457",
-    "exception_code": null,
-    "exception_detail": null,
-    "notes": null
+    "exception_code": "UNRECORDED_REFUND",
+    "exception_detail": "Ledger claims partial/full refund but no corresponding refund_deduction row exists in settlement_report.csv",
+    "notes": "Refund initiated but settlement record missing - needs human investigation"
   },
   {
     "order_id": "ord_1jjrZHBUxmz5F0Pk",

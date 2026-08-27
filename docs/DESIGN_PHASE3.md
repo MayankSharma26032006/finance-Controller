@@ -310,6 +310,16 @@ them against the actual source data for that case.
 - The cross-verify catches any creative rounding or figure invention
 - 17 cases is small enough for human spot-checking anyway
 
+### Known Limitation: Relational/Logical Claims
+
+The hallucination checker extracts numeric figures from the explanation and cross-verifies them against source data. However, it **cannot catch relational or logical claims** that misrepresent HOW numbers relate to each other.
+
+Example: An explanation could correctly state figures "1130.56" and "1202.36" (both present in source data) but incorrectly claim "both amounts appear in the same settlement batch" — a relational claim that is factually wrong but passes the figure-level check.
+
+This was observed in the DUPLICATE_ORDER case for ord_EnDJiS9HvlxNgbb1, where the LLM initially stated "both rows were included in a single batch" when only one settlement row existed. The fix was to make the case data builder explicitly state the relationship between ledger rows and settlement rows, rather than relying on the LLM to infer it correctly.
+
+**Mitigation:** For cases where relational accuracy matters (DUPLICATE_ORDER, UNRECORDED_REFUND), the case data builder should explicitly describe the relationship between entities, not just list the raw figures. This shifts the burden from LLM inference to deterministic data preparation.
+
 ### Known Limitation: Formatting Sensitivity
 
 Exact-string-match can false-flag a correct explanation due to formatting

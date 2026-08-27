@@ -401,3 +401,81 @@ After matching, compare results to ground_truth.json:
 
 The matcher should produce a machine-readable match_log (list of dicts)
 that Phase 4 (metrics engine) can compare against both ground truth files.
+
+
+---
+
+## Addendum: Post-Build Fixes (4 Issues Investigated and Resolved)
+
+**Date:** Post-Phase 2 build, after investigation of 4 claimed issues.
+
+### Fix 1: DUPLICATE_ORDER - Attach Real Settlement Data (order_matcher.py)
+
+**Problem:** The DUPLICATE_ORDER classification short-circuited before order-level matching, producing `settlement_ids: []` and `bank_utr: None` even though a real settlement row existed for `ord_EnDJiS9HvlxNgbb1`.
+
+**Fix:** Added settlement lookup for duplicate orders. The entry now includes real `settlement_ids` and `bank_utr` when settlement rows exist, while keeping `confidence: needs_review` (human must still decide which conflicting amount is correct).
+
+**Before:** `settlement_ids: [], bank_utr: None`
+**After:** `settlement_ids: ['set_NvO7qBhqH6y5IHWi'], bank_utr: 1845235426874470`
+
+### Fix 2: expected_residual - No Fix Needed (CONFIRMED NOT A BUG)
+
+**Investigation result:** `expected_residual` is computed but never compared against `order_residual` in any conditional branch, assertion, or confidence assignment. It's used only in a cosmetic detail string (FULL_REFUND cases) and as LLM context data. For REFUND_SPLIT cases, the two numbers measure different things (net-of-fees vs gross-based) and the code never asserts they should match.
+
+### Fix 3: UNRECORDED_REFUND - New Exception Code (order_matcher.py)
+
+**Problem:** 12 orders with `refund_status=partial` in the ledger have no corresponding `refund_deduction` row in the settlement report. The matcher classified all 12 as plain `matched` with `refund_type=none`, blind to the discrepancy.
+
+**Fix:** Added `UNRECORDED_REFUND` exception code. After refund classification, if `refund_status` is `partial` or `full` AND `refund_type == "none"` AND `refund_amount > 0`, the order gets `confidence: needs_review` with a descriptive detail.
+
+**Count:** 12 orders reclassified from `matched` to `needs_review`.
+
+### Fix 4: Negative-Net Batch Confidence (batch_matcher.py)
+
+**Problem:** `set_vlVzIbTfj7VNQanv` (batch_net=-446.18) was assigned `confidence: hard_exception` even though the detail said "credit correctly skipped" -- the behavior was correct but the label contradicted it.
+
+**Fix:** Changed confidence from `hard_exception` to `matched` for all negative-net batches. The `status: batch_no_credit` and derived exception code `NO_CREDIT_EXPECTED` remain for traceability, but the batch is no longer flagged as a problem.
+
+### Updated Status Breakdown
+
+**Order-Level (500 orders):**
+
+| Status | Before | After | Delta |
+|--------|--------|-------|-------|
+| matched | 486 | 474 | -12 |
+| matched_with_note | 5 | 5 | 0 |
+| needs_review | 1 | 13 | +12 |
+| hard_exception | 8 | 8 | 0 |
+| **TOTAL** | **500** | **500** | **0** |
+
+Exception codes: CURRENCY_MISMATCH(2), DUPLICATE_ORDER(1), REFUND_SPLIT(3), UNMATCHED_ORDER(8), UNRECORDED_REFUND(12)
+
+**Settlement-Level (91 batches):**
+
+| Status | Before | After | Delta |
+|--------|--------|-------|-------|
+| batch_credited | 89 | 89 | 0 |
+| batch_neft_failed | 1 | 1 | 0 |
+| batch_no_credit | 1 | 1 | 0 |
+
+Confidence: matched(88->89), hard_exception(2->1), needs_review(1->1)
+
+**Match Rate Recomputation:**
+- Orders: (474 + 5) / 500 = 479/500 = **95.8%** (was 98.2%)
+- Settlements: 89/91 = **97.8%** (unchanged)
+- Overall: (479 + 89) / 591 = 568/591 = **96.1%** (was 98.1%)
+
+Note: The 12-point drop in order match rate is correct -- those 12 orders genuinely have an unresolved ledger-vs-settlement discrepancy that was previously being silently ignored.
+
+### Phase 3 Impact
+
+**Affected existing cases:**
+- `ord_EnDJiS9HvlxNgbb1` (DUPLICATE_ORDER): Now has real settlement_ids/bank_utr. Existing explanation premise ("no settlement rows found") is now inaccurate -- needs re-explanation.
+- `set_vlVzIbTfj7VNQanv` (NO_CREDIT_EXPECTED): Confidence changed from hard_exception to matched, but explanation content is still correct (the reasoning about why no credit is expected has not changed).
+
+**New cases needing explanations (12):**
+All `UNRECORDED_REFUND` orders are new needs_review cases requiring LLM explanation. These did not exist in the previous 17-case set.
+
+**Total Phase 3 cases after fix:** 17 (existing) + 12 (new UNRECORDED_REFUND) - 0 (none removed) = **29 cases**
+
+match_log.json hash (post-fix): computed before Phase 3 regeneration.

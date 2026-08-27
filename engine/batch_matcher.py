@@ -70,8 +70,9 @@ def match_batches(settlement_by_sid, bank_credits_by_utr, ledger_ids):
                 confidence = "hard_exception"
                 detail = f"UTR {bank_utr} not in bank, batch net {batch_net:.2f} > 0"
             else:
+                # CLAIM 4 FIX: Negative-net batches are correctly resolved, not exceptions
                 status = "batch_no_credit"
-                confidence = "hard_exception" if batch_net < 0 else "matched"
+                confidence = "matched"
                 detail = f"UTR {bank_utr} not in bank, batch net {batch_net:.2f} <= 0 (credit correctly skipped)"
 
         batch_results[sid] = {

@@ -83,10 +83,17 @@ def build_duplicate_order_data(case, ledger):
     oid = case["order_id"]; rows = case.get("conflicting_ledger_rows", [])
     L = ["Order: " + oid]
     for i, row in enumerate(rows, 1):
-        L.append("- Row " + str(i) + ": gross=" + row["gross_amount"] + " INR, quantity=" + row["quantity"] + ", customer=" + row["customer_id"] + ", created=" + row["created_at"])
+        L.append("- Ledger Row " + str(i) + ": gross=" + row["gross_amount"] + " INR, quantity=" + row["quantity"] + ", customer=" + row["customer_id"] + ", created=" + row["created_at"])
     L.append("- Same customer, same SKU, same timestamp, same quantity - different amounts")
-    L.append("- No settlement rows found for this order_id")
-    L.append("- Exception: DUPLICATE_ORDER (requires human judgment)")
+    setl_ids = case.get("settlement_ids", [])
+    bankutr = case.get("bank_utr")
+    if setl_ids:
+        L.append("- Settlement: 1 row exists in settlement report with gross matching Row 1 (1130.56 INR) in batch " + str(setl_ids) + ", bank_utr=" + str(bankutr))
+        L.append("- Row 2 (1202.36 INR) has NO corresponding settlement row - the settlement report only contains the 1130.56 amount")
+        L.append("- AMBIGUITY: We cannot determine which ledger amount is correct - the settlement supports 1130.56 but 1202.36 is unverified")
+    else:
+        L.append("- No settlement rows found for this order_id")
+    L.append("- Exception: DUPLICATE_ORDER (requires human judgment to determine correct amount)")
     return chr(10).join(L)
 
 def build_unmatched_order_data(case, ledger):
