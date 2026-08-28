@@ -35,8 +35,7 @@ All 28 explanations currently pass verification (28/28 verified: true).
 
 ```bash
 pip install -r requirements.txt
-# Set your Groq API key in .env:
-#   echo "GROQ_API_KEY=gsk_..." > .env
+cp .env.example .env   # then add your GROQ_API_KEY
 streamlit run dashboard.py
 ```
 
