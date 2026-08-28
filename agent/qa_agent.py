@@ -297,14 +297,36 @@ def _verify_figures(answer_text, case_data_str):
     for df in DOMAIN_FIGURES:
         source_normalized.add(df)
         source_normalized.add(df.replace("%", ""))
+    # Split source into numeric and text for type-aware matching
+    source_numeric = set()
+    source_text = set()
+    for s in source_normalized:
+        try:
+            source_numeric.add(float(s))
+        except (ValueError, TypeError):
+            source_text.add(s)
+
     # Check each stated figure
+    FINANCIAL_TOLERANCE = 0.01  # matches ORDER_TOLERANCE from preprocessor.py
     mismatches = []
     for fig in stated:
         found = False
-        for src in source_normalized:
-            if fig in src or src in fig:
-                found = True
-                break
+        # 1) Numeric comparison: parse and check against numeric source values
+        try:
+            fig_val = float(fig)
+            for src_val in source_numeric:
+                if abs(fig_val - src_val) <= FINANCIAL_TOLERANCE:
+                    found = True
+                    break
+        except (ValueError, TypeError):
+            pass
+        # 2) Text/substring matching: only for non-numeric figures (dates, codes)
+        if not found:
+            for src in source_text:
+                if fig in src or src in fig:
+                    found = True
+                    break
+        # 3) Formatted fallback: check comma-formatted string in raw source text
         if not found:
             try:
                 as_float = float(fig)

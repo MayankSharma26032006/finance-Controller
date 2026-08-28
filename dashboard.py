@@ -54,7 +54,7 @@ def compute_hashes():
     hashes = {}
     for name, path in files.items():
         if path.exists():
-            h = hashlib.sha256(open(path, "rb").read()).hexdigest()[:16]
+            with open(path, "rb") as _f: h = hashlib.sha256(_f.read()).hexdigest()[:16]
             hashes[name] = h
     return hashes
 
@@ -132,7 +132,6 @@ status_counts = Counter(e["simplified_status"] for e in all_cases)
 
 # Short labels for chart readability (fixed logical order, horizontal bars)
 import pandas as pd
-import altair as alt
 chart_labels = ["With Note", "No Credit Due", "Review", "Unresolved"]
 chart_keys = [
     "Reconciled (with note)",

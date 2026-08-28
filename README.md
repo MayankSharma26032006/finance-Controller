@@ -148,7 +148,7 @@ Full pipeline output: `match_log.json` → `explanations.json` → `reconciliati
 - **Python 3.8+** — stdlib only for data processing (csv, json, random, datetime)
 - **Groq + openai SDK** — LLM narration via `openai/gpt-oss-120b` (free tier)
 - **Streamlit** — dashboard UI
-- **No pandas, no vector DB, no LangChain** — minimal dependencies by design
+- **No vector DB, no LangChain** — minimal dependencies by design; pandas used only for chart rendering in the dashboard
 
 ## License
 
