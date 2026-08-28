@@ -65,6 +65,12 @@ python3 engine/metrics_scorer.py
 
 # Phase 6: Generate the audit trail
 python3 engine/generate_audit.py
+
+# Phase 7: Test the Q&A agent (runs 6 test questions)
+python3 agent/qa_agent.py
+
+# Phase 8: Launch the dashboard
+streamlit run dashboard.py
 ```
 
 Full pipeline output: `match_log.json` → `explanations.json` → `reconciliation_report.json` → `metrics_report.json` → `audit_trail.md`
