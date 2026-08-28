@@ -76,8 +76,8 @@ all_cases = rr.get("orders", []) + rr.get("settlements", [])
 # ── Header ───────────────────────────────────────────────────────────
 st.title("AI Finance Controller")
 st.caption(
-    "3-source reconciliation | 591 cases | "
-    f"100% accuracy against ground truth"
+    "591 cases | 100% classification accuracy | "
+    "96.1% reconciled | 3.9% flagged for review"
 )
 st.divider()
 
@@ -474,7 +474,8 @@ st.divider()
 st.markdown("---")
 st.caption("Built for Razorpay AI Buildathon | Track: AI Finance Controller")
 st.caption(
-    "Pipeline: 8 phases | 591 cases | 100% accuracy against ground truth"
+    "Pipeline: 8 phases | 591 cases | 100% accuracy | "
+    "96.1% reconciled | 3.9% transparently flagged"
 )
 
 # Hash provenance
