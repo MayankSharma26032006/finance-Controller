@@ -217,6 +217,23 @@ def collect_source_figures(case, ledger, settlements):
     figs.update(domain_figures)
     return figs
 
+def validate_explanation(text):
+    """Validate LLM explanation text. Returns dict with is_valid, reason, sentence_count."""
+    if text is None:
+        return {"is_valid": False, "reason": "empty_response", "sentence_count": 0}
+    stripped = text.strip()
+    if len(stripped) == 0:
+        return {"is_valid": False, "reason": "empty_response", "sentence_count": 0}
+    # Count sentences: split on period/exclamation/question-mark followed by space or end
+    sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', stripped) if s.strip()]
+    count = len(sentences)
+    if count < 2:
+        return {"is_valid": False, "reason": "too_short", "sentence_count": count}
+    if count > 6:
+        return {"is_valid": False, "reason": "too_long", "sentence_count": count}
+    return {"is_valid": True, "reason": None, "sentence_count": count}
+
+
 def run_hallucination_check(explanation, case, ledger, settlements):
     stated = extract_figures(explanation)
     source = collect_source_figures(case, ledger, settlements)
@@ -311,34 +328,44 @@ def main():
         prompt = build_prompt(case, case_data)
         explanation, usage, error = call_openai(client, prompt, case_id)
 
+        # -- Build entry: handle API failure vs valid response --
         if error:
             print("  FAILED: " + error)
             failed_cases.append({"case_id": case_id, "error": error})
-            explanation = "ERROR: API call failed - " + error
             usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
-
-        if usage:
-            for k in total_usage: total_usage[k] += usage.get(k, 0)
-
-        hc = run_hallucination_check(explanation, case, ledger, settlements)
-
-        confidence_note = None
-        if status == "needs_review" and exc == "DUPLICATE_ORDER":
-            confidence_note = "Cannot determine which amount is correct. Requires manual verification."
-
-        suggested_action = get_suggested_action(exc, case)
-
-        entry = {
-            "case_id": case_id, "case_type": case_type, "status": status,
-            "exception_code": exc, "explanation": explanation,
-            "suggested_action": suggested_action, "confidence_note": confidence_note,
-            "hallucination_check": hc,
-        }
-        explanations.append(entry)
-
-        vs = "VERIFIED" if hc["verified"] else "FLAGGED(" + str(len(hc["mismatches"])) + ")"
-        print("  HC: " + vs)
-        print("  Expl: " + explanation[:120].encode("ascii", "replace").decode() + "...")
+            entry = {
+                "case_id": case_id, "case_type": case_type, "status": status,
+                "exception_code": exc,
+                "explanation": "ERROR: " + error,
+                "suggested_action": get_suggested_action(exc, case),
+                "confidence_note": None,
+                "hallucination_check": None,
+                "validation": {"is_valid": False, "reason": "api_error", "sentence_count": 0},
+            }
+            explanations.append(entry)
+            print("  FAIL: api_error")
+            print("  Expl: ERROR")
+        else:
+            validation = validate_explanation(explanation)
+            hc = run_hallucination_check(explanation, case, ledger, settlements)
+            if not validation["is_valid"]:
+                hc = None
+            confidence_note = None
+            if status == "needs_review" and exc == "DUPLICATE_ORDER":
+                confidence_note = "Cannot determine which amount is correct. Requires manual verification."
+            entry = {
+                "case_id": case_id, "case_type": case_type, "status": status,
+                "exception_code": exc, "explanation": explanation,
+                "suggested_action": get_suggested_action(exc, case),
+                "confidence_note": confidence_note,
+                "hallucination_check": hc,
+                "validation": validation,
+            }
+            explanations.append(entry)
+            vs = "VERIFIED" if (hc and hc["verified"]) else ("FLAGGED(" + str(len(hc["mismatches"])) + ")" if hc else "N/A")
+            print("  VAL: " + ("OK" if validation["is_valid"] else validation["reason"]) + " (" + str(validation["sentence_count"]) + " sentences)")
+            print("  HC: " + vs)
+            print("  Expl: " + explanation[:120].encode("ascii", "replace").decode() + "...")
 
     explanations.sort(key=lambda x: (x["case_type"], x["case_id"]))
 

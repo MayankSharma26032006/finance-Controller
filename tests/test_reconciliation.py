@@ -477,6 +477,95 @@ class TestQAAgentParsing(unittest.TestCase):
 #  TEST 9: END-TO-END PIPELINE — FULL DATASET
 # ═══════════════════════════════════════════════════════════════════════
 
+class TestExplanationValidation(unittest.TestCase):
+    """Tests for validate_explanation() — output validation on LLM responses."""
+
+    def test_empty_string_rejected(self):
+        from explainer import validate_explanation
+        r = validate_explanation("")
+        self.assertFalse(r["is_valid"])
+        self.assertEqual(r["reason"], "empty_response")
+        self.assertEqual(r["sentence_count"], 0)
+
+    def test_whitespace_only_rejected(self):
+        from explainer import validate_explanation
+        r = validate_explanation("   \n  \t  ")
+        self.assertFalse(r["is_valid"])
+        self.assertEqual(r["reason"], "empty_response")
+        self.assertEqual(r["sentence_count"], 0)
+
+    def test_none_rejected(self):
+        from explainer import validate_explanation
+        r = validate_explanation(None)
+        self.assertFalse(r["is_valid"])
+        self.assertEqual(r["reason"], "empty_response")
+
+    def test_valid_two_sentences(self):
+        from explainer import validate_explanation
+        text = "Order ord_ABC123 was captured for 1000.00 INR. The settlement set_XYZ matched with a net of 976.40 INR."
+        r = validate_explanation(text)
+        self.assertTrue(r["is_valid"])
+        self.assertIsNone(r["reason"])
+        self.assertEqual(r["sentence_count"], 2)
+
+    def test_valid_three_sentences(self):
+        from explainer import validate_explanation
+        text = "This is sentence one. This is sentence two. This is sentence three."
+        r = validate_explanation(text)
+        self.assertTrue(r["is_valid"])
+        self.assertEqual(r["sentence_count"], 3)
+
+    def test_valid_four_sentences(self):
+        from explainer import validate_explanation
+        text = "First sentence here. Second sentence. Third sentence. Fourth sentence."
+        r = validate_explanation(text)
+        self.assertTrue(r["is_valid"])
+        self.assertEqual(r["sentence_count"], 4)
+
+    def test_single_sentence_rejected(self):
+        from explainer import validate_explanation
+        text = "This is just one sentence without a second."
+        r = validate_explanation(text)
+        self.assertFalse(r["is_valid"])
+        self.assertEqual(r["reason"], "too_short")
+        self.assertEqual(r["sentence_count"], 1)
+
+    def test_overlong_response_flagged(self):
+        from explainer import validate_explanation
+        text = ". ".join(["Sentence " + str(i) + "." for i in range(8)])
+        r = validate_explanation(text)
+        self.assertFalse(r["is_valid"])
+        self.assertEqual(r["reason"], "too_long")
+        self.assertGreater(r["sentence_count"], 6)
+
+    def test_financial_abbreviations_not_rejected(self):
+        """Decimal numbers and IDs should not break sentence counting."""
+        from explainer import validate_explanation
+        text = ("Order ord_0EE1Z6jjCFojTQpT was an international card payment of 424.24 USD. "
+                "The settlement set_Ug9C5dqtELc0MalO settled for 35,211.92 INR with a net of 33,965.42 INR.")
+        r = validate_explanation(text)
+        self.assertTrue(r["is_valid"])
+        self.assertEqual(r["sentence_count"], 2)
+
+    def test_error_string_not_validated(self):
+        """An API error string should be treated as invalid by the pipeline."""
+        from explainer import validate_explanation
+        # API error strings are typically short single phrases
+        text = "ERROR: Rate limit exceeded after retries"
+        r = validate_explanation(text)
+        # Single sentence -> too_short, which is correct for pipeline handling
+        self.assertFalse(r["is_valid"])
+
+    def test_validation_result_has_expected_fields(self):
+        from explainer import validate_explanation
+        r = validate_explanation("Sentence one. Sentence two.")
+        self.assertIn("is_valid", r)
+        self.assertIn("reason", r)
+        self.assertIn("sentence_count", r)
+        self.assertIsInstance(r["is_valid"], bool)
+        self.assertIsInstance(r["sentence_count"], int)
+
+
 class TestEndToEndPipeline(unittest.TestCase):
     """
     Integration test: run the full deterministic matcher on frozen
