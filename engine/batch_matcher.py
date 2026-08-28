@@ -29,7 +29,7 @@ def match_batches(settlement_by_sid, bank_credits_by_utr, ledger_ids):
 
         bank_credit_candidates = bank_credits_by_utr.get(bank_utr, [])
         row_count = len(rows)
-        order_ids = list(set(r["order_id"] for r in rows))
+        order_ids = sorted(set(r["order_id"] for r in rows))
 
         # Check for ghost transaction in this batch
         ghost_order_ids = [oid for oid in order_ids if oid not in ledger_ids]

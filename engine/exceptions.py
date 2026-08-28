@@ -105,7 +105,7 @@ def compile_match_log(order_results, batch_results):
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     output_path = os.path.join(OUTPUT_DIR, "match_log.json")
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
         json.dump(match_log, f, indent=2, ensure_ascii=False)
 
     return match_log, output_path

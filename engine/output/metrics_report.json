@@ -1,0 +1,128 @@
+{
+  "report_metadata": {
+    "generated_at": "2026-08-27T10:01:21Z",
+    "reconciliation_report_hash": "29eb46aa26788fefededdb0c712cba00c182408f01a395dea03ca3026d710bec",
+    "ground_truth_hash": "f2df67996c3a50cc84205829112d421e362a7a1e4254cec9301c95daf5e1ba22",
+    "ground_truth_settlements_hash": "853d8bfbb22bb73098433fe03fc7e708e8e03cd0fb97da9c2fd634c789352690"
+  },
+  "completeness": {
+    "orders_scored": 500,
+    "settlements_scored": 91,
+    "total_scored": 591,
+    "assertion_passed": true
+  },
+  "overall": {
+    "accuracy": 1.0,
+    "match_rate_from_report": 0.9611,
+    "match_rate_phase5_verified": 0.9526,
+    "match_rate_verified": false,
+    "false_positive_rate": 0.0018,
+    "false_negative_rate": 0.0
+  },
+  "order_level": {
+    "total": 500,
+    "correct": 500,
+    "accuracy": 1.0,
+    "per_exception_code": {
+      "UNMATCHED_ORDER": {
+        "TP": 8,
+        "FP": 0,
+        "FN": 0,
+        "TN": 583,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "REFUND_SPLIT": {
+        "TP": 3,
+        "FP": 0,
+        "FN": 0,
+        "TN": 588,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "CURRENCY_MISMATCH": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 0,
+        "TN": 589,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "DUPLICATE_ORDER": {
+        "TP": 1,
+        "FP": 0,
+        "FN": 0,
+        "TN": 590,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "UNRECORDED_REFUND": {
+        "TP": 12,
+        "FP": 0,
+        "FN": 0,
+        "TN": 579,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "none": {
+        "TP": 562,
+        "FP": 0,
+        "FN": 1,
+        "TN": 28,
+        "precision": 1.0,
+        "recall": 0.9982,
+        "f1": 0.9991
+      }
+    }
+  },
+  "settlement_level": {
+    "total": 91,
+    "correct": 91,
+    "accuracy": 1.0,
+    "per_exception_code": {
+      "NEFT_FAILED": {
+        "TP": 1,
+        "FP": 0,
+        "FN": 0,
+        "TN": 590,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "NO_CREDIT_EXPECTED": {
+        "TP": 1,
+        "FP": 0,
+        "FN": 0,
+        "TN": 590,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "none": {
+        "TP": 562,
+        "FP": 0,
+        "FN": 1,
+        "TN": 28,
+        "precision": 1.0,
+        "recall": 0.9982,
+        "f1": 0.9991
+      }
+    },
+    "ghost_transaction_detection": {
+      "total": 1,
+      "correct": 1,
+      "note": "GHOST_TRANSACTION has no GT vocabulary; scored via credit-status mapping, not TP/FP/FN/TN"
+    }
+  },
+  "mismatches": [],
+  "expected_counts": {
+    "orders": 500,
+    "settlements": 91,
+    "total": 591
+  }
+}

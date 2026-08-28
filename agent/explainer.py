@@ -284,9 +284,9 @@ def main():
 
     print("Loading match_log.json...")
     cases = load_match_log()
-    print("Found " + str(len(cases)) + " cases (expected: 17)")
-    if len(cases) != 17:
-        print("ERROR: Expected 17 cases, got " + str(len(cases)) + ". Aborting.")
+    print("Found " + str(len(cases)) + " cases (expected: 28)")
+    if len(cases) != 28:
+        print("ERROR: Expected 28 cases, got " + str(len(cases)) + ". Aborting.")
         sys.exit(1)
 
     print("Loading CSV data...")
@@ -343,7 +343,7 @@ def main():
     explanations.sort(key=lambda x: (x["case_type"], x["case_id"]))
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT_PATH, "w") as f:
+    with open(OUTPUT_PATH, "w", newline="") as f:
         json.dump(explanations, f, indent=2)
 
     print("")

@@ -39,10 +39,10 @@ def match_orders(ledger_by_id, settlement_by_id):
                     "created_at": r["created_at"],
                     "payment_status": r["payment_status"],
                 })
-            amounts = list(set(r["gross_amount"] for r in rows))
+            amounts = sorted(set(r["gross_amount"] for r in rows))
             # CLAIM 1 FIX: Look up real settlement data even for duplicates
             dup_setl_rows = settlement_by_id.get(oid, [])
-            dup_settlement_ids = list(set(r["settlement_id"] for r in dup_setl_rows)) if dup_setl_rows else []
+            dup_settlement_ids = sorted(set(r["settlement_id"] for r in dup_setl_rows)) if dup_setl_rows else []
             dup_bank_utr = dup_setl_rows[0]["bank_utr"] if dup_setl_rows else None
             order_results[oid] = {
                 "order_id": oid,
@@ -167,7 +167,7 @@ def match_orders(ledger_by_id, settlement_by_id):
         refund_type = refund["refund_type"]
         order_residual = refund["order_residual"]
         expected_residual = refund["expected_residual"]
-        settlement_ids = list(set(r["settlement_id"] for r in setl_rows))
+        settlement_ids = sorted(set(r["settlement_id"] for r in setl_rows))
 
         # Determine exception code and confidence
         exception_code = None

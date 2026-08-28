@@ -233,7 +233,7 @@ def main():
     }
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    with open(OUTPUT, "w", encoding="utf-8") as f:
+    with open(OUTPUT, "w", encoding="utf-8", newline="") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
 
     print("")
