@@ -54,7 +54,7 @@ python3 data/generate_data.py
 # Phase 2: Run the deterministic matcher
 python3 engine/matcher_exact.py
 
-# Phase 3: Generate AI explanations for the 29 exception cases
+# Phase 3: Generate AI explanations for the 28 exception cases
 python3 agent/explainer.py
 
 # Phase 4: Build the reconciliation report
@@ -132,7 +132,7 @@ Full pipeline output: `match_log.json` → `explanations.json` → `reconciliati
 │   ├── explainer.py           # Phase 3: LLM-powered case narration
 │   ├── qa_agent.py            # Phase 7: natural-language Q&A agent
 │   └── output/
-│       └── explanations.json  # 29 narrated exception cases
+│       └── explanations.json  # 28 narrated exception cases
 │
 └── .gitignore
 ```
@@ -140,7 +140,7 @@ Full pipeline output: `match_log.json` → `explanations.json` → `reconciliati
 ## Tech Stack
 
 - **Python 3.8+** — stdlib only for data processing (csv, json, random, datetime)
-- **Groq + openai SDK** — LLM narration via `llama-3.3-70b-versatile` (free tier)
+- **Groq + openai SDK** — LLM narration via `openai/gpt-oss-120b` (free tier)
 - **Streamlit** — dashboard UI
 - **No pandas, no vector DB, no LangChain** — minimal dependencies by design
 
