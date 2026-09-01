@@ -1,9 +1,9 @@
 {
   "report_metadata": {
-    "generated_at": "2026-08-27T10:01:20.762407+00:00",
+    "generated_at": "2026-08-29T09:48:28.728783+00:00",
     "data_frozen_at": "2025-08-25T17:40:46+05:30",
     "match_log_hash": "7584a9a94f6afeb47d1b02237449197a533dffc1053c30acc44608ffda5fcdec",
-    "explanations_hash": "363966335a488230c94294a44954c5aa15c868e8374765fea2f41588c0ba0f63",
+    "explanations_hash": "d7c09af54731d709f5b9be7f3d17839e7fa13c5e2b15c77a235f6420e7801090",
     "total_orders": 500,
     "total_settlements": 91,
     "phases_consumed": [
@@ -8584,7 +8584,7 @@
       "case_type": "order",
       "simplified_status": "Reconciled (with note)",
       "exception_code": "CURRENCY_MISMATCH",
-      "explanation": "The order ord_0EE1Z6jjCFojTQpT was captured for a gross amount of 424.24 USD, which was converted at the fixed rate of 1 USD = 83.00 INR to 35,211.92 INR for settlement. In settlement set_Ug9C5dqtELc0MalO the gross INR amount of 35,211.92 was reduced by a fee of 1,056.36 INR and GST of 190.14 INR, resulting in a net credit of 33,965.42 INR (bank UTR 9136817203136955). The reconciliation flagged a CURRENCY_MISMATCH because the ledger records the transaction in USD while the settlement and bank records are in INR.",
+      "explanation": "The order ord_0EE1Z6jjCFojTQpT was recorded in the ledger with a gross amount of 424.24 USD, which was converted at the fixed rate of 1 USD = 83.00 INR to 35,211.92 INR for settlement. The settlement batch set_Ug9C5dqtELc0MalO showed a gross of 35,211.92 INR, a fee of 1,056.36 INR, GST of 190.14 INR, and a net payout of 33,965.42 INR, credited via NEFT UTR 9136817203136955. Because the ledger stores the amount in USD while the settlement and bank records are in INR, the system flagged a CURRENCY_MISMATCH exception. This mismatch explains why the amounts do not align across the two records.",
       "suggested_action": "No action required - amounts match after applying FX rate of 83.00 INR/USD.",
       "confidence_note": null,
       "key_figures": {
@@ -8602,7 +8602,7 @@
       "case_type": "order",
       "simplified_status": "Reconciled (with note)",
       "exception_code": "CURRENCY_MISMATCH",
-      "explanation": "The order ord_bhS8ygpi5G2Q3uJR was recorded in the ledger with a gross amount of 341.91 USD, which was converted at the fixed rate of 1 USD = 83.00 INR to 28,378.53 INR for settlement. In settlement set_IKI2HSJNZIzVorQJ the gross INR amount of 28,378.53 was reduced by a fee of 851.36 INR and GST of 153.24 INR, resulting in a net credit of 27,373.93 INR that was received under bank UTR 8808799196234199. Because the ledger stores the transaction in USD while the settlement and bank records are in INR, the system flagged a CURRENCY_MISMATCH exception.",
+      "explanation": "The order ord_bhS8ygpi5G2Q3uJR was recorded in the ledger as a gross 341.91 USD transaction, which was converted at the fixed rate of 1 USD = 83.00 INR to 28,378.53 INR for settlement. In settlement set_IKI2HSJNZIzVorQJ the gross amount of 28,378.53 INR incurred a fee of 851.36 INR and GST of 153.24 INR, resulting in a net credit of 27,373.93 INR, reflected in the bank credit with UTR 8808799196234199. Because the ledger stores the amount in USD while the settlement and bank records are in INR, the case is flagged as a CURRENCY_MISMATCH.",
       "suggested_action": "No action required - amounts match after applying FX rate of 83.00 INR/USD.",
       "confidence_note": null,
       "key_figures": {
@@ -8620,7 +8620,7 @@
       "case_type": "order",
       "simplified_status": "Reconciled (with note)",
       "exception_code": "REFUND_SPLIT",
-      "explanation": "The order ord_ohZLWumvMi5brH8l, created on 2025‑08‑07 16:19:35, was settled in two batches: the first batch set_V4wg4sqjavfNXiFk credited the full gross amount of ₹14,802.45 minus a fee of ₹296.05 and GST of ₹53.29, resulting in a net of ₹14,453.11; the second batch set_ZxZYr1ol75jKh16f recorded a partial refund of ₹2,558.65, giving a net of ‑₹2,558.65. After accounting for the refund, the order’s residual net is ₹11,894.46. The refund was split into a separate settlement batch (exception REFUND_SPLIT) and the NEFT credit reference is UTR 5977216880053789.",
+      "explanation": "The order ord_ohZLWumvMi5brH8l, created on 2025‑08‑07 16:19:35, was settled in two batches: the first settlement set_V4wg4sqjavfNXiFk credited the full gross of ₹14,802.45, deducted a fee of ₹296.05 and GST of ₹53.29 to yield a net of ₹14,453.11, while the second settlement set_ZxZYr1ol75jKh16f recorded a partial refund of ₹2,558.65 (negative net). After accounting for the refund, the order’s residual net amount is ₹11,894.46. The refund was split into a separate batch as indicated by the REFUND_SPLIT exception, and the NEFT credit reference is UTR 5977216880053789.",
       "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
       "confidence_note": null,
       "key_figures": {
@@ -8639,7 +8639,7 @@
       "case_type": "order",
       "simplified_status": "Reconciled (with note)",
       "exception_code": "REFUND_SPLIT",
-      "explanation": "The order ord_rrcq5wmo5aho4zEK, created on 2025‑08‑08 15:52:36, was initially settled in batch set_rgY4BnjnePHXmz1q with a gross of ₹273.06, a fee of ₹5.46, GST of ₹0.98, resulting in a net credit of ₹266.62 (UTR 3222739389920457). A partial refund of ₹103.36 was then processed in a separate batch set_embvELIFCg7Cr8iy, shown as a negative net of ‑₹103.36. Because the refund was split into a different settlement batch, the case is flagged with the REFUND_SPLIT exception, leaving an order residual net of ₹163.26.",
+      "explanation": "The order ord_rrcq5wmo5aho4zEK was paid on 2025‑08‑08 via UPI for a gross amount of ₹273.06, and the first settlement batch set_rgY4BnjnePHXmz1q credited ₹266.62 after deducting a ₹5.46 fee and ₹0.98 GST (bank UTR 3222739389920457). A partial refund of ₹103.36 was processed in a separate batch set_embvELIFCg7Cr8iy, resulting in a negative net of ‑₹103.36 for that batch. Because the refund was split into a different settlement, the order’s remaining net balance is ₹163.26. This matches the REFUND_SPLIT exception.",
       "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
       "confidence_note": null,
       "key_figures": {
@@ -8658,7 +8658,7 @@
       "case_type": "order",
       "simplified_status": "Reconciled (with note)",
       "exception_code": "REFUND_SPLIT",
-      "explanation": "The order ord_zj69pQCudo4LkneF, created on 2025‑08‑09 12:20:42, was settled in two batches: batch set_tFT6jua6ZgoZjgNK credited the full gross of ₹43,872.45 with a fee of ₹877.45 and GST of ₹157.94, resulting in a net of ₹42,837.06, while batch set_Na3sPb5gFFlorUIj recorded a partial refund of ₹9,039.72 as a negative net entry. The refund was processed in a separate batch (exception REFUND_SPLIT), leaving an overall order residual net of ₹33,797.34, and the settlement was reflected in the bank UTR 7731922760759889.",
+      "explanation": "The order ord_zj69pQCudo4LkneF, created on 2025‑08‑09 12:20:42, was settled in batch set_tFT6jua6ZgoZjgNK with a gross of ₹43,872.45, a fee of ₹877.45, GST of ₹157.94, resulting in a net credit of ₹42,837.06 (UTR 7731922760759889). A partial refund of ₹9,039.72 was processed later in a separate batch set_Na3sPb5gFFlorUIj, creating a negative net of ‑₹9,039.72 and leaving an order residual net of ₹33,797.34. This split‑refund scenario is flagged as REFUND_SPLIT because the refund landed in a different settlement batch.",
       "suggested_action": "No action required - expected behavior for partial refunds near batch boundaries.",
       "confidence_note": null,
       "key_figures": {
@@ -8677,7 +8677,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The order ord_2ozm6RqNbOW8W3nD shows a residual amount of ₹363.96, while the ledger indicates a partial refund of ₹134.57 that does not appear in the settlement batch set_Ug9C5dqtELc0MalO (NEFT UTR 9136817203136955). This mismatch triggered the UNRECORDED_REFUND exception. Because the case is marked needs_review, I’m uncertain why the refund deduction is missing from the settlement report.",
+      "explanation": "The ledger for order ord_2ozm6RqNbOW8W3nD shows a partial refund of ₹134.57, yet the settlement batch set_Ug9C5dqtELc0MalO (NEFT UTR 9136817203136955) contains no refund‑deduction entry, leaving an order residual of ₹363.96. Because the case is marked “needs_review” with exception code UNRECORDED_REFUND, I cannot definitively determine why the refund was not recorded in the settlement report.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8697,7 +8697,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The ledger for order ord_59uaGn2br4CxSXJg shows a partial refund of ₹7,455.12, yet the settlement report for settlement set_8RtNKz3DtYo65Esd (NEFT reference 2772648839585585) contains no refund‑deduction entry, leaving an order residual of ₹37,802.67. Because the confidence is “needs_review,” I’m uncertain why the refund is unrecorded in the settlement batch.",
+      "explanation": "The ledger for order ord_59uaGn2br4CxSXJg shows a partial refund of ₹7,455.12, yet the settlement report for settlement set_8RtNKz3DtYo65Esd (NEFT reference 2772648839585585) contains no refund‑deduction entry, leaving an order residual of ₹37,802.67. Because the confidence is “needs_review,” I’m uncertain why this refund is unrecorded in the settlement batch.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8717,7 +8717,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The order ord_8ymnB5zQLrTVA1jY shows a residual amount of 259.0 after settlement set_dXl1JugHwQ0tyEYK (bank UTR 9131670805685667), but the ledger records a partial refund of 30.48 that does not appear as a refund_deduction in the settlement report, triggering an UNRECORDED_REFUND exception. I’m uncertain why this refund is missing and recommend a detailed review.",
+      "explanation": "The ledger for order ord_8ymnB5zQLrTVA1jY shows a remaining amount of ₹259.00 after settlement set_dXl1JugHwQ0tyEYK (NEFT reference 9131670805685667). It also indicates a partial refund of ₹30.48, but the settlement report contains no corresponding refund‑deduction entry. Because the data is flagged as needs_review, I’m uncertain why this refund is unrecorded.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8737,7 +8737,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The ledger indicates a partial refund of ₹651.85 for order ord_90aGsb3TJHmksXlS, yet the settlement batch set_KwvDbhazu51Ki32f (NEFT UTR 6337618518626713) shows no refund‑deduction entry, leaving a residual amount of ₹2,196.99. Because the case is marked needs_review with exception UNRECORDED_REFUND, I’m uncertain why the refund is not reflected in the settlement report.",
+      "explanation": "The order ord_90aGsb3TJHmksXlS shows a residual amount of 2196.99 after settlement set_KwvDbhazu51Ki32f (NEFT UTR 6337618518626713). The ledger records a partial refund of 651.85, yet the settlement report contains no refund_deduction row, triggering an UNRECORDED_REFUND exception. Since the case is marked needs_review, I’m uncertain why the refund is not reflected in the settlement data.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8757,7 +8757,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The order ord_E69S7qcS90GXWSrB, settled in batch set_uHgGkLEuchopnEIg (NEFT UTR 3971705984451436), shows a residual amount of ₹3,623.48, yet the ledger records a partial refund of ₹697.18 that does not appear as a refund‑deduction entry in the settlement report. This mismatch triggers the UNRECORDED_REFUND exception, and because the case is flagged needs_review, we cannot definitively explain why the refund is missing.",
+      "explanation": "The order ord_E69S7qcS90GXWSrB shows a residual amount of ₹3,623.48 after settlement set_uHgGkLEuchopnEIg (NEFT UTR 3971705984451436), but the ledger indicates a partial refund of ₹697.18 that does not appear as a refund‑deduction line in the settlement report. Because the case is flagged as needs_review with an UNRECORDED_REFUND exception, it is unclear why the refund is missing from the batch.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8777,7 +8777,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "DUPLICATE_ORDER",
-      "explanation": "On 2025‑08‑10 the order ord_EnDJiS9HvlxNgbb1 generated two identical ledger rows for cust_7GvmQFOiJZ (quantity 5) but with different gross amounts – ₹1,130.56 and ₹1,202.36. The settlement report shows only the ₹1,130.56 entry in batch set_NvO7qBhqH6y5IHWi with bank UTR 1845235426874470, while the ₹1,202.36 row has no matching settlement record. Because the duplicate‑order exception requires human judgment, we cannot determine which amount is correct.",
+      "explanation": "On 2025‑08‑10 the order ord_EnDJiS9HvlxNgbb1 has two identical ledger rows (same customer cust_7GvmQFOiJZ, SKU, quantity 5) but different gross amounts of 1130.56 INR and 1202.36 INR. The settlement report contains a single batch set_NvO7qBhqH6y5IHWi with a NEFT UTR 1845235426874470 that matches only the 1130.56 INR amount, leaving the 1202.36 INR entry without a corresponding settlement. Because the duplicate order requires human judgment, we cannot determine which ledger amount is correct.",
       "suggested_action": "Escalate to payment ops to verify correct gross_amount against source system.",
       "confidence_note": "Cannot determine which amount is correct. Requires manual verification.",
       "key_figures": {
@@ -8800,7 +8800,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "For order ord_FYQHWuQXnXpdm6Ul, the settlement batch set_U2nSzCXHLiAeNQeM (NEFT UTR 2814447189395309) shows an order residual of ₹3,875.41, yet the ledger records a partial refund of ₹522.00 that does not appear as a refund‑deduction entry in the settlement report, triggering the UNRECORDED_REFUND exception. Because the case confidence is “needs_review,” we cannot definitively explain why the refund is missing.",
+      "explanation": "The ledger for order ord_FYQHWuQXnXpdm6Ul shows a residual amount of ₹3,875.41 and claims a partial refund of ₹522.00, but the settlement batch set_U2nSzCXHLiAeNQeM (NEFT reference 2814447189395309) contains no refund‑deduction entry. This mismatch triggered the UNRECORDED_REFUND exception. Because the confidence is “needs_review,” I’m not certain why the refund is missing from the settlement report.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8820,7 +8820,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The ledger for order ord_UJ3A1IIPKoBAwOUK shows a partial refund of ₹1,605.69, yet the settlement batch set_WiMaMiXsjZYcAOai (NEFT UTR 9178791505962571) contains no refund‑deduction entry, leaving an unexplained residual of ₹4,741.50. This mismatch triggered the “UNRECORDED_REFUND” exception. Because the case is marked needs_review, I cannot definitively determine the cause of the discrepancy.",
+      "explanation": "The ledger for order ord_UJ3A1IIPKoBAwOUK shows a partial refund of ₹1,605.69, yet the settlement report for settlement set_WiMaMiXsjZYcAOai (NEFT reference 9178791505962571) contains no refund‑deduction entry, leaving an order residual of ₹4,741.50. Because the confidence is “needs_review,” I’m uncertain why the refund is unrecorded in the settlement data.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8840,7 +8840,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The order ord_XJ5EzFFtyikiUHVp shows a residual balance of ₹4,129.09 after settlement set_U2nSzCXHLiAeNQeM (bank UTR 2814447189395309). The ledger records a partial refund of ₹518.69, but the settlement report does not contain a corresponding refund‑deduction entry, triggering the UNRECORDED_REFUND exception. Since the case is marked needs_review, I am uncertain why the refund is missing from the settlement data.",
+      "explanation": "The order ord_XJ5EzFFtyikiUHVp shows a residual amount of ₹4,129.09, yet the ledger indicates a partial refund of ₹518.69 that does not appear in the settlement batch set_U2nSzCXHLiAeNQeM (NEFT UTR 2814447189395309), triggering the UNRECORDED_REFUND exception. Because the confidence flag is needs_review, I’m uncertain why the refund deduction row is missing from the settlement report.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8860,7 +8860,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "For order ord_Xpy8eCfk12bgcsZo, the settlement batch set_gZQhCaMh9935fh7T (NEFT UTR 3646280550774065) shows a residual amount of ₹1,893.32, yet the ledger reports a partial refund of ₹307.32 that does not appear as a refund‑deduction entry in the settlement report, triggering an UNRECORDED_REFUND exception. Because the case is marked needs_review, we are uncertain why this refund is missing from the settlement data.",
+      "explanation": "For order ord_Xpy8eCfk12bgcsZo, the settlement batch set_gZQhCaMh9935fh7T (NEFT UTR 3646280550774065) shows a residual amount of ₹1,893.32, yet the ledger reports a partial refund of ₹307.32 that does not appear as a refund‑deduction entry in the settlement report, triggering an UNRECORDED_REFUND exception. Because the case is marked “needs_review,” I am uncertain why this refund is missing from the settlement data.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8880,7 +8880,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The ledger for order ord_cILluIEv0VwQAtzj shows a partial refund of ₹353.94, yet the settlement batch set_x79wu0ywvCSMfgEe (NEFT UTR 8775833364770413) contains no refund‑deduction entry, leaving an unexplained residual of ₹2,823.66. Because the case is flagged as needs_review, I’m uncertain why the refund is missing from the settlement report.",
+      "explanation": "The order ord_cILluIEv0VwQAtzj, settled in batch set_x79wu0ywvCSMfgEe (NEFT reference 8775833364770413), shows a residual amount of ₹2,823.66, yet the ledger indicates a partial refund of ₹353.94 that does not appear as a refund‑deduction entry in the settlement report. Because the case is flagged needs_review with exception UNRECORDED_REFUND, I am uncertain why this refund is missing from the settlement data.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8900,7 +8900,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "The order ord_pebQuHaRqepCYlAS shows a residual amount of ₹2,772.02, yet the ledger indicates a partial refund of ₹1,478.10 that does not appear in the settlement batch set_rgY4BnjnePHXmz1q (NEFT UTR 3222739389920457). This missing refund‑deduction entry triggered the UNRECORDED_REFUND exception, and because the case is marked needs_review, I cannot determine the exact cause of the discrepancy.",
+      "explanation": "The order ord_pebQuHaRqepCYlAS shows a residual amount of ₹2,772.02 after settlement set_rgY4BnjnePHXmz1q, which was credited via NEFT UTR 3222739389920457. The ledger indicates a partial refund of ₹1,478.10, but the settlement report contains no corresponding refund‑deduction entry, leading to the “UNRECORDED_REFUND” exception. Because the confidence level is needs_review, I am uncertain why the refund is not reflected in the settlement data.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8920,7 +8920,7 @@
       "case_type": "order",
       "simplified_status": "Needs Human Review",
       "exception_code": "UNRECORDED_REFUND",
-      "explanation": "For order ord_vqIGmCwCWI4UZMw2, the settlement batch set_dhV066q3rTHFvUL7 (NEFT UTR 9523120219150576) shows an order residual of ₹166,659.91, yet the ledger reports a partial refund of ₹17,249.11 that does not appear as a refund‑deduction entry in the settlement report (exception UNRECORDED_REFUND). Because the expected refund entry is missing, I am uncertain why the residual amount is higher and this case requires further review.",
+      "explanation": "For order ord_vqIGmCwCWI4UZMw2 the ledger shows a partial refund of ₹17,249.11, leaving an order residual of ₹166,659.91, but the settlement report for settlement set_dhV066q3rTHFvUL7 (NEFT UTR 9523120219150576) contains no refund‑deduction entry. This discrepancy triggered the UNRECORDED_REFUND exception. I’m uncertain how to reconcile this mismatch and it needs further review.",
       "suggested_action": "Review this case manually.",
       "confidence_note": null,
       "key_figures": {
@@ -8940,7 +8940,7 @@
       "case_type": "order",
       "simplified_status": "Unresolved",
       "exception_code": "UNMATCHED_ORDER",
-      "explanation": "The order ord_41EOpNI6jdwyLGaa, created on 2025‑08‑11 19:03:43, shows a gross amount of ₹4,445.40 and a payment status of authorized. Because the payment was authorized but never captured, no settlement row or bank credit appears for this order. Consequently, the amount will not be settled now and will be processed in the next settlement cycle.",
+      "explanation": "The order ord_41EOpNI6jdwyLGaa was authorized on 2025‑08‑11 at 19:03:43 for a gross amount of ₹4,445.40, but it was never captured. Because only captured payments generate a settlement batch, there are no rows in the settlement table and no NEFT credit (UTR) linked to this order. Consequently, the amount will be settled in the next settlement cycle once the capture is completed.",
       "suggested_action": "Check if authorization will be captured in future cycle. If stale (>7 days), consider voiding.",
       "confidence_note": null,
       "key_figures": {
@@ -8957,7 +8957,7 @@
       "case_type": "order",
       "simplified_status": "Unresolved",
       "exception_code": "UNMATCHED_ORDER",
-      "explanation": "The order ord_GohAFuOZd13KAY5w was authorized on 2025‑08‑08 at 13:46:50 for a gross amount of ₹968.62, but it was never captured. Consequently, there are no settlement rows or bank‑UTR credits linked to this order. Because the payment remains only authorized, Razorpay will attempt to settle it in the next settlement cycle.",
+      "explanation": "The order ord_GohAFuOZd13KAY5w was authorized on 2025‑08‑08 at 13:46:50 with a gross amount of ₹968.62, but it was never captured. Because the capture did not occur, there is no settlement row for this order_id and no corresponding NEFT credit (bank UTR) in the bank feed. As a result, the payment will be settled in the next settlement cycle once it is captured.",
       "suggested_action": "Check if authorization will be captured in future cycle. If stale (>7 days), consider voiding.",
       "confidence_note": null,
       "key_figures": {
@@ -8974,7 +8974,7 @@
       "case_type": "order",
       "simplified_status": "Unresolved",
       "exception_code": "UNMATCHED_ORDER",
-      "explanation": "The order ord_H5ESm2WLEov911Xc, created on 2025‑08‑17 at 12:23:22 IST, shows a gross amount of ₹459.43 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+      "explanation": "The order ord_H5ESm2WLEov911Xc, created on 2025‑08‑17 at 12:23:22 IST, had a gross amount of ₹459.43 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no funds were transferred to the merchant’s account.",
       "suggested_action": "No action required - payment failed. Order should be voided or retried.",
       "confidence_note": null,
       "key_figures": {
@@ -9008,7 +9008,7 @@
       "case_type": "order",
       "simplified_status": "Unresolved",
       "exception_code": "UNMATCHED_ORDER",
-      "explanation": "The order ord_Pi6qH2uvVSJAss8v, created on 2025‑08‑12 at 20:55:40 IST, shows a gross amount of ₹44,108.29 but its payment_status is failed. Because the payment did not succeed, there are no settlement rows linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement is expected for this transaction.",
+      "explanation": "The order ord_Pi6qH2uvVSJAss8v, created on 2025‑08‑12 at 20:55:40 IST, shows a gross amount of ₹44,108.29 but its payment_status is failed. Because the payment did not succeed, there are no settlement records linked to this order_id and no corresponding bank credit (UTR) was generated. Consequently, no settlement or refund is expected for this transaction.",
       "suggested_action": "No action required - payment failed. Order should be voided or retried.",
       "confidence_note": null,
       "key_figures": {
@@ -9042,7 +9042,7 @@
       "case_type": "order",
       "simplified_status": "Unresolved",
       "exception_code": "UNMATCHED_ORDER",
-      "explanation": "The order ord_u6qLtRkvl8zSWSrH was captured for a gross amount of ₹252.27 on 2025‑08‑04 22:35:18, but the settlement report contains no row for this order_id and no NEFT credit (bank UTR) can be linked to it. This means the captured payment has not yet appeared in any settlement batch, so the expected INR credit is still missing from the bank feed.",
+      "explanation": "The order ord_u6qLtRkvl8zSWSrH was captured on 2025‑08‑04 at 22:35:18.714 with a gross amount of ₹252.27, but the settlement report contains no row for this order_id and no corresponding NEFT credit (bank UTR) can be found. This indicates that the captured payment has not yet appeared in any settlement batch, so the amount is missing from the settlement data.",
       "suggested_action": "Escalate to payment ops - data integrity issue. Captured order missing from settlement.",
       "confidence_note": null,
       "key_figures": {
@@ -10591,7 +10591,7 @@
       "case_type": "settlement",
       "simplified_status": "Needs Human Review",
       "exception_code": "GHOST_TRANSACTION",
-      "explanation": "The settlement batch set_1E8lJ4dKfU21o9Is was credited on the bank side with a net amount of ₹14,420.72 (UTR 7200283948232204), matching the batch net. It contains six orders, five of which (ord_B2isTsjSspJxHl1P, ord_BNaQNpUcpvjV21Jv, ord_Is9f9lgvbISm6Csq, ord_KXth3FkmdB6K3JGM, ord_w3zeQSzElIc0Jwfe) are legitimate, but one order (ord_HPM8Q5WQdYvGi5l7) does not appear in the order ledger, creating a GHOST_TRANSACTION exception. This discrepancy means the batch includes a reference to a non‑existent order while the overall settlement amount is correct.",
+      "explanation": "The settlement batch set_1E8lJ4dKfU21o9Is was credited with INR 14,420.72 (matching the batch net) via NEFT UTR 7200283948232204, and it includes five legitimate orders (ord_B2isTsjSspJxHl1P, ord_BNaQNpUcpvjV21Jv, ord_Is9f9lgvbISm6Csq, ord_KXth3FkmdB6K3JGM, ord_w3zeQSzElIc0Jwfe). However, the batch also references ord_HPM8Q5WQdYvGi5l7, which does not appear in the order ledger, creating a GHOST_TRANSACTION exception. This mismatch means the settlement contains a transaction that cannot be reconciled to any recorded order.",
       "suggested_action": "Investigate ghost order_id in settlement report. Could be data entry error or order not yet in ledger.",
       "confidence_note": null,
       "key_figures": {
@@ -10613,7 +10613,7 @@
       "case_type": "settlement",
       "simplified_status": "Unresolved",
       "exception_code": "NEFT_FAILED",
-      "explanation": "The settlement batch set_7oqQnmBR7evr0ci5 was scheduled to credit ₹62,386.14 for five orders via NEFT with UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the NEFT_FAILED exception. This means the expected credit was never received in the bank account.",
+      "explanation": "The settlement batch set_7oqQnmBR7evr0ci5, with a net credit of 62,386.14 INR for five orders, was scheduled to be transferred via NEFT using UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the exception NEFT_FAILED, indicating the expected credit was never received. Consequently, the merchant has not been credited the 62,386.14 INR.",
       "suggested_action": "Escalate to bank ops to trace NEFT credit for UTR 9503100649340391.",
       "confidence_note": null,
       "key_figures": {

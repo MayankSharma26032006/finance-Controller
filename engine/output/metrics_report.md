@@ -1,10 +1,10 @@
 # Phase 5: Metrics Report
-Generated: 2026-08-27T10:01:21Z
+Generated: 2026-08-29T09:48:28Z
 
 ## Input Hashes
 | File | SHA-256 |
 |------|---------|
-| reconciliation report.json | `29eb46aa26788fef...` |
+| reconciliation report.json | `5a37aec7cfdd3dfd...` |
 | ground truth.json | `f2df67996c3a50cc...` |
 | ground truth settlements.json | `853d8bfbb22bb730...` |
 

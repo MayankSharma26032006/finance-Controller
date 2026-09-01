@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 3: Agent Reasoning / Explanation Layer."""
 
-import csv, json, os, re, sys, time
+import csv, json, math, os, re, sys, time
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -234,10 +234,31 @@ def validate_explanation(text):
     return {"is_valid": True, "reason": None, "sentence_count": count}
 
 
+FINANCIAL_TOLERANCE = 0.01  # matches ORDER_TOLERANCE from preprocessor.py
+
+def _figures_match(fig, source_figures):
+    """Type-aware figure comparison. For numeric figures, use float comparison
+    with tolerance. For non-numeric (IDs, dates), use exact string equality."""
+    # Try numeric comparison first
+    try:
+        fig_val = float(fig)
+        for src in source_figures:
+            try:
+                src_val = float(src)
+                if math.isclose(fig_val, src_val, abs_tol=FINANCIAL_TOLERANCE):
+                    return True
+            except (ValueError, TypeError):
+                continue
+        return False  # numeric figure found no match
+    except (ValueError, TypeError):
+        pass
+    # Non-numeric: exact string match (dates, IDs, UTRs)
+    return fig in source_figures
+
 def run_hallucination_check(explanation, case, ledger, settlements):
     stated = extract_figures(explanation)
     source = collect_source_figures(case, ledger, settlements)
-    mismatches = [f for f in stated if f not in source]
+    mismatches = [f for f in stated if not _figures_match(f, source)]
     return {"stated_figures": stated, "verified": len(mismatches) == 0, "mismatches": mismatches}
 
 def call_openai(client, prompt, case_id):

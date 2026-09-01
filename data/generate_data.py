@@ -114,6 +114,14 @@ def calc_fee_with_drift(gross, fee_pct):
     net = round(net_exact, 2)  # net uses unrounded intermediates
     return fee, gst, net
 
+
+def has_settlement_refund_evidence(order_id, settlement_rows):
+    """Check if any settlement row for this order has a non-zero refund_deduction."""
+    for row in settlement_rows:
+        if row["order_id"] == order_id and row["refund_deduction"] != 0.0:
+            return True
+    return False
+
 def pick_payment_method():
     methods = ["upi"] * 45 + ["visa_mc_domestic"] * 25 + ["amex_diners"] * 10 + ["international_card"] * 5 + ["upi"] * 15
     return rng.choice(methods)
@@ -712,9 +720,17 @@ for order in orders:
         exception_code = "REFUND_SPLIT"
         exception_detail = f"Order spans {len(all_set_ids)} settlement batches due to cross-batch refund deduction."
         notes = "Partial refund - split across settlement batches"
+    elif order["refund_status"] in ("partial", "full") and not has_settlement_refund_evidence(oid, settlement_rows):
+        # UNRECORDED_REFUND: ledger claims refund but no settlement refund_deduction row exists
+        all_set_ids = list(set(settlement_ids))
+        bank_utr_list = [settlement_utr_map.get(s) for s in all_set_ids if s in settlement_utr_map]
+        bank_utr = bank_utr_list[0] if bank_utr_list else None
+        exception_code = "UNRECORDED_REFUND"
+        refund_type_label = "partial" if order["refund_status"] == "partial" else "full"
+        exception_detail = f"Ledger claims {refund_type_label} refund but no settlement refund_deduction row found for this order."
+        notes = f"Unrecorded {refund_type_label} refund - settlement gap"
     elif order["refund_status"] == "full":
-        # Full refund - the refund deduction is in a different batch
-        # This is NORMAL behavior (not an exception) per Razorpay mechanics
+        # Full refund WITH settlement evidence - normal behavior per Razorpay mechanics
         all_set_ids = list(set(settlement_ids))
         bank_utr_list = [settlement_utr_map.get(s) for s in all_set_ids if s in settlement_utr_map]
         bank_utr = bank_utr_list[0] if bank_utr_list else None
@@ -854,6 +870,7 @@ usd_count = sum(1 for o in orders if o["currency"] == "USD")
 cutoff_count = sum(1 for o in orders if "Near cutoff" in o.get("notes", ""))
 dup_count = sum(1 for o in orders if "DUPLICATE" in o.get("notes", ""))
 missing_count = sum(1 for o in orders if "Missing from settlement" in o.get("notes", ""))
+unrecorded_count = sum(1 for o in orders if o["refund_status"] in ("partial", "full") and not has_settlement_refund_evidence(o["order_id"], settlement_rows))
 
 print(f"  Failed payments      : {failed_count} (expected: 5)")
 print(f"  Authorized (uncap)   : {auth_count} (expected: 2)")
@@ -864,6 +881,7 @@ print(f"  USD international    : {usd_count} (expected: 2)")
 print(f"  Near-cut-off         : {cutoff_count} (expected: 10)")
 print(f"  Duplicate order_id   : {dup_count} (expected: 1)")
 print(f"  Missing settlement   : {missing_count} (expected: 1)")
+print(f"  Unrecorded refunds   : {unrecorded_count} (expected: 12)")
 
 print(f"\n--- Settlement Report ---")
 print(f"  Total batches        : {len(settlements)}")
