@@ -1,5 +1,5 @@
 # Phase 5: Metrics Report
-Generated: 2026-08-29T09:48:28Z
+Generated: 2026-09-01T14:14:44Z
 
 ## Input Hashes
 | File | SHA-256 |
@@ -12,9 +12,11 @@ Generated: 2026-08-29T09:48:28Z
 | Metric | Value |
 |--------|-------|
 | Accuracy | **1.0000** (591/591) |
-| Match rate (Phase 4) | 0.9611 |
-| Match rate (Phase 5) | 0.9526 |
-| Match rate verified | NO |
+| Match rate (operational) | 0.9611 |
+| Match rate (clean, no exception) | 0.9526 |
+| Gap explained | YES |
+
+> 0.85pp gap = 5 cases correctly reconciled despite carrying a ground-truth exception code (CURRENCY_MISMATCH: 2, REFUND_SPLIT: 3). Not a classification error — mismatches list (empty) shows actual errors.
 | FPR | 0.0018 |
 | FNR | 0.0000 |
 

@@ -2,7 +2,7 @@
 
 Full traceability chain for the Razorpay AI Buildathon reconciliation system.
 
-Generated: 2026-08-28T13:46:50Z
+Generated: 2026-09-01T14:15:07Z
 
 ---
 
@@ -28,9 +28,9 @@ All hashes computed live from files.
 | Frozen | data/raw/ground_truth.json | f2df67996c3a50cc84205829112d421e362a7a1e4254cec9301c95daf5e1ba22 | updated once |
 | Frozen | data/raw/ground_truth_settlements.json | 853d8bfbb22bb73098433fe03fc7e708e8e03cd0fb97da9c2fd634c789352690 | updated once |
 | Phase 2 | engine/output/match_log.json | 7584a9a94f6afeb47d1b02237449197a533dffc1053c30acc44608ffda5fcdec | matcher_exact.py |
-| Phase 3 | agent/output/explanations.json | 363966335a488230c94294a44954c5aa15c868e8374765fea2f41588c0ba0f63 | explainer.py |
-| Phase 4 | engine/output/reconciliation_report.json | 29eb46aa26788fefededdb0c712cba00c182408f01a395dea03ca3026d710bec | reconciler.py |
-| Phase 5 | engine/output/metrics_report.json | 3df882d3b01a40013a7e5755cff7c2d5f0d753ff39164f1f4cdfb886a6692e44 | metrics_scorer.py |
+| Phase 3 | agent/output/explanations.json | d7c09af54731d709f5b9be7f3d17839e7fa13c5e2b15c77a235f6420e7801090 | explainer.py |
+| Phase 4 | engine/output/reconciliation_report.json | 5a37aec7cfdd3dfdcb560dd1ce414c09c22df2e08151d28707030b7d85c009db | reconciler.py |
+| Phase 5 | engine/output/metrics_report.json | 1558568a857315cfc2884bc99714daf658b2a9f8d92649f649d7e2d543314a24 | metrics_scorer.py |
 
 **Note:** reconciliation_report.json and metrics_report.json have a generated_at timestamp;
 their hash changes on re-run. match_log.json and explanations.json are fully deterministic.
@@ -88,7 +88,7 @@ The code never compares them. No bug.
 | Phase 4 simplified_status | Unresolved |
 | Ground truth | NEFT_FAILED |
 
-**Phase 3 explanation:** The settlement batch set_7oqQnmBR7evr0ci5 was scheduled to credit ₹62,386.14 for five orders via NEFT with UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the NEFT_FAILED exception. This means the expected credit was never received in the bank account.
+**Phase 3 explanation:** The settlement batch set_7oqQnmBR7evr0ci5, with a net credit of 62,386.14 INR for five orders, was scheduled to be transferred via NEFT using UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the exception NEFT_FAILED, indicating the expected credit was never received. Consequently, the merchant has not been credited the 62,386.14 INR.
 
 **Why this matters:** Missing 62K INR credit caught immediately, escalated to bank ops.
 
@@ -115,7 +115,7 @@ The code never compares them. No bug.
 |-------|------|
 | Raw | 2 rows: amounts=1130.56, 1202.36 |
 | Phase 2 | confidence=needs_review, exception=DUPLICATE_ORDER, settlement_ids=['set_NvO7qBhqH6y5IHWi'] |
-| Phase 3 | On 2025‑08‑10 the order ord_EnDJiS9HvlxNgbb1 generated two identical ledger rows for cust_7GvmQFOiJZ (quantity 5) but with different gross amounts – ₹1,130.56 and ₹1,202.36. The settlement report shows only the ₹1,130.56 entry in batch set_NvO7qBhqH6y5IHWi with bank UTR 1845235426874470, while the ₹1,202.36 row has no matching settlement record. Because the duplicate‑order exception requires human judgment, we cannot determine which amount is correct. |
+| Phase 3 | On 2025‑08‑10 the order ord_EnDJiS9HvlxNgbb1 has two identical ledger rows (same customer cust_7GvmQFOiJZ, SKU, quantity 5) but different gross amounts of 1130.56 INR and 1202.36 INR. The settlement report contains a single batch set_NvO7qBhqH6y5IHWi with a NEFT UTR 1845235426874470 that matches only the 1130.56 INR amount, leaving the 1202.36 INR entry without a corresponding settlement. Because the duplicate order requires human judgment, we cannot determine which ledger amount is correct. |
 | Phase 4 | simplified_status=Needs Human Review |
 | Phase 5 | Scored correct. DUPLICATE_ORDER TP += 1 |
 | Ground truth | 2 entries |
@@ -129,7 +129,7 @@ The code never compares them. No bug.
 | Raw (settlement) | 5 orders, net=62386.14, UTR=9503100649340391 |
 | Raw (bank) | No entry for UTR 9503100649340391 |
 | Phase 2 | confidence=hard_exception, exception=None |
-| Phase 3 | The settlement batch set_7oqQnmBR7evr0ci5 was scheduled to credit ₹62,386.14 for five orders via NEFT with UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the NEFT_FAILED exception. This means the expected credit was never received in the bank account. |
+| Phase 3 | The settlement batch set_7oqQnmBR7evr0ci5, with a net credit of 62,386.14 INR for five orders, was scheduled to be transferred via NEFT using UTR 9503100649340391. However, the bank statement shows no entry for that UTR, and the batch is flagged with the exception NEFT_FAILED, indicating the expected credit was never received. Consequently, the merchant has not been credited the 62,386.14 INR. |
 | Phase 4 | simplified_status=Unresolved |
 | Phase 5 | Scored correct. NEFT_FAILED TP += 1 |
 | Ground truth | credit_status=NEFT_FAILED, net_expected=62386.14 |

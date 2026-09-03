@@ -66,6 +66,183 @@ st.set_page_config(
     layout="wide",
 )
 
+# ── Custom CSS: Fintech theme ────────────────────────────────────────
+st.markdown("""
+<style>
+/* ── Hide Streamlit chrome ────────────────────────────────────── */
+#MainMenu {visibility: hidden;}
+header[data-testid="stHeader"] {background: transparent;}
+footer {visibility: hidden;}
+div[data-testid="stDecoration"] {display: none;}
+
+/* ── Global overrides ─────────────────────────────────────────── */
+.stApp {
+background: linear-gradient(180deg, #0a0e1a 0%, #0f1629 100%);
+color: #e0e6f0;
+}
+.stApp > header {
+background: transparent;
+}
+
+/* ── Title styling ────────────────────────────────────────────── */
+h1 {
+color: #ffffff !important;
+font-weight: 700 !important;
+letter-spacing: -0.5px;
+padding-bottom: 0.2rem;
+}
+
+/* ── Section headers ──────────────────────────────────────────── */
+h2, .stSubheader {
+color: #c8d6e5 !important;
+font-weight: 600 !important;
+border-bottom: 2px solid #2d3a5c;
+padding-bottom: 0.3rem;
+margin-top: 1.5rem;
+}
+
+/* ── Metric cards ─────────────────────────────────────────────── */
+div[data-testid="stMetric"] {
+background: linear-gradient(135deg, #141b2d 0%, #1a2340 100%);
+border: 1px solid #2d3a5c;
+border-left: 4px solid #4f8cff;
+border-radius: 10px;
+padding: 1rem 1.2rem;
+margin: 0.3rem 0;
+box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+transition: border-color 0.2s;
+}
+div[data-testid="stMetric"]:hover {
+border-left-color: #7ab3ff;
+}
+div[data-testid="stMetric"]:nth-child(1) { border-left-color: #00d2a0; }
+div[data-testid="stMetric"]:nth-child(2) { border-left-color: #4f8cff; }
+div[data-testid="stMetric"]:nth-child(3) { border-left-color: #f5a623; }
+div[data-testid="stMetric"]:nth-child(4) { border-left-color: #ff6b6b; }
+
+div[data-testid="stMetric"] label {
+color: #8899b0 !important;
+font-size: 0.85rem !important;
+font-weight: 500 !important;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+color: #ffffff !important;
+font-size: 1.8rem !important;
+font-weight: 700 !important;
+}
+div[data-testid="stMetric"] div[data-testid="stMetricDelta"] {
+font-weight: 600 !important;
+}
+
+/* ── Divider styling ──────────────────────────────────────────── */
+hr {
+border: none;
+border-top: 1px solid #1e2a45;
+margin: 1.2rem 0;
+}
+
+/* ── Table / DataFrame styling ────────────────────────────────── */
+div[data-testid="stDataFrame"] {
+border: 1px solid #2d3a5c;
+border-radius: 8px;
+overflow: hidden;
+}
+div[data-testid="stDataFrame"] table {
+background: #111827;
+}
+div[data-testid="stDataFrame"] th {
+background: #1a2340 !important;
+color: #8899b0 !important;
+font-weight: 600 !important;
+text-transform: uppercase;
+font-size: 0.75rem !important;
+letter-spacing: 0.5px;
+}
+div[data-testid="stDataFrame"] td {
+color: #c8d6e5 !important;
+border-color: #1e2a45 !important;
+}
+
+/* ── Input fields ─────────────────────────────────────────────── */
+div[data-testid="stTextInput"] input,
+div[data-testid="stTextArea"] textarea,
+div[data-testid="stSelectbox"] div[data-baseweb="select"] {
+background: #141b2d !important;
+border-color: #2d3a5c !important;
+color: #e0e6f0 !important;
+}
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stTextArea"] textarea:focus {
+border-color: #4f8cff !important;
+box-shadow: 0 0 0 1px #4f8cff;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.stButton > button {
+background: linear-gradient(135deg, #4f8cff 0%, #3a6fd8 100%) !important;
+color: #ffffff !important;
+border: none !important;
+border-radius: 8px !important;
+font-weight: 600 !important;
+padding: 0.4rem 1.5rem !important;
+transition: all 0.2s !important;
+box-shadow: 0 2px 6px rgba(79,140,255,0.3);
+}
+.stButton > button:hover {
+background: linear-gradient(135deg, #6ba3ff 0%, #4f8cff 100%) !important;
+box-shadow: 0 4px 12px rgba(79,140,255,0.4);
+transform: translateY(-1px);
+}
+
+/* ── Expander styling ─────────────────────────────────────────── */
+div[data-testid="stExpander"] {
+background: #141b2d;
+border: 1px solid #2d3a5c;
+border-radius: 8px;
+}
+div[data-testid="stExpander"] summary {
+color: #c8d6e5 !important;
+font-weight: 600 !important;
+}
+
+/* ── Chat messages (Q&A) ──────────────────────────────────────── */
+div[data-testid="stChatMessage"] {
+background: #141b2d;
+border-radius: 10px;
+border: 1px solid #1e2a45;
+padding: 0.8rem 1rem;
+margin: 0.3rem 0;
+}
+
+/* ── Warning/info boxes ───────────────────────────────────────── */
+div[data-testid="stAlert"] {
+border-radius: 8px;
+border-left-width: 4px;
+}
+
+/* ── Caption / help text ──────────────────────────────────────── */
+.stCaption, small, .stMarkdown small {
+color: #6b7c93 !important;
+}
+
+/* ── Scrollbar styling ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0e1a; }
+::-webkit-scrollbar-thumb { background: #2d3a5c; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4f8cff; }
+
+/* ── Vega chart container ─────────────────────────────────────── */
+div[data-testid="stVegaLiteChart"] {
+background: #111827;
+border-radius: 8px;
+padding: 0.5rem;
+border: 1px solid #1e2a45;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # ── Load data ────────────────────────────────────────────────────────
 rr, mr, audit_text = load_data()
 hashes = compute_hashes()
@@ -126,6 +303,12 @@ with col4:
         delta_color="off",
         help="Cases where no match was possible - needs escalation",
     )
+
+st.caption(
+    "100% accuracy = every case correctly classified against ground truth; "
+    "96.1% reconciled = cases resolved without human intervention. "
+    "The 23 non-reconciled cases are correctly flagged exceptions, not errors."
+)
 
 # Chart: Exception cases only (plain 562 dwarfs the others, so show meaningful variation)
 status_counts = Counter(e["simplified_status"] for e in all_cases)

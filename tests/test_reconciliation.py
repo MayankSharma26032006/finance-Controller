@@ -740,5 +740,85 @@ class TestGhostTransaction(unittest.TestCase):
         self.assertTrue(any("Ghost" in f for f in r["soft_flags"]))
 
 
+
+# ==============================================================
+#  TEST 11: METRICS SCORER (safe_div, compute_per_code, assertions)
+# ==============================================================
+
+from metrics_scorer import safe_div, compute_per_code
+
+class TestMetricsScorer(unittest.TestCase):
+    """Unit tests for engine/metrics_scorer.py helper functions."""
+
+    def test_safe_div_normal(self):
+        """safe_div returns correct quotient for positive integers."""
+        self.assertAlmostEqual(safe_div(10, 2), 5.0)
+
+    def test_safe_div_zero_denominator(self):
+        """safe_div returns 0.0 when denominator is zero, no ZeroDivisionError."""
+        self.assertEqual(safe_div(10, 0), 0.0)
+
+    def test_safe_div_zero_numerator(self):
+        """safe_div returns 0.0 when numerator is zero."""
+        self.assertEqual(safe_div(0, 5), 0.0)
+
+    def test_compute_per_code_perfect_classification(self):
+        """When gt and rr always agree, precision/recall/F1 all equal 1.0 for each class."""
+        results = [
+            {"gt": "A", "rr": "A"},
+            {"gt": "A", "rr": "A"},
+            {"gt": "B", "rr": "B"},
+            {"gt": "B", "rr": "B"},
+        ]
+        pc = compute_per_code(results, ["A", "B"])
+        for code in ["A", "B"]:
+            self.assertEqual(pc[code]["precision"], 1.0, f"{code} precision should be 1.0")
+            self.assertEqual(pc[code]["recall"], 1.0, f"{code} recall should be 1.0")
+            self.assertEqual(pc[code]["f1"], 1.0, f"{code} F1 should be 1.0")
+
+    def test_compute_per_code_known_mismatch(self):
+        """One false positive for code A: gt says B but rr says A."""
+        results = [
+            {"gt": "A", "rr": "A"},  # TP for A
+            {"gt": "B", "rr": "A"},  # FP for A, FN for B
+            {"gt": "B", "rr": "B"},  # TP for B
+        ]
+        pc = compute_per_code(results, ["A", "B"])
+        # A: TP=1, FP=1, FN=0 -> precision=0.5, recall=1.0
+        self.assertEqual(pc["A"]["TP"], 1)
+        self.assertEqual(pc["A"]["FP"], 1)
+        self.assertEqual(pc["A"]["FN"], 0)
+        self.assertAlmostEqual(pc["A"]["precision"], 0.5)
+        self.assertAlmostEqual(pc["A"]["recall"], 1.0)
+        # B: TP=1, FP=0, FN=1 -> precision=1.0, recall=0.5
+        self.assertEqual(pc["B"]["TP"], 1)
+        self.assertEqual(pc["B"]["FP"], 0)
+        self.assertEqual(pc["B"]["FN"], 1)
+        self.assertAlmostEqual(pc["B"]["precision"], 1.0)
+        self.assertAlmostEqual(pc["B"]["recall"], 0.5)
+
+    def test_compute_per_code_none_class(self):
+        """The 'none' class (empty string key) uses 'none' as dict key."""
+        results = [
+            {"gt": None, "rr": None},
+            {"gt": None, "rr": None},
+            {"gt": "X", "rr": None},
+        ]
+        pc = compute_per_code(results, [None, "X"])
+        self.assertIn("none", pc)
+        # none: TP=2 (gt=None,rr=None), FP=1 (gt=X,rr=None), FN=0
+        self.assertEqual(pc["none"]["TP"], 2)
+        self.assertEqual(pc["none"]["FP"], 1)
+        self.assertEqual(pc["none"]["FN"], 0)
+        self.assertAlmostEqual(pc["none"]["precision"], 2/3, places=3)
+
+    def test_completeness_assertion_in_main(self):
+        """Verify metrics_scorer.py source contains the 500/91 assertion."""
+        scorer_path = PROJECT_ROOT / "engine" / "metrics_scorer.py"
+        src = scorer_path.read_text(encoding="utf-8")
+        self.assertIn("assert len(order_results) == 500", src)
+        self.assertIn("assert len(settlement_results) == 91", src)
+
+
 if __name__ == "__main__":
     unittest.main()
