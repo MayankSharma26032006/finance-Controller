@@ -2,7 +2,7 @@
 
 Full traceability chain for the Razorpay AI Buildathon reconciliation system.
 
-Generated: 2026-09-01T14:15:07Z
+Generated: 2026-09-03T05:30:14Z
 
 ---
 
@@ -22,15 +22,15 @@ All hashes computed live from files.
 
 | Phase | File | SHA-256 | Produced By |
 |-------|------|---------|-------------|
-| Frozen | data/raw/order_ledger.csv | e26d9f8cd70852bad6fa554c35340f11be8c5cefdd24366b3fd9564f8f456d5c | data generator |
-| Frozen | data/raw/settlement_report.csv | 8e0953886750e1c7055c635e9118e461c3ce3ac0c64454cd02bd64091de183f2 | data generator |
-| Frozen | data/raw/bank_statement.csv | 8f437d051e611216f54aa9cc705327f6c9217c15edf3e8ec8d8201d7869590bf | data generator |
-| Frozen | data/raw/ground_truth.json | f2df67996c3a50cc84205829112d421e362a7a1e4254cec9301c95daf5e1ba22 | updated once |
-| Frozen | data/raw/ground_truth_settlements.json | 853d8bfbb22bb73098433fe03fc7e708e8e03cd0fb97da9c2fd634c789352690 | updated once |
+| Frozen | data/raw/order_ledger.csv | ea0d85b52e903522e61df0ef319d5cd511ff6c7a7064e546d97a2a83e4b087ca | data generator |
+| Frozen | data/raw/settlement_report.csv | 7d3c38ab0fbd05d2c16d8e504f3a19ae2abf2ad66a17c801e2d162c8b6ab4ce9 | data generator |
+| Frozen | data/raw/bank_statement.csv | 6f8afedc17d399fb3c92d0e3ab1d3b2b8219d1e758a18297289e3d0551c683ed | data generator |
+| Frozen | data/raw/ground_truth.json | 4ed89d8be4570c04f8f0fd55ab89f15aaef629ff51abee57ad985cf9dcee515b | updated once |
+| Frozen | data/raw/ground_truth_settlements.json | 58cb009589ae566992d6777d797178da1ea70009c58719dbed7fc44715335710 | updated once |
 | Phase 2 | engine/output/match_log.json | 7584a9a94f6afeb47d1b02237449197a533dffc1053c30acc44608ffda5fcdec | matcher_exact.py |
 | Phase 3 | agent/output/explanations.json | d7c09af54731d709f5b9be7f3d17839e7fa13c5e2b15c77a235f6420e7801090 | explainer.py |
 | Phase 4 | engine/output/reconciliation_report.json | 5a37aec7cfdd3dfdcb560dd1ce414c09c22df2e08151d28707030b7d85c009db | reconciler.py |
-| Phase 5 | engine/output/metrics_report.json | 1558568a857315cfc2884bc99714daf658b2a9f8d92649f649d7e2d543314a24 | metrics_scorer.py |
+| Phase 5 | engine/output/metrics_report.json | 4c3faccfb2e2e269d672a087e5594c6e6bb41ceec4336e75e7ced394d2dd9f1b | metrics_scorer.py |
 
 **Note:** reconciliation_report.json and metrics_report.json have a generated_at timestamp;
 their hash changes on re-run. match_log.json and explanations.json are fully deterministic.
