@@ -310,6 +310,23 @@ st.caption(
     "The 23 non-reconciled cases are correctly flagged exceptions, not errors."
 )
 
+# Match-rate gap explanation (from metrics_report.json)
+_mr_overall = mr.get("overall", {})
+if "match_rate_gap_note" in _mr_overall:
+    with st.expander("Why two match-rate numbers?", expanded=False):
+        st.markdown(
+            f"**Operational rate:** {_mr_overall.get("match_rate_operational", 0):.2%} "
+            f"({overall.get("reconciled_total", 0)}/{overall.get("total_cases", 0)} cases "
+            f"resolved without human intervention)"
+        )
+        st.markdown(
+            f"**Clean-match rate:** {_mr_overall.get("match_rate_clean_no_exception", 0):.2%} "
+            f"(cases with zero exception code in ground truth)"
+        )
+        st.markdown("---")
+        st.caption(_mr_overall["match_rate_gap_note"])
+
+
 # Chart: Exception cases only (plain 562 dwarfs the others, so show meaningful variation)
 status_counts = Counter(e["simplified_status"] for e in all_cases)
 
@@ -436,14 +453,7 @@ page_cases = filtered[start : start + PAGE_SIZE]
 
 # Table
 if page_cases:
-    # Color mapping for status
-    STATUS_COLORS = {
-        "Reconciled": "green",
-        "Reconciled (with note)": "green",
-        "Reconciled (no credit due)": "green",
-        "Needs Human Review": "orange",
-        "Unresolved": "red",
-    }
+    # Build table data
     table_data = []
     for e in page_cases:
         table_data.append(
@@ -455,8 +465,24 @@ if page_cases:
                 "Has explanation": "Yes" if e.get("explanation") else "—",
             }
         )
+    df = pd.DataFrame(table_data)
+
+    # Status color mapping using theme-consistent hex colors
+    STATUS_HEX = {
+        "Reconciled": "#00d2a0",
+        "Reconciled (with note)": "#00d2a0",
+        "Reconciled (no credit due)": "#00d2a0",
+        "Needs Human Review": "#f5a623",
+        "Unresolved": "#ff6b6b",
+    }
+
+    def _color_status(val):
+        hex_color = STATUS_HEX.get(val, "#c8d6e5")
+        return f"background-color: {hex_color}22; color: {hex_color}; font-weight: 600"
+
+    styled = df.style.applymap(_color_status, subset=["Status"])
     st.dataframe(
-        table_data,
+        styled,
         use_container_width=True,
         hide_index=True,
         column_config={
@@ -466,19 +492,6 @@ if page_cases:
             ),
         },
     )
-    # Apply row-level color via CSS injection
-    status_col_idx = 2  # Status is the 3rd column (0-indexed)
-    css_rows = []
-    for i, e in enumerate(page_cases):
-        color = STATUS_COLORS.get(e["simplified_status"], "white")
-        css_rows.append(
-            f'var(--row-{i}) = [{{"background-color": "{color}20", "color": "{color}"}}];'
-        )
-    if css_rows:
-        st.markdown(
-            '<style>' + '\n'.join(css_rows) + '</style>',
-            unsafe_allow_html=True,
-        )
 else:
     st.info("No cases match the current filters.")
 
