@@ -11,8 +11,10 @@ AGENT_OUTPUT = ROOT / "agent" / "output"
 OUT_PATH = ROOT / "audit_trail.md"
 
 def sha256(p):
+    """SHA-256 with CRLF-normalized bytes for cross-platform stability."""
     with open(p, "rb") as f:
-        return hashlib.sha256(f.read()).hexdigest()
+        data = f.read()
+    return hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
 
 FILES = [
     ("Frozen", "data/raw/order_ledger.csv", "data generator"),

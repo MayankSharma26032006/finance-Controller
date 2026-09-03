@@ -17,11 +17,10 @@ RECONCILED = {"Reconciled", "Reconciled (with note)", "Reconciled (no credit due
 
 
 def sha256(path):
-    h = hashlib.sha256()
+    """SHA-256 with CRLF-normalized bytes for cross-platform stability."""
     with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(8192), b""):
-            h.update(chunk)
-    return h.hexdigest()
+        data = f.read()
+    return hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def safe_div(a, b):
