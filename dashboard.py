@@ -115,10 +115,14 @@ transition: border-color 0.2s;
 div[data-testid="stMetric"]:hover {
 border-left-color: #7ab3ff;
 }
-div[data-testid="stMetric"]:nth-child(1) { border-left-color: #00d2a0; }
-div[data-testid="stMetric"]:nth-child(2) { border-left-color: #4f8cff; }
-div[data-testid="stMetric"]:nth-child(3) { border-left-color: #f5a623; }
-div[data-testid="stMetric"]:nth-child(4) { border-left-color: #ff6b6b; }
+/* Level 2 legend cards are the only st.metric elements on the page:
+   teal/amber/red stripe per outcome (Phase 14 card restoration). */
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(1) div[data-testid="stMetric"] { border-left-color: #00d2a0 !important; }
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(1) div[data-testid="stMetric"]:hover { border-left-color: #00e8b3 !important; }
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(2) div[data-testid="stMetric"] { border-left-color: #f5a623 !important; }
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(2) div[data-testid="stMetric"]:hover { border-left-color: #f7b93d !important; }
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(3) div[data-testid="stMetric"] { border-left-color: #ff6b6b !important; }
+div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"]:nth-child(3) div[data-testid="stMetric"]:hover { border-left-color: #ff8585 !important; }
 
 div[data-testid="stMetric"] label {
 color: #8899b0 !important;
@@ -240,6 +244,145 @@ border-radius: 8px;
 padding: 0.5rem;
 border: 1px solid #1e2a45;
 }
+/* ── Phase 9: Top-level hierarchy (DESIGN_PHASE9_FRONTEND.md) ── */
+.scale-value {
+font-size: 3.2rem;
+font-weight: 700;
+color: #ffffff;
+letter-spacing: -1px;
+line-height: 1.05;
+}
+.scale-label {
+font-size: 0.78rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: #8899b0;
+margin-top: 0.3rem;
+}
+.scale-sub {
+font-size: 0.9rem;
+color: #6b7c93;
+margin-top: 0.15rem;
+}
+.micro-label {
+font-size: 0.72rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: #8899b0;
+margin-bottom: 0.5rem;
+}
+.seg-bar {
+display: flex;
+width: 100%;
+height: 12px;
+border-radius: 6px;
+overflow: hidden;
+background: #1a2340;
+}
+.seg { height: 100%; }
+.seg-teal { background-color: #00d2a0; }
+.seg-amber { background-color: #f5a623; }
+.seg-red { background-color: #ff6b6b; }
+/* ── Phase 14: restored card containment (visual only) ──────────
+   Mirrors the original st.metric card depth: gradient fill, border,
+   left accent stripe, radius, shadow. Used by Level 1 / 2 / 4. */
+.hcard {
+background: linear-gradient(135deg, #141b2d 0%, #1a2340 100%);
+border: 1px solid #2d3a5c;
+border-left: 4px solid #4f8cff;
+border-radius: 10px;
+padding: 1rem 1.2rem;
+margin: 0.4rem 0;
+box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.verify-block {
+display: flex;
+align-items: baseline;
+gap: 0.7rem;
+margin-top: 0.35rem;
+}
+.verify-value {
+font-size: 1.6rem;
+font-weight: 600;
+color: #ffffff;
+}
+.verify-label {
+font-size: 0.85rem;
+color: #8899b0;
+}
+.disclaimer {
+font-size: 0.75rem;
+color: #6b7c93;
+line-height: 1.5;
+}
+
+/* ── Phase 10: Case detail card (DESIGN_PHASE10_CASE_EXPLORER.md) ── */
+.detail-card {
+border: 1px solid #2d3a5c;
+border-radius: 10px;
+padding: 0.9rem 1.1rem;
+background: #111827;
+margin-top: 0.4rem;
+}
+.detail-head {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 0.7rem;
+padding-bottom: 0.55rem;
+border-bottom: 1px solid #1e2a45;
+margin-bottom: 0.5rem;
+}
+.pill {
+display: inline-block;
+padding: 0.12rem 0.6rem;
+border-radius: 999px;
+font-size: 0.7rem;
+font-weight: 600;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+border: 1px solid transparent;
+}
+.pill-green { color: #00d2a0; background: rgba(0, 210, 160, 0.12); border-color: rgba(0, 210, 160, 0.45); }
+.pill-amber { color: #f5a623; background: rgba(245, 166, 35, 0.12); border-color: rgba(245, 166, 35, 0.45); }
+.pill-red   { color: #ff6b6b; background: rgba(255, 107, 107, 0.12); border-color: rgba(255, 107, 107, 0.45); }
+.badge {
+display: inline-block;
+padding: 0.12rem 0.6rem;
+border-radius: 6px;
+background: rgba(79, 140, 255, 0.14);
+color: #7ab3ff;
+font-size: 0.72rem;
+font-weight: 600;
+letter-spacing: 0.04em;
+}
+.ev-section { margin-top: 1rem; }
+.evidence-row {
+display: flex;
+gap: 1.2rem;
+padding: 0.18rem 0;
+border-bottom: 1px solid #1a2340;
+font-size: 0.9rem;
+line-height: 1.5;
+}
+.evidence-row:last-child { border-bottom: none; }
+.ev-label {
+color: #8899b0;
+min-width: 240px;
+max-width: 46%;
+flex-shrink: 0;
+}
+.ev-value {
+color: #c8d6e5;
+word-break: break-word;
+}
+.what-line {
+color: #e0e6f0;
+font-size: 0.95rem;
+line-height: 1.55;
+margin-top: 0.15rem;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -249,83 +392,106 @@ hashes = compute_hashes()
 
 # Merge all cases into one list
 all_cases = rr.get("orders", []) + rr.get("settlements", [])
+# Shared case-detail code table, used by the Phase 2 case-detail card.
+from html import escape as _esc
 
-# ── Header ───────────────────────────────────────────────────────────
+_CODE_INFO = {
+    "CURRENCY_MISMATCH": ("Currency conversion mismatch", "Order and settlement amounts differ before FX; equal after the recorded FX rate."),
+    "REFUND_SPLIT": ("Refund split across cycles", "Refund spans settlement batch boundaries; expected behavior."),
+    "UNRECORDED_REFUND": ("Refund not recorded in settlement", "Ledger shows a refund with no matching refund deduction in settlement rows."),
+    "DUPLICATE_ORDER": ("Duplicate order suspected", "Conflicting gross amounts suggest a possible duplicate order entry."),
+    "UNMATCHED_ORDER": ("No matching settlement credit", "No settlement row could be matched to this order."),
+    "GHOST_TRANSACTION": ("Bank credit with no matching order", "Settlement contains an order_id not present in the ledger."),
+    "NEFT_FAILED": ("NEFT settlement failed", "Batch was settled via NEFT and the credit did not arrive."),
+    "NO_CREDIT_EXPECTED": ("No credit expected for batch", "Batch net is negative; no bank credit was expected."),
+}
+
+# ── Header ────────────────────────────────────────────────────────────
 st.title("AI Finance Controller")
 st.caption(
-    "591 cases | 100% classification accuracy | "
-    "96.1% reconciled | 3.9% flagged for review"
+    "Deterministic multi-source reconciliation of orders, payments and "
+    "settlements, narrated by a grounded AI layer"
 )
 st.divider()
 
 
-# ══════════════════════════════════════════════════════════════════════
-# SECTION A: Headline Metrics
-# ══════════════════════════════════════════════════════════════════════
-st.subheader("Reconciliation Summary")
-
+# ----------------------------------------------------------------------
+# SECTION A: Top-Level Hierarchy (DESIGN_PHASE9_FRONTEND.md)
+# ----------------------------------------------------------------------
 summary = rr.get("summary", {})
 overall = summary.get("overall", {})
-accuracy = mr.get("overall", {}).get("accuracy", 0)
+mr_overall = mr.get("overall", {})
 
-col1, col2, col3, col4 = st.columns(4)
+_total = overall.get("total_cases", 0)
+_reconciled = overall.get("reconciled_total", 0)
+_review = overall.get("needs_human_review_total", 0)
+_unresolved = overall.get("unresolved_total", 0)
+_orders_sum = summary.get("orders", {})
+_settlements_sum = summary.get("settlements", {})
 
-with col1:
-    st.metric(
-        label="Accuracy",
-        value=f"{accuracy:.0%}",
-        help="Percentage of cases correctly classified against verified ground truth",
-    )
-
-with col2:
-    st.metric(
-        label="Matched",
-        value=f"{overall.get('reconciled_total', 0)}/{overall.get('total_cases', 0)}",
-        delta=f"{overall.get('match_rate_pct', 0)}%",
-        delta_color="normal",
-        help="Cases fully reconciled, including special-case handling",
-    )
-
-with col3:
-    st.metric(
-        label="Needs Review",
-        value=overall.get("needs_human_review_total", 0),
-        delta=f"{overall.get('needs_human_review_total', 0) / overall.get('total_cases', 1) * 100:.1f}%",
-        delta_color="off",
-        help="Cases requiring human judgment - genuine ambiguity",
-    )
-
-with col4:
-    st.metric(
-        label="Unresolved",
-        value=overall.get("unresolved_total", 0),
-        delta=f"{overall.get('unresolved_total', 0) / overall.get('total_cases', 1) * 100:.1f}%",
-        delta_color="off",
-        help="Cases where no match was possible - needs escalation",
-    )
-
-st.caption(
-    "100% accuracy = every case correctly classified against ground truth; "
-    "96.1% reconciled = cases resolved without human intervention. "
-    "The 23 non-reconciled cases are correctly flagged exceptions, not errors."
+# ── Level 1: Scale ────────────────────────────────────────────────────
+st.markdown(
+    f"""
+    <div class="hcard" style="border-left-color: #00d2a0;">
+      <div class="scale-value">{_total:,}</div>
+      <div class="scale-label">CASES PROCESSED</div>
+      <div class="scale-sub">{_orders_sum.get("total", 0)} orders | {_settlements_sum.get("total", 0)} settlements</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
-# Match-rate gap explanation (from metrics_report.json)
-_mr_overall = mr.get("overall", {})
-if "match_rate_gap_note" in _mr_overall:
-    with st.expander("Why two match-rate numbers?", expanded=False):
-        st.markdown(
-            f"**Operational rate:** {_mr_overall.get("match_rate_operational", 0):.2%} "
-            f"({overall.get("reconciled_total", 0)}/{overall.get("total_cases", 0)} cases "
-            f"resolved without human intervention)"
-        )
-        st.markdown(
-            f"**Clean-match rate:** {_mr_overall.get("match_rate_clean_no_exception", 0):.2%} "
-            f"(cases with zero exception code in ground truth)"
-        )
-        st.markdown("---")
-        st.caption(_mr_overall["match_rate_gap_note"])
+# ── Level 2: Outcome ──────────────────────────────────────────────────
+# Tooltip (title attribute) copy, per DESIGN_PHASE9_FRONTEND.md section 3.
+_tip_rec = (
+    f"{_reconciled} cases resolved without human intervention: "
+    f"{_orders_sum.get('reconciled', 0) + _settlements_sum.get('reconciled', 0)} plain matches, "
+    f"{_orders_sum.get('reconciled_with_note', 0)} reconciled with an explanatory note, "
+    f"{_settlements_sum.get('reconciled_no_credit_due', 0)} no-credit-due settlement."
+)
+_rev_s = _settlements_sum.get("needs_human_review", 0)
+_unres_s = _settlements_sum.get("unresolved", 0)
+_tip_rev = (
+    f"Genuinely ambiguous cases flagged for human judgment - "
+    f"{_orders_sum.get('needs_human_review', 0)} orders, "
+    f"{_rev_s} {'settlement' if _rev_s == 1 else 'settlements'}."
+)
+_tip_un = (
+    f"Cases where no match was possible - escalation required. "
+    f"{_orders_sum.get('unresolved', 0)} orders, "
+    f"{_unres_s} {'settlement' if _unres_s == 1 else 'settlements'}."
+)
 
+st.markdown(
+    f"""
+    <div class="micro-label" style="margin-top: 1.5rem;">OUTCOME</div>
+    <div class="hcard" style="border-left-color: #4f8cff;">
+      <div class="seg-bar">
+        <div class="seg seg-teal" style="width: {_reconciled / _total * 100:.2f}%;" title="{_tip_rec}"></div>
+        <div class="seg seg-amber" style="width: {_review / _total * 100:.2f}%;" title="{_tip_rev}"></div>
+        <div class="seg seg-red" style="width: {_unresolved / _total * 100:.2f}%;" title="{_tip_un}"></div>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Legend callouts as native st.metric cards (restores the original card depth)
+_leg1, _leg2, _leg3 = st.columns(3)
+_leg1.metric("Reconciled", f"{_reconciled:,}", f"{_reconciled / _total:.1%}",
+             delta_color="off", help=_tip_rec)
+_leg2.metric("Needs review", f"{_review:,}", f"{_review / _total:.1%}",
+             delta_color="off", help=_tip_rev)
+_leg3.metric("Unresolved", f"{_unresolved:,}", f"{_unresolved / _total:.1%}",
+             delta_color="off", help=_tip_un)
+
+# ── Level 3: Attention detail ─────────────────────────────────────────
+st.subheader("Cases Needing Attention")
+st.caption(
+    f"{_review + _unresolved} of {_total} cases flagged "
+    f"({(_review + _unresolved) / _total:.1%}) - the system correctly "
+    "surfaced these instead of guessing; none is a hidden failure."
+)
 
 # Chart: Exception cases only (plain 562 dwarfs the others, so show meaningful variation)
 status_counts = Counter(e["simplified_status"] for e in all_cases)
@@ -376,7 +542,16 @@ vlt = {
         "tooltip": [
             {"field": "Category", "type": "nominal"},
             {"field": "Count", "type": "quantitative"}
-        ]
+        ],
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": ["With Note", "No Credit Due", "Review", "Unresolved"],
+                "range": ["#00d2a0", "#00d2a0", "#f5a623", "#ff6b6b"]
+            },
+            "legend": None
+        }
     },
     "config": {"view": {"stroke": None}, "axis": {"grid": False}}
 }
@@ -387,8 +562,51 @@ st.caption(
     f"Total: {total_chart}"
 )
 
-st.divider()
+# ── Level 4: Verification ─────────────────────────────────────────────
+_mr_acc = mr_overall.get("accuracy", 0)
+_mr_fpr = mr_overall.get("false_positive_rate", 0)
+_mr_fnr = mr_overall.get("false_negative_rate", 0)
+_mr_mismatches = len(mr.get("mismatches", []))
 
+st.markdown(
+    f"""
+    <div class="micro-label" style="margin-top: 1.8rem;">VERIFICATION</div>
+    <div class="hcard" style="border-left-color: #4f8cff;">
+      <div class="verify-block">
+        <span class="verify-value">{_mr_acc:.0%}</span>
+        <span class="verify-label">Classification accuracy</span>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+st.caption(
+    f"{_mr_mismatches} mismatches | False-positive rate {_mr_fpr:.2%} | "
+    f"False-negative rate {_mr_fnr:.1%}"
+)
+st.caption(
+    "Accuracy is a benchmark of classification correctness measured "
+    "against this project's synthetic ground truth - a labeled reference "
+    "set built from known rules and independently audited. It is not a "
+    "claim about real-world financial accuracy."
+)
+
+# Match-rate gap explanation (from metrics_report.json)
+if "match_rate_gap_note" in mr_overall:
+    with st.expander("Why two match-rate numbers?", expanded=False):
+        st.markdown(
+            f"**Operational rate:** {mr_overall.get('match_rate_operational', 0):.2%} "
+            f"({overall.get('reconciled_total', 0)}/{overall.get('total_cases', 0)} cases "
+            f"resolved without human intervention)"
+        )
+        st.markdown(
+            f"**Clean-match rate:** {mr_overall.get('match_rate_clean_no_exception', 0):.2%} "
+            f"(cases with zero exception code in ground truth)"
+        )
+        st.markdown("---")
+        st.caption(mr_overall["match_rate_gap_note"])
+
+st.divider()
 
 # ══════════════════════════════════════════════════════════════════════
 # SECTION B: Case Explorer
@@ -400,21 +618,21 @@ fc1, fc2, fc3, fc4 = st.columns([1, 2, 2, 2])
 
 with fc1:
     case_type_filter = st.selectbox(
-        "Case type", ["All", "Orders", "Settlements"], index=0
+        "Case type", ["All", "Orders", "Settlements"], index=0, key="f_type"
     )
 
 with fc2:
     all_statuses = sorted(set(e["simplified_status"] for e in all_cases))
-    status_filter = st.multiselect("Status", all_statuses, default=[])
+    status_filter = st.multiselect("Status", all_statuses, default=[], key="f_status")
 
 with fc3:
     all_exceptions = sorted(
         set(e.get("exception_code") for e in all_cases if e.get("exception_code"))
     )
-    exc_filter = st.multiselect("Exception code", all_exceptions, default=[])
+    exc_filter = st.multiselect("Exception code", all_exceptions, default=[], key="f_exc")
 
 with fc4:
-    search_text = st.text_input("Search case_id", placeholder="ord_... or set_...")
+    search_text = st.text_input("Search case_id", placeholder="ord_... or set_...", key="f_search")
 
 # Apply filters
 filtered = all_cases[:]
@@ -444,7 +662,7 @@ total_pages = max(1, (len(filtered) + PAGE_SIZE - 1) // PAGE_SIZE)
 
 page_col1, page_col2, page_col3 = st.columns([1, 1, 4])
 with page_col1:
-    page = st.number_input("Page", min_value=1, max_value=total_pages, value=1)
+    page = st.number_input("Page", min_value=1, max_value=total_pages, value=1, key="f_page")
 with page_col2:
     st.caption(f"of {total_pages} ({len(filtered)} cases)")
 
@@ -480,7 +698,7 @@ if page_cases:
         hex_color = STATUS_HEX.get(val, "#c8d6e5")
         return f"background-color: {hex_color}22; color: {hex_color}; font-weight: 600"
 
-    styled = df.style.applymap(_color_status, subset=["Status"])
+    styled = df.style.map(_color_status, subset=["Status"])
     st.dataframe(
         styled,
         use_container_width=True,
@@ -499,6 +717,181 @@ else:
 st.markdown("---")
 st.markdown("**Case Detail**")
 
+
+# ── Case-detail rendering (DESIGN_PHASE10_CASE_EXPLORER.md) ──────────
+_STATUS_PILLS = {
+    "Reconciled": ("RECONCILED", "pill-green"),
+    "Reconciled (with note)": ("RECONCILED WITH NOTE", "pill-green"),
+    "Reconciled (no credit due)": ("NO CREDIT DUE", "pill-green"),
+    "Needs Human Review": ("NEEDS REVIEW", "pill-amber"),
+    "Unresolved": ("UNRESOLVED", "pill-red"),
+}
+
+_WHAT_TPL = {
+    ("Reconciled", "order"): "Order {case_id} was reconciled: settlement credit matched and fully accounted for.",
+    ("Reconciled", "settlement"): "Settlement {case_id} was reconciled: batch net matches bank credit.",
+    ("Reconciled (with note)", "order"): "Order {case_id} was reconciled with a recorded note.",
+    ("Reconciled (no credit due)", "settlement"): "Settlement {case_id} was reconciled: no bank credit was expected for this batch.",
+    ("Needs Human Review", "order"): "Order {case_id} was flagged for human review.",
+    ("Needs Human Review", "settlement"): "Settlement {case_id} was flagged for human review.",
+    ("Unresolved", "order"): "Order {case_id} could not be matched to any settlement credit.",
+    ("Unresolved", "settlement"): "Settlement {case_id} could not be reconciled.",
+}
+
+_ACTION_LINE = {
+    "Reconciled": "No action needed.",
+    "Reconciled (with note)": "No action needed.",
+    "Reconciled (no credit due)": "No action needed.",
+    "Needs Human Review": "Human review required.",
+    "Unresolved": "Cannot currently be resolved automatically.",
+}
+
+_EV_ORDER = [
+    ("settlement_ids", "Matched settlement(s)"),
+    ("bank_utr", "Bank UTR (reference)"),
+    ("order_residual", "Order residual amount"),
+    ("refund_type", "Refund type"),
+    ("ledger_refund_status", "Refund status in ledger"),
+    ("settlement_refund_deduction", "Refund deduction in settlement"),
+    ("settlement_gross_matched", "Settlement gross matched"),
+    ("conflicting_amounts", "Conflicting amounts"),
+    ("detail", "Note"),
+]
+_EV_SETTLEMENT = [
+    ("bank_utr", "Bank UTR (reference)"),
+    ("batch_net", "Batch net amount"),
+    ("bank_amount", "Bank credit amount"),
+    ("row_count", "Rows in batch"),
+    ("diff", "Difference (net vs bank)"),
+    ("ghost_order_ids", "Unmatched order IDs in batch"),
+]
+
+def _fmt_val(v):
+    if v is None:
+        return "Not applicable"
+    if isinstance(v, bool):
+        return "Yes" if v else "No"
+    if isinstance(v, int):
+        return f"{v:,}"
+    if isinstance(v, float):
+        return f"{v:,.2f}"
+    return str(v)
+
+
+def _ev_rows(v, label):
+    if isinstance(v, list):
+        if not v:
+            return (
+                f'<div class="evidence-row"><span class="ev-label">{_esc(label)}</span>'
+                f'<span class="ev-value">None</span></div>'
+            )
+        out = []
+        n = len(v)
+        for j, val in enumerate(v):
+            lab = label if j == 0 else f"{label} ({j + 1} of {n})"
+            out.append(
+                f'<div class="evidence-row"><span class="ev-label">{_esc(lab)}</span>'
+                f'<span class="ev-value">{_esc(_fmt_val(val))}</span></div>'
+            )
+        return "".join(out)
+    return (
+        f'<div class="evidence-row"><span class="ev-label">{_esc(label)}</span>'
+        f'<span class="ev-value">{_esc(_fmt_val(v))}</span></div>'
+    )
+
+
+def _render_case_detail(entry):
+    cid = entry["case_id"]
+    ctype = entry["case_type"]
+    status = entry["simplified_status"]
+    code = entry.get("exception_code")
+    parts = ['<div class="detail-card">']
+
+    # Header row: [case_id] [type] [status pill] [exception badge if any]
+    pill_text, pill_cls = _STATUS_PILLS.get(status, ("", ""))
+    parts.append(
+        '<div class="detail-head">'
+        f'<span class="ev-value" style="font-size:1.02rem;font-weight:700;color:#ffffff;">{_esc(cid)}</span>'
+        f'<span class="ev-label" style="min-width:0;">{_esc(ctype)}</span>'
+    )
+    if pill_text:
+        parts.append(f'<span class="pill {pill_cls}">{pill_text}</span>')
+    if code:
+        parts.append(f'<span class="badge">{_esc(code)}</span>')
+    parts.append("</div>")
+
+    # WHAT HAPPENED
+    tpl = _WHAT_TPL.get((status, ctype))
+    sentence = tpl.format(case_id=cid) if tpl else f"{ctype} {cid}: {status}."
+    if code and code in _CODE_INFO:
+        short = _CODE_INFO[code][0]
+        if sentence.endswith("."):
+            sentence = sentence[:-1] + f" ({short})."
+        else:
+            sentence = f"{sentence} ({short})."
+    parts.append('<div class="ev-section micro-label">WHAT HAPPENED</div>')
+    parts.append(f'<div class="what-line">{_esc(sentence)}</div>')
+
+    # WHY
+    parts.append('<div class="ev-section micro-label">WHY</div>')
+    expl = entry.get("explanation")
+    if expl:
+        parts.append(
+            '<div class="what-line" style="font-size:0.8rem;color:#8899b0;'
+            'margin-bottom:0.2rem;">AI narration, Phase 3 - grounded in the case data below.</div>'
+        )
+        parts.append(f'<div class="what-line">{_esc(expl)}</div>')
+    else:
+        parts.append(
+            '<div class="what-line">No AI narration exists for this case. It was '
+            'classified by the deterministic reconciliation engine.</div>'
+        )
+        if code and code in _CODE_INFO:
+            short, meaning = _CODE_INFO[code]
+            parts.append(f'<div class="what-line">{_esc(short)} - {_esc(meaning)}</div>')
+
+    # EVIDENCE
+    parts.append('<div class="ev-section micro-label">EVIDENCE</div>')
+    kf = entry.get("key_figures") or {}
+    canon = _EV_ORDER if ctype == "order" else _EV_SETTLEMENT
+    known = [k for k, _ in canon]
+    row_html = []
+    for k, label in canon:
+        if k in kf:
+            row_html.append(_ev_rows(kf[k], label))
+    for k in sorted(set(kf) - set(known)):
+        label = k.replace("_", " ").capitalize()
+        row_html.append(_ev_rows(kf[k], label))
+    parts.append("".join(row_html) if row_html else '<div class="what-line">None</div>')
+
+    # NEXT STEP
+    parts.append('<div class="ev-section micro-label">NEXT STEP</div>')
+    parts.append(
+        f'<div class="what-line">{_esc(_ACTION_LINE.get(status, "See case details."))}</div>'
+    )
+    sa = entry.get("suggested_action")
+    if sa:
+        if status == "Unresolved":
+            parts.append('<div class="what-line">See suggested action below.</div>')
+        parts.append(f'<div class="what-line">{_esc(sa)}</div>')
+
+    # Optional: confidence note / soft flags (only when present)
+    cn = entry.get("confidence_note")
+    if cn:
+        parts.append(
+            f'<div class="what-line" style="color:#f5a623;margin-top:0.7rem;">'
+            f'&#9888; Confidence note: {_esc(cn)}</div>'
+        )
+    flags = entry.get("soft_flags") or []
+    if flags:
+        parts.append('<div class="ev-section micro-label">Soft flags</div>')
+        for fl in flags:
+            parts.append(f'<div class="what-line" style="color:#f5a623;">&#9888; {_esc(fl)}</div>')
+
+    parts.append("</div>")
+    st.markdown("".join(parts), unsafe_allow_html=True)
+
+
 detail_ids = [e["case_id"] for e in filtered]
 if detail_ids:
     selected_id = st.selectbox("Select a case to inspect", detail_ids, index=0)
@@ -506,41 +899,10 @@ if detail_ids:
 
     if selected:
         with st.expander(f"{selected['case_id']} — {selected['simplified_status']}", expanded=True):
-            # Header
-            st.markdown(
-                f"**{selected['case_id']}** | "
-                f"Type: `{selected['case_type']}` | "
-                f"Status: **{selected['simplified_status']}** | "
-                f"Exception: `{selected.get('exception_code') or 'none'}`"
-            )
-
-            # Key Figures
-            kf = selected.get("key_figures", {})
-            if kf:
-                st.markdown("**Key Figures:**")
-                st.json(kf)
-
-            # Explanation
-            if selected.get("explanation"):
-                st.markdown("**Explanation (Phase 3):**")
-                st.markdown(selected["explanation"])
-
-            # Suggested Action
-            if selected.get("suggested_action"):
-                st.markdown(f"**Suggested Action:** {selected['suggested_action']}")
-
-            # Confidence Note
-            if selected.get("confidence_note"):
-                st.warning(f"**Confidence Note:** {selected['confidence_note']}")
-
-            # Soft Flags
-            flags = selected.get("soft_flags", [])
-            if flags:
-                st.markdown("**Soft Flags:**")
-                for flag in flags:
-                    st.caption(f"⚠ {flag}")
+            _render_case_detail(selected)
 else:
     st.info("No cases to display.")
+
 
 st.divider()
 
@@ -548,7 +910,14 @@ st.divider()
 # ══════════════════════════════════════════════════════════════════════
 # SECTION C: Live Q&A
 # ══════════════════════════════════════════════════════════════════════
-st.subheader("Ask a Question")
+st.subheader("Ask the Controller")
+st.caption(
+    "Questions are answered from this reconciliation run only - the "
+    f"{overall.get('total_cases', 0):,} cases (orders, settlements, refunds, "
+    "exceptions) shown above. Answers quote the same source data and "
+    "explanations from this page, and each is checked against that data "
+    "before it is displayed."
+)
 
 # Session state for conversation history
 if "qa_history" not in st.session_state:
@@ -589,7 +958,7 @@ with _qa_container:
             # Tight gap within pair, wider gap between exchanges
             st.markdown("---")
     else:
-        st.info("Ask a question below to get started.")
+        st.info("Ask a question about the reconciliation data above to get started.")
 
 # Input: st.text_input + st.button (NOT st.chat_input)
 # Root cause confirmed: st.chat_input causes auto-scroll on every load/rerun.
@@ -677,3 +1046,4 @@ st.caption(
 hash_display = " | ".join(f"{k}: {v}" for k, v in hashes.items())
 st.caption(f"Hash provenance: {hash_display}")
 st.caption("Run: `streamlit run dashboard.py`")
+
