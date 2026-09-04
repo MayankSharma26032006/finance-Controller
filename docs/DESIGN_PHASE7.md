@@ -13,7 +13,7 @@ out-of-scope questions.
 The QA agent is a pure read-retrieve-respond pipeline with no state mutation:
 
 1. **Load** -- On first call, load reconciliation_report.json (591 entries),
-   match_log.json (591 entries), explanations.json (28 entries), and
+   match_log.json (591 entries), explanations.json (29 entries), and
    metrics_report.json into memory dicts keyed by case_id. Never reloaded.
 
 2. **Classify** -- Parse the free-text question to determine category:
@@ -28,7 +28,7 @@ The QA agent is a pure read-retrieve-respond pipeline with no state mutation:
 
 4. **Ground** -- Build prompt with: (A) domain facts, (B) case/summary data, (C) question
 
-5. **Generate** -- Groq API call (openai/gpt-oss-120b, temperature=0), retry on 429/5xx
+5. **Generate** -- Groq API call (llama-3.3-70b, temperature=0), retry on 429/5xx
 
 6. **Verify** -- Extract figures from answer, cross-check against source data
 
@@ -38,9 +38,9 @@ The QA agent is a pure read-retrieve-respond pipeline with no state mutation:
 
 | File | What it provides | Used for |
 |------|-----------------|----------|
-| reconciliation_report.json | 591 entries with simplified_status, exception_code, key_figures, explanation (for 28 cases) | Single-case lookup, aggregate counting |
+| reconciliation_report.json | 591 entries with simplified_status, exception_code, key_figures, explanation (for 29 cases) | Single-case lookup, aggregate counting |
 | match_log.json | 591 entries with raw matching data: settlement_ids, bank_utr, order_residual, refund_type, confidence, detail, soft_flags | Enriched single-case data when RR lacks detail |
-| explanations.json | 28 narrated cases with full explanation text, suggested_action, hallucination_check | Reuse existing explanations, dont regenerate |
+| explanations.json | 29 narrated cases with full explanation text, suggested_action, hallucination_check | Reuse existing explanations, dont regenerate |
 | metrics_report.json | overall accuracy, per-exception-code precision/recall, FPR/FNR | Aggregate/statistical questions |
 | DESIGN_PHASE1.md domain facts | Fee structure (2%/3%, 18% GST), settlement batching, FX rate 83.00, refund deduction timing | Grounding every prompt |
 
@@ -329,7 +329,7 @@ This module:
 - Reads reconciliation_report.json, match_log.json, explanations.json, metrics_report.json
 - Writes nothing to disk (response is returned in-memory to the caller)
 - Does NOT re-run the matcher, reconciler, or any prior phase
-- Does NOT re-explain the 28 Phase 3 cases (reuses existing explanations verbatim)
+- Does NOT re-explain the 29 Phase 3 cases (reuses existing explanations verbatim)
 - Does NOT call any API other than Groq for answer generation
 - Does NOT modify any file from Phases 1-6
 

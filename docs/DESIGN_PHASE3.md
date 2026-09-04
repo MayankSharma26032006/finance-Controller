@@ -1,37 +1,35 @@
 # DESIGN_PHASE3.md - Agent Reasoning / Explanation Layer
 
-Scope: Explain the 28 non-trivial cases identified by the Phase 2 matcher.
+Scope: Explain the 17 non-trivial cases identified by the Phase 2 matcher.
 Does NOT re-classify, override, or re-decide any match status.
-Does NOT touch the 474 plain-matched orders or 89 batch_credited settlements.
+Does NOT touch the 486 plain-matched orders or 89 batch_credited settlements.
 
 ---
 
-## 1. Scope: Exactly 28 Cases
+## 1. Scope: Exactly 17 Cases
 
 | # | entity_type | case_id | confidence | exception_code | count |
 |---|-------------|---------|------------|----------------|-------|
 | 1-3 | order | REFUND_SPLIT cases (3) | matched_with_note | REFUND_SPLIT | 3 |
 | 4-5 | order | CURRENCY_MISMATCH cases (2) | matched_with_note | CURRENCY_MISMATCH | 2 |
 | 6 | order | ord_EnDJiS9HvlxNgbb1 | needs_review | DUPLICATE_ORDER | 1 |
-| 7-18 | order | 12 UNRECORDED_REFUND cases | needs_review | UNRECORDED_REFUND | 12 |
-| 19-26 | order | 8 UNMATCHED_ORDER cases (5 failed + 2 authorized + 1 missing from settlement) | hard_exception | UNMATCHED_ORDER | 8 |
-| 27 | settlement | set_1E8lJ4dKfU21o9Is | needs_review | GHOST_TRANSACTION | 1 |
-| 28 | settlement | set_7oqQnmBR7evr0ci5 | hard_exception | NEFT_FAILED | 1 |
+| 7-14 | order | 8 UNMATCHED_ORDER cases | hard_exception | UNMATCHED_ORDER | 8 |
+| 15 | settlement | set_1E8lJ4dKfU21o9Is | needs_review | GHOST_TRANSACTION | 1 |
+| 16 | settlement | set_7oqQnmBR7evr0ci5 | hard_exception | NEFT_FAILED | 1 |
+| 17 | settlement | set_vlVzIbTfj7VNQanv | hard_exception | NO_CREDIT_EXPECTED | 1 |
 
-Agent involvement: ZERO for the other 474 + 89 = 563 cases.
-
-**Scope note:** the original Phase 3 design covered 17 cases (this table plus NO_CREDIT_EXPECTED). Post-build fixes to Phase 2 changed the scope: Fix 4 reclassified the negative-net NO_CREDIT_EXPECTED batch to `matched` (no longer narrated), and Fix 3 added the 12 UNRECORDED_REFUND exceptions (now narrated) -- see the addendum in DESIGN_PHASE2.md and audit_trail.md. Net result: 16 + 12 = **28 narrated cases**.
+Agent involvement: ZERO for the other 486 + 89 = 575 cases.
 
 ---
 
 ## 2. Core Principle: Narrate, Do NOT Re-Decide
 
-For all 28 cases, the Phase 2 classification is **final and correct** against ground truth.
+For 16 of 17 cases, the Phase 2 classification is **final and correct**.
 The agent job is to:
 
 1. **Explain WHY** in plain English, using actual computed facts from the case
 2. **Never re-classify** or override the status
-3. **Express uncertainty** where the data is genuinely ambiguous -- a formal `confidence_note` is attached only to DUPLICATE_ORDER (the one case where two conflicting amounts make the correct value unknowable)
+3. **Express uncertainty** only for the single needs_review case (DUPLICATE_ORDER)
 4. **Suggest actions** (advisory only, never auto-executed)
 
 The agent is a narrator with a reference card, not a decision-maker.
@@ -224,7 +222,7 @@ Settlement batch: set_7oqQnmBR7evr0ci5
 - Exception: NEFT_FAILED (positive net but bank never credited)
 ```
 
-#### 4g. NO_CREDIT_EXPECTED (1 case - no longer narrated)
+#### 4g. NO_CREDIT_EXPECTED (1 case - hard_exception)
 
 ```
 Settlement batch: set_vlVzIbTfj7VNQanv
@@ -234,22 +232,6 @@ Settlement batch: set_vlVzIbTfj7VNQanv
 - Bank statement: UTR 4299074729669417 NOT FOUND
 - Status: NO_CREDIT_EXPECTED (negative net correctly produces no bank credit)
 ```
-
-**Note:** post-Fix 4 (DESIGN_PHASE2.md addendum) the negative-net batch is classified `matched`, so NO_CREDIT_EXPECTED is excluded from the 28 narrated cases. The builder is retained in explainer.py for safety.
-
-#### 4h. UNRECORDED_REFUND (12 cases - needs_review)
-
-Added by Fix 3 (see DESIGN_PHASE2.md addendum): the ledger claims a partial
-refund but no refund_deduction row exists in the settlement report. The engine
-flags UNRECORDED_REFUND and asks a human to reconcile the gap.
-
-Data passed to LLM:
-- The full match_log entry (settlement_ids, bank_utr, order_residual, refund_type, detail)
-- There is no dedicated builder: build_case_data falls back to the raw case JSON
-
-Example for ord_2ozm6RqNbOW8W3nD: the ledger shows a partial refund of Rs 134.57,
-the settlement batch contains no refund-deduction entry, and the order residual
-is Rs 363.96 -- the explanation states the discrepancy and the uncertainty.
 
 ---
 
@@ -293,7 +275,6 @@ Each case produces one entry in agent/output/explanations.json.
 - hard_exception: null
 - needs_review (DUPLICATE_ORDER): REQUIRED - must express genuine uncertainty
 - needs_review (GHOST_TRANSACTION): null (classification certain, resolution needs human)
-- needs_review (UNRECORDED_REFUND): null (flagged for manual review -- no single figure is in dispute, the refund row is simply absent from settlement)
 
 ---
 
@@ -327,7 +308,7 @@ them against the actual source data for that case.
 - Temperature=0 reduces randomness
 - The domain facts block prevents invention of domain rules
 - The cross-verify catches any creative rounding or figure invention
-- 28 cases is small enough for human spot-checking anyway
+- 17 cases is small enough for human spot-checking anyway
 
 ### Known Limitation: Relational/Logical Claims
 
@@ -343,7 +324,7 @@ This was observed in the DUPLICATE_ORDER case for ord_EnDJiS9HvlxNgbb1, where th
 
 Exact-string-match can false-flag a correct explanation due to formatting
 differences (e.g. LLM writes "Rs 14,802" without trailing ".45" while source
-has "14802.45", or uses "14802.45" without comma). When reviewing the 28
+has "14802.45", or uses "14802.45" without comma). When reviewing the 17
 outputs, treat hallucination_check.mismatches as a filter for manual review,
 not as proof of actual hallucination. A mismatch means "verify this number
 manually" -- not "the LLM made this up".
@@ -360,7 +341,7 @@ manually" -- not "the LLM made this up".
 | Temperature | 0 | Deterministic output for reproducibility |
 | Max tokens | 800 | 2-4 sentence explanations with margin for model output format |
 | Calls per case | 1 | One call, one explanation - no chaining needed |
-| Total API calls | 28 | One per case, sequential |
+| Total API calls | 17 | One per case, sequential |
 
 ### Call Pattern
 
@@ -394,15 +375,15 @@ for case in cases_to_explain:
 ### Why Groq (not OpenAI)
 
 Switched to Groq free tier for the buildathon submission:
-- **Zero cost**: 28 calls at $0.00 on the Groq free tier
-- **No quality tradeoff**: the task is pure narration of pre-computed facts - openai/gpt-oss-120b handles this identically to GPT-4o-mini
+- **Zero cost**: 17 calls at /usr/bin/bash.00, no API key billing required
+- **No quality tradeoff**: the task is pure narration of pre-computed facts - Llama 3.3 70B handles this identically to GPT-4o-mini
 - **No setup overhead**: avoids local model deployment given deadline constraints
-- Groq free tier limits (30 req/min, 14,400/day) far exceed our 28-call budget
+- Groq free tier limits (30 req/min, 14,400/day) far exceed our 17-call budget
 - Uses the openai Python SDK pointed at Groq endpoint (base_url) - no new dependencies
 
 ### No LangChain
 
-Per locked stack: direct openai SDK calls only. The task is 28 independent
+Per locked stack: direct openai SDK calls only. The task is 17 independent
 API calls with no chaining, retrieval, or tool use - LangChain would add
 complexity with zero benefit.
 
@@ -410,8 +391,8 @@ complexity with zero benefit.
 
 ## 8. API Key Handling
 
-- API key stored in .env file at project root: GROQ_API_KEY (get a free key at https://console.groq.com)
-- Loaded via os.environ.get("GROQ_API_KEY") in the agent module; the openai SDK is pointed at Groq's endpoint (base_url=https://api.groq.com/openai/v1)
+- API key stored in .env file at project root: OPENAI_API_KEY=sk-...
+- Loaded via os.environ.get("OPENAI_API_KEY") in the agent module
 - .env is in .gitignore (confirmed)
 - .env is NOT committed to the repository
 - If key is missing at runtime: clear error message, exit gracefully
@@ -442,5 +423,5 @@ Dependencies:
 - python-dotenv for loading .env (or use manual os.environ load)
 
 Runtime:
-- ~28 API calls, ~8-15 seconds total at temperature=0
+- ~17 API calls, ~5-10 seconds total at temperature=0
 - Cost: $0.00 (Groq free tier)

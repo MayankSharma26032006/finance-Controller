@@ -32,7 +32,7 @@ Input files (read-only):
 
 - engine/output/match_log.json -- 591 entries (500 orders + 91 settlements)
 
-- agent/output/explanations.json -- 28 entries (all non-trivial cases)
+- agent/output/explanations.json -- 29 entries (all non-trivial cases)
 
 
 
@@ -127,8 +127,13 @@ the hashes in the report will not match the current files.
 
 
 
-### 3b. summaryorders: { total: 500, reconciled: 474, reconciled_with_note: 5,
-  needs_human_review: 13, unresolved: 8, match_rate_pct: 95.8 }
+### 3b. summary
+
+
+
+orders: { total: 500, reconciled: 474, reconciled_with_note: 5,
+
+  needs_human_review: 1, unresolved: 8, match_rate_pct: 95.8 }
 
 settlements: { total: 91, reconciled: 88, reconciled_no_credit_due: 1,
 
@@ -346,7 +351,7 @@ Phase 4 is a pure data-merge script. No matching, no classification, no LLM call
 
 - Read match_log.json (591 entries: 500 orders + 91 settlements)
 
-- Read explanations.json (28 entries)
+- Read explanations.json (29 entries)
 
 - Compute SHA-256 hashes of both files for report_metadata
 
