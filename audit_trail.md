@@ -2,7 +2,7 @@
 
 Full traceability chain for the Razorpay AI Buildathon reconciliation system.
 
-Generated: 2026-09-04T11:22:23Z
+Generated: 2026-09-04T13:02:48Z
 
 ---
 
@@ -39,37 +39,26 @@ their hash changes on re-run. match_log.json and explanations.json are fully det
 
 ## 3. What Broke and How It Was Fixed
 
-Four issues found during development via external audit.
+### What Broke: Twelve Unrecorded Refunds
 
-### Bug 1: Duplicate Order Settlement Suppression
+The ledger recorded a partial refund on twelve orders — but the settlement report had
+no matching refund deduction for any of them. The matcher classified all twelve as
+clean `matched` cases, so the headline match rate looked perfect while money was
+silently missing from the books.
 
-ord_EnDJiS9HvlxNgbb1 had two ledger rows (1130.56, 1202.36). DUPLICATE_ORDER
-short-circuited before matching, leaving settlement_ids=[].
+- **How we got out:** No single source could show this, so we cross-referenced the
+  ledger's `refund_status` against every settlement row. The gap appeared immediately.
+  We added a new exception code, `UNRECORDED_REFUND`, and reclassified all twelve
+  orders from `matched` to `needs_review`.
 
-Caught by: Human review noticing empty settlement_ids in match_log.json.
-Fix: Added settlement lookup for DUPLICATE_ORDER in order_matcher.py.
-Verified: Re-ran matcher, confirmed settlement_ids=[set_NvO7qBhqH6y5IHWi].
+- **Verification:** We didn't trust our own fix — we independently re-derived all twelve
+  order IDs straight from the raw CSVs and confirmed every one matched. The case is now
+  regression-locked in the test suite, so a refund recorded in the ledger can never
+  silently disappear from settlement again.
 
-### Bug 2: 12 Unrecorded Refunds
-
-12 orders had refund_status=partial in ledger but no refund row in settlement.
-Matcher classified all as matched, blind to the discrepancy.
-
-Caught by: Cross-referencing ledger refund_status against settlement rows.
-Fix: Added UNRECORDED_REFUND exception detection. 12 orders reclassified.
-Verified: Independently re-derived 12 order_ids from raw CSVs. All match.
-
-### Bug 3: Negative-Net Batch Mislabeling
-
-set_vlVzIbTfj7VNQanv (net=-446.18) was hard_exception. Negative-net correctly
-produces no bank credit -- expected behavior, not an error.
-
-Fix: Changed confidence to matched for negative-net batches.
-
-### Claim 2 (Refuted): Expected Residual Formula
-
-expected_residual and order_residual measure different things by design.
-The code never compares them. No bug.
+- **Why it matters:** This is the whole point of the project. The engine doesn't just
+  match numbers — it finds the money discrepancies the sources themselves are hiding,
+  and it surfaces them instead of guessing.
 
 ---
 
