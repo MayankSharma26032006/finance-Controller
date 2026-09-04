@@ -211,7 +211,6 @@ The full-dataset integration class runs the real matcher against the frozen CSVs
 ├── data/
 │   ├── generate_data.py       # Synthetic data generator (Phase 1)
 │   ├── validate_data.py       # Data validator — 28 checks, all PASS
-│   ├── check_two.py           # Label mismatch + rounding checks
 │   └── raw/                   # FROZEN generated data (committed)
 │       ├── order_ledger.csv             # 500 orders with edge cases
 │       ├── settlement_report.csv        # 91 settlement batches
@@ -242,7 +241,8 @@ The full-dataset integration class runs the real matcher against the frozen CSVs
 │       └── explanations.json  # 28 narrated exception cases (verified)
 │
 ├── tests/
-│   ├── __init__.py│       └── test_reconciliation.py # 64 regression tests
+│   ├── __init__.py
+│   └── test_reconciliation.py # 64 regression tests
 │
 └── DATA_ARCHITECTURE_REPORT.md  # Data-flow + production-database analysis
 ```
