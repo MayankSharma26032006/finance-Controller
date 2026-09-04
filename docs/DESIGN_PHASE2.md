@@ -364,7 +364,8 @@ Each order receives one of four confidence statuses. These are independent of `m
   - REFUND_SPLIT: refund deduction spans 2 batches, amounts match after cross-batch linking
   - CURRENCY_MISMATCH: USD order converts to matching INR amount at FX_RATE=83.00
   - exception_code IS set (REFUND_SPLIT, CURRENCY_MISMATCH) to distinguish from plain matched
-  - The reconciliation math is correct and resolved — no human/agent intervention neededn  - But it required special-case logic, so it stays distinguishable from a plain 1:1 exact match
+  - The reconciliation math is correct and resolved — no human/agent intervention needed
+  - But it required special-case logic, so it stays distinguishable from a plain 1:1 exact match
   - Expected count: 5 orders (3 REFUND_SPLIT + 2 CURRENCY_MISMATCH)
 
 ### "needs_review" — requires human or agent judgment
@@ -471,11 +472,11 @@ Note: The 12-point drop in order match rate is correct -- those 12 orders genuin
 
 **Affected existing cases:**
 - `ord_EnDJiS9HvlxNgbb1` (DUPLICATE_ORDER): Now has real settlement_ids/bank_utr. Existing explanation premise ("no settlement rows found") is now inaccurate -- needs re-explanation.
-- `set_vlVzIbTfj7VNQanv` (NO_CREDIT_EXPECTED): Confidence changed from hard_exception to matched, but explanation content is still correct (the reasoning about why no credit is expected has not changed).
+- `set_vlVzIbTfj7VNQanv` (NO_CREDIT_EXPECTED): Confidence changed from hard_exception to matched, which removes the case from Phase 3's narration set (narrated = confidence in matched_with_note / needs_review / hard_exception). Its existing explanation remains correct as reference (the reasoning about why no credit is expected has not changed).
 
 **New cases needing explanations (12):**
 All `UNRECORDED_REFUND` orders are new needs_review cases requiring LLM explanation. These did not exist in the previous 17-case set.
 
-**Total Phase 3 cases after fix:** 17 (existing) + 12 (new UNRECORDED_REFUND) - 0 (none removed) = **29 cases**
+**Total Phase 3 cases after fix:** 17 (original) - 1 (NO_CREDIT_EXPECTED dropped from narration by Fix 4) + 12 (new UNRECORDED_REFUND) = **28 cases**
 
 match_log.json hash (post-fix): computed before Phase 3 regeneration.

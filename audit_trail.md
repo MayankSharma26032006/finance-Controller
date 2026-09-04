@@ -2,14 +2,14 @@
 
 Full traceability chain for the Razorpay AI Buildathon reconciliation system.
 
-Generated: 2026-09-03T05:30:14Z
+Generated: 2026-09-04T10:56:42Z
 
 ---
 
 ## 1. Pipeline Overview
 
 Phases 1-2: Synthetic data + deterministic matching (no LLM)
-Phase 3: Agent narrates 28 non-trivial cases (Groq, llama-3.3-70b)
+Phase 3: Agent narrates 28 non-trivial cases (Groq, openai/gpt-oss-120b)
 Phase 4: Simplified status mapping
 Phase 5: Accuracy scoring vs ground truth (100% verified)
 Phase 6: This audit trail

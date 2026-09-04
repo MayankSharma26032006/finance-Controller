@@ -344,7 +344,7 @@ def main():
         exc = get_exception_code(case)
 
         print("")
-        print("[" + str(i).rjust(2) + "/17] " + case_type + ": " + case_id + " (" + (exc or status) + ")")
+        print("[" + str(i).rjust(2) + "/" + str(len(cases)) + "] " + case_type + ": " + case_id + " (" + (exc or status) + ")")
         case_data = build_case_data(case, ledger, settlements)
         prompt = build_prompt(case, case_data)
         explanation, usage, error = call_openai(client, prompt, case_id)
