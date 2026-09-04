@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run the 64-test regression suite (stdlib only, no API calls)
+        run: python -m unittest tests.test_reconciliation -v
+
+      - name: Validate frozen data (data/validate_data.py)
+        run: python data/validate_data.py
+
+      - name: Run the deterministic pipeline (Phases 2 -> 4 -> 5 -> 6)
+        run: |
+          python engine/matcher_exact.py
+          python engine/reconciler.py
+          python engine/metrics_scorer.py
+          python engine/generate_audit.py
+
+      - name: Matcher output must stay byte-identical to the committed file
+        run: git diff --exit-code -- engine/output/match_log.json
+
+      - name: Explanations and raw data must stay untouched by the pipeline
+        run: |
+          git diff --exit-code -- agent/output/explanations.json
+          git diff --exit-code -- data/raw/

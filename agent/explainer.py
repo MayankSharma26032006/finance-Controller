@@ -171,8 +171,14 @@ def extract_figures(text):
     patterns = [r"Rs\s*([\d,]+\.?\d*)", r"\$\s*([\d,]+\.?\d*)",
                 r"([\d,]+\.?\d*)\s*INR", r"([\d,]+\.?\d*)\s*USD",
                 r"INR\s*([\d,]+\.?\d*)", r"USD\s*([\d,]+\.?\d*)"]
+    # Bare amounts without a currency marker (e.g. "residual of 2196.99"):
+    # they must be verified like any other stated figure, not silently skipped.
+    bare_amount_patterns = [
+        r"(?<![\w.,])\d{1,3}(?:,\d{3})+\.\d{2}(?![\w.,])",  # 1,234.56 style
+        r"(?<![\w.,])\d+\.\d{2}(?!\d)",                       # 1234.56 style
+    ]
     figs = []
-    for p in patterns:
+    for p in patterns + bare_amount_patterns:
         for m in re.findall(p, normalized):
             cleaned = m.replace(",", "").strip()
             if cleaned: figs.append(cleaned)
@@ -259,7 +265,19 @@ def run_hallucination_check(explanation, case, ledger, settlements):
     stated = extract_figures(explanation)
     source = collect_source_figures(case, ledger, settlements)
     mismatches = [f for f in stated if not _figures_match(f, source)]
-    return {"stated_figures": stated, "verified": len(mismatches) == 0, "mismatches": mismatches}
+    result = {"stated_figures": stated, "verified": len(mismatches) == 0, "mismatches": mismatches}
+    if not stated and re.search(r"\d+\.\d", explanation):
+        # Fail closed: the text carries decimal figures but none could be
+        # extracted for verification (e.g. an unrecognized format). Marking
+        # this verified would be vacuous -- a pass must never mean "skipped".
+        result["verified"] = False
+        result["reason"] = "amounts_present_but_none_extracted"
+    elif not stated:
+        # No figures at all -> nothing to cross-check; record why it passed.
+        result["reason"] = "no_figures_stated"
+    else:
+        result["reason"] = None
+    return result
 
 def call_openai(client, prompt, case_id):
     msgs = [{"role": "system", "content": SYSTEM_INSTRUCTIONS}, {"role": "user", "content": prompt}]
@@ -353,7 +371,6 @@ def main():
         if error:
             print("  FAILED: " + error)
             failed_cases.append({"case_id": case_id, "error": error})
-            usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
             entry = {
                 "case_id": case_id, "case_type": case_type, "status": status,
                 "exception_code": exc,
@@ -366,27 +383,32 @@ def main():
             explanations.append(entry)
             print("  FAIL: api_error")
             print("  Expl: ERROR")
-        else:
-            validation = validate_explanation(explanation)
-            hc = run_hallucination_check(explanation, case, ledger, settlements)
-            if not validation["is_valid"]:
-                hc = None
-            confidence_note = None
-            if status == "needs_review" and exc == "DUPLICATE_ORDER":
-                confidence_note = "Cannot determine which amount is correct. Requires manual verification."
-            entry = {
-                "case_id": case_id, "case_type": case_type, "status": status,
-                "exception_code": exc, "explanation": explanation,
-                "suggested_action": get_suggested_action(exc, case),
-                "confidence_note": confidence_note,
-                "hallucination_check": hc,
-                "validation": validation,
-            }
-            explanations.append(entry)
-            vs = "VERIFIED" if (hc and hc["verified"]) else ("FLAGGED(" + str(len(hc["mismatches"])) + ")" if hc else "N/A")
-            print("  VAL: " + ("OK" if validation["is_valid"] else validation["reason"]) + " (" + str(validation["sentence_count"]) + " sentences)")
-            print("  HC: " + vs)
-            print("  Expl: " + explanation[:120].encode("ascii", "replace").decode() + "...")
+            continue
+
+        # Accumulate token usage for the run summary (was previously never updated)
+        for k in total_usage:
+            total_usage[k] += usage.get(k, 0)
+
+        validation = validate_explanation(explanation)
+        hc = run_hallucination_check(explanation, case, ledger, settlements)
+        if not validation["is_valid"]:
+            hc = None
+        confidence_note = None
+        if status == "needs_review" and exc == "DUPLICATE_ORDER":
+            confidence_note = "Cannot determine which amount is correct. Requires manual verification."
+        entry = {
+            "case_id": case_id, "case_type": case_type, "status": status,
+            "exception_code": exc, "explanation": explanation,
+            "suggested_action": get_suggested_action(exc, case),
+            "confidence_note": confidence_note,
+            "hallucination_check": hc,
+            "validation": validation,
+        }
+        explanations.append(entry)
+        vs = "VERIFIED" if (hc and hc["verified"]) else ("FLAGGED(" + str(len(hc["mismatches"])) + ")" if hc else "N/A")
+        print("  VAL: " + ("OK" if validation["is_valid"] else validation["reason"]) + " (" + str(validation["sentence_count"]) + " sentences)")
+        print("  HC: " + vs)
+        print("  Expl: " + explanation[:120].encode("ascii", "replace").decode() + "...")
 
     explanations.sort(key=lambda x: (x["case_type"], x["case_id"]))
 

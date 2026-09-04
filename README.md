@@ -13,13 +13,17 @@ Built across 8 design-and-build phases, from synthetic data generation through a
 | Metric | Value |
 |---|---|
 | Cases scored | **591** (500 orders + 91 settlements) |
-| Classification accuracy | **100%** — all 591 cases correctly classified against independently verified ground truth (0 mismatches) |
+| Classification accuracy | **100%** — all 591 cases classified consistently with the project's synthetic ground truth (0 mismatches) |
 | Clean reconciliation rate | **96.1%** — 568 cases fully reconciled with no human involvement |
 | Honest exception rate | **3.9%** — 23 cases correctly and transparently flagged for human review or escalation, not hidden |
 | AI-narrated exceptions | **28** exception cases explained by the LLM, all verified against source data |
-| Automated tests | **57** regression tests, all passing |
+| Automated tests | **64** regression tests, all passing |
 
 **What the numbers mean:** the system is 100% accurate at *classification*; the 3.9% flagged as needing review are genuine ambiguities the system correctly identified rather than guessed on. Zero false negatives — no exception was ever silently missed — and the only false positive is a known near-cutoff edge case that the exception list transparently discloses.
+
+**Scope of the 100%:** it is measured against *synthetic* ground truth — labels generated from the same rule engine that produced the data, then corrected once by manual audit. Generator and matcher share assumptions, so the score proves the engine is internally consistent with that reference set and was externally audited, not that it would score 100% on real, unlabeled data.
+
+**How AI output is guarded:** every AI-generated explanation and Q&A answer is automatically fact-checked against its source data before display — the check extracts *every* stated figure (including amounts written without a currency marker) and compares them numerically (not by substring) against the case data and a fixed domain-facts block. Verification fails closed: an explanation that carries decimal amounts it cannot extract for checking is recorded as unverified, never as a silent pass.
 
 ## The 8 Phases
 
@@ -93,7 +97,7 @@ python3 agent/qa_agent.py
 ### Run the tests
 
 ```bash
-python -m unittest tests.test_reconciliation -v   # 57 tests, ~0.05s, no API calls
+python -m unittest tests.test_reconciliation -v   # 64 tests, ~0.1s, no API calls
 ```
 
 ## How It Works
@@ -135,12 +139,13 @@ Phase 3 generates a plain-language explanation for each exception case, and Phas
 
 - **Grounded** — the prompt receives the case's real data plus a fixed domain-facts block (fee %, GST %, FX rate). The model is told to quote, not invent.
 - **Temperature 0** — `openai/gpt-oss-120b` via Groq for reproducible output.
-- **Fact-checked** — every numeric figure in an explanation is verified against both the case data and the domain facts; verification is numeric (not substring), so a short figure like "2" can never falsely match an unrelated amount like 47,500.00. Results are logged per case.
+- **Fact-checked** — every numeric figure in an explanation is verified against both the case data and the domain facts, including amounts written without a currency marker (e.g. "residual of 2196.99"); verification is numeric (not substring), so a short figure like "2" can never falsely match an unrelated amount like 47,500.00. Results are logged per case.
+- **Fails closed** — an explanation that carries decimal figures but yields none for cross-checking is recorded as unverified (`amounts_present_but_none_extracted`), never as a silent pass.
 - **Fail-safe** — empty, malformed, or overlong LLM responses are rejected and recorded as failure states; a failed explanation never changes the deterministic reconciliation result.
 
 ### Real bugs found — and fixed
 
-Because every pipeline output was independently audited against ground truth, four real defects were caught and corrected rather than papered over:
+Because every pipeline output was audited against ground truth during review, four real defects were caught and corrected rather than papered over:
 
 1. **Duplicate-order suppression** — the matcher skipped a genuinely ambiguous second order; now surfaced as a review case.
 2. **12 unrecorded refunds** — refund rows absent from settlements were silently dropped; now detected and classified.
@@ -160,14 +165,15 @@ The full narrative — what was wrong, how it was caught, how it was fixed, how 
 
 Every AI-generated explanation is automatically fact-checked against source data before being shown to a user; verification results are logged per case. The hallucination safeguard uses two-source verification: each numeric figure the LLM states is cross-checked against both the case-specific data (amounts, IDs, dates from the raw CSVs) and a curated domain facts block (fee percentages, GST rates, FX conversion rate).
 
-- All **28/28 explanations pass verification** (`verified: true`).
+- All **28/28 explanations pass verification** (`verified: true`) — every stated figure in each, including marker-less amounts, cross-checks against its source data.
 - The verifier compares figures numerically with a small tolerance (`math.isclose`, abs_tol 0.01) — never by substring, so "2" cannot falsely match 47,500.00, and 83.00 matches 83. Regression tests lock this in.
+- The check **fails closed**: bare amounts are extracted and verified like any other figure, and an explanation whose decimal figures cannot be extracted is recorded as unverified rather than vacantly passing.
 - During development this mechanism caught Unicode normalization issues (narrow no-break spaces causing false-positive mismatches) and percentage-to-decimal equivalences ("100%" vs "1.0") that were fixed in the verifier.
 - One relational-claim error — where the LLM correctly quoted numbers but misrepresented how they related to each other — slipped past the automated check and was caught by manual review, confirming that fact-verification is a necessary but not sufficient safeguard.
 
 ## Testing
 
-**57 automated regression tests** in `tests/test_reconciliation.py`, run with the standard library only (no pytest, no external framework, no live API calls):
+**64 automated regression tests** in `tests/test_reconciliation.py`, run with the standard library only (no pytest, no external framework, no live API calls):
 
 ```bash
 python -m unittest tests.test_reconciliation -v
@@ -182,7 +188,9 @@ python -m unittest tests.test_reconciliation -v
 | Status mapping, ghost transactions, metrics-scorer arithmetic | `TestStatusMapping`, `TestGhostTransaction`, `TestMetricsScorer` |
 | QA-agent parsing + hallucination-check numerics (no API) | `TestQAAgentParsing` |
 | Explanation validation (empty / malformed / overlong rejection) | `TestExplanationValidation` |
+| Figure verification, fail-closed on unextractable amounts | `TestFigureVerificationFailClosed` |
 | Full-dataset integration (500 orders, 91 settlements) | `TestEndToEndPipeline` |
+| Output reproducibility (fresh matcher == committed match_log hash) | `TestMatcherOutputReproducibility` |
 
 The full-dataset integration class runs the real matcher against the frozen CSVs and verifies record counts, field completeness, determinism, and a well-formed reconciliation report — no LLM involved. See `TESTING.md` for the full breakdown.
 
@@ -234,8 +242,7 @@ The full-dataset integration class runs the real matcher against the frozen CSVs
 │       └── explanations.json  # 28 narrated exception cases (verified)
 │
 ├── tests/
-│   ├── __init__.py
-│   └── test_reconciliation.py # 57 regression tests
+│   ├── __init__.py│       └── test_reconciliation.py # 64 regression tests
 │
 └── DATA_ARCHITECTURE_REPORT.md  # Data-flow + production-database analysis
 ```

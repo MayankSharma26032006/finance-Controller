@@ -337,6 +337,10 @@ def _verify_figures(answer_text, case_data_str):
                 pass
         if not found:
             mismatches.append(fig)
+    if not mismatches and not stated and re.search(r"\d+\.\d", answer_text):
+        # Fail closed: decimal figures appear in the answer but none could
+        # be extracted for cross-checking -- a pass would be vacuous.
+        return {"verified": False, "mismatches": ["amounts_present_but_none_extracted"]}
     return {"verified": len(mismatches) == 0, "mismatches": mismatches}
 
 

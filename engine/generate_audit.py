@@ -2,7 +2,7 @@
 """Phase 6: Generate audit_trail.md from live data."""
 import json, hashlib, sys, csv
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_RAW = ROOT / "data" / "raw"
@@ -50,6 +50,7 @@ rr_list = rr_data.get("orders", []) + rr_data.get("settlements", [])
 rr = {e["case_id"]: e for e in rr_list}
 gt = lj(DATA_RAW / "ground_truth.json")
 gts = lj(DATA_RAW / "ground_truth_settlements.json")
+mr = lj(ENGINE_OUTPUT / "metrics_report.json")
 
 O = []
 def a(s=""): O.append(s)
@@ -58,7 +59,7 @@ a("# Audit Trail")
 a("")
 a("Full traceability chain for the Razorpay AI Buildathon reconciliation system.")
 a("")
-a("Generated: %s" % datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"))
+a("Generated: %s" % datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
 a("")
 a("---")
 a("")
@@ -231,9 +232,27 @@ a("| Reconciled (with note) | %d |" % sc.get("Reconciled (with note)", 0))
 a("| Reconciled (no credit due) | %d |" % sc.get("Reconciled (no credit due)", 0))
 a("| Needs Human Review | %d |" % sc.get("Needs Human Review", 0))
 a("| Unresolved | %d |" % sc.get("Unresolved", 0))
-a("| Overall match rate | 96.1%% |")
-a("| Phase 5 accuracy | 100%% (591/591) |")
-a("| Mismatches | 0 |")
+
+# Derived live from the reconciliation report and Phase 5 metrics -- never hardcoded,
+# so a regenerated dataset can never leave stale headline numbers in the trail.
+ov = rr_data.get("summary", {}).get("overall", {})
+tot_cases = ov.get("total_cases", len(rr))
+rec_total = ov.get("reconciled_total", 0)
+overall_rate = 100.0 * rec_total / tot_cases if tot_cases else 0.0
+mr_overall = mr.get("overall", {})
+mr_comp = mr.get("completeness", {})
+scored_total = mr_comp.get("total_scored", 0)
+acc = mr_overall.get("accuracy", None)
+if acc is None:
+    acc_str = "N/A"
+else:
+    correct = int(round(acc * scored_total)) if scored_total else 0
+    acc_str = "%.1f%% (%d/%d)" % (acc * 100, correct, scored_total or tot_cases)
+mismatch_count = len(mr.get("mismatches", []))
+
+a("| Overall match rate | %.1f%% |" % overall_rate)
+a("| Phase 5 accuracy | %s |" % acc_str)
+a("| Mismatches | %d |" % mismatch_count)
 a("")
 a("| Exception Code | Count |")
 a("|---------------|-------|")

@@ -99,6 +99,56 @@ def _ledger_row(**overrides):
     return base
 
 
+def _run_frozen_matcher():
+    """Run the full deterministic matcher against frozen data/raw/ in memory.
+
+    Mirrors engine/matcher_exact.py (layers + ghost detection + consistency
+    soft flags) but never writes to disk, so tests can compare its output
+    against the committed match_log.json without mutating the repo.
+    """
+    from collections import defaultdict
+    from preprocessor import load_csv
+
+    ledger = load_csv("order_ledger.csv")
+    settlement = load_csv("settlement_report.csv")
+    bank = load_csv("bank_statement.csv")
+
+    ledger_by_id = {}
+    for row in ledger:
+        oid = row["order_id"]
+        if oid not in ledger_by_id:
+            ledger_by_id[oid] = []
+        ledger_by_id[oid].append(row)
+
+    settlement_by_id = defaultdict(list)
+    for row in settlement:
+        settlement_by_id[row["order_id"]].append(row)
+
+    settlement_by_sid = defaultdict(list)
+    for row in settlement:
+        settlement_by_sid[row["settlement_id"]].append(row)
+
+    bank_credits_by_utr = defaultdict(list)
+    for row in bank:
+        if row["txn_type"] == "credit":
+            bank_credits_by_utr[row["utr"]].append(row)
+
+    ledger_ids = set(ledger_by_id.keys())
+
+    batch_results = match_batches(settlement_by_sid, bank_credits_by_utr, ledger_ids)
+    order_results = match_orders(ledger_by_id, settlement_by_id)
+    detect_ghost_transactions(batch_results)
+
+    order_data = {
+        "ledger_by_id": ledger_by_id,
+        "settlement_by_id": settlement_by_id,
+        "bank_credits_by_utr": bank_credits_by_utr,
+    }
+    check_consistency(order_results, order_data)
+
+    return order_results, batch_results
+
+
 # ═══════════════════════════════════════════════════════════════════════
 #  TEST 1: BATCH MATCHING — SUCCESS
 # ═══════════════════════════════════════════════════════════════════════
@@ -566,6 +616,56 @@ class TestExplanationValidation(unittest.TestCase):
         self.assertIsInstance(r["sentence_count"], int)
 
 
+class TestFigureVerificationFailClosed(unittest.TestCase):
+    """
+    Fail-closed figure verification (explainer).
+
+    Bare amounts without a currency marker (e.g. "residual of 2196.99") must be
+    extracted and checked like any other figure, and an explanation carrying
+    decimal figures that cannot be extracted must NOT pass verification.
+    """
+
+    def test_bare_amounts_are_extracted(self):
+        from explainer import extract_figures
+        figs = extract_figures("The residual amount was 2196.99 and the partial refund 651.85.")
+        self.assertIn("2196.99", figs)
+        self.assertIn("651.85", figs)
+
+    def test_bare_amount_in_source_verifies(self):
+        from explainer import run_hallucination_check
+        r = run_hallucination_check(
+            "The residual amount was 2196.99.",
+            {"order_residual": 2196.99}, [], [])
+        self.assertTrue(r["verified"])
+        self.assertIn("2196.99", r["stated_figures"])
+        self.assertEqual(r["mismatches"], [])
+
+    def test_bare_amount_not_in_source_flags(self):
+        from explainer import run_hallucination_check
+        r = run_hallucination_check(
+            "The residual amount was 9999.99.",
+            {"order_residual": 2196.99}, [], [])
+        self.assertFalse(r["verified"])
+        self.assertIn("9999.99", r["mismatches"])
+
+    def test_fail_closed_when_amounts_unextractable(self):
+        """Decimal figures in an unrecognized format must fail, not vacuously pass."""
+        from explainer import run_hallucination_check
+        r = run_hallucination_check(
+            "A refund of 1,23,456.78 was recorded.", {}, [], [])
+        self.assertFalse(r["verified"])
+        self.assertEqual(r["stated_figures"], [])
+        self.assertEqual(r["reason"], "amounts_present_but_none_extracted")
+
+    def test_no_figures_prose_passes_with_reason(self):
+        """Pure-prose explanations have nothing to check; record why they passed."""
+        from explainer import run_hallucination_check
+        r = run_hallucination_check("This case was reconciled with no issues.", {}, [], [])
+        self.assertTrue(r["verified"])
+        self.assertEqual(r["stated_figures"], [])
+        self.assertEqual(r["reason"], "no_figures_stated")
+
+
 class TestEndToEndPipeline(unittest.TestCase):
     """
     Integration test: run the full deterministic matcher on frozen
@@ -576,54 +676,7 @@ class TestEndToEndPipeline(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Run the matcher once; reuse results across all test methods."""
-        # Import the matcher orchestrator's core logic by re-running it
-        # We import the components directly to avoid side effects
-        from preprocessor import load_csv
-        from collections import defaultdict
-
-        ledger = load_csv("order_ledger.csv")
-        settlement = load_csv("settlement_report.csv")
-        bank = load_csv("bank_statement.csv")
-
-        # Build indices (mirrors matcher_exact.py)
-        ledger_by_id = {}
-        for row in ledger:
-            oid = row["order_id"]
-            if oid not in ledger_by_id:
-                ledger_by_id[oid] = []
-            ledger_by_id[oid].append(row)
-
-        settlement_by_id = defaultdict(list)
-        for row in settlement:
-            settlement_by_id[row["order_id"]].append(row)
-
-        settlement_by_sid = defaultdict(list)
-        for row in settlement:
-            settlement_by_sid[row["settlement_id"]].append(row)
-
-        bank_credits_by_utr = defaultdict(list)
-        for row in bank:
-            if row["txn_type"] == "credit":
-                bank_credits_by_utr[row["utr"]].append(row)
-
-        ledger_ids = set(ledger_by_id.keys())
-
-        # Run Layer 1
-        batch_results = match_batches(settlement_by_sid, bank_credits_by_utr, ledger_ids)
-
-        # Run Layer 2
-        order_results = match_orders(ledger_by_id, settlement_by_id)
-
-        # Ghost detection
-        detect_ghost_transactions(batch_results)
-
-        cls.ledger = ledger
-        cls.settlement = settlement
-        cls.bank = bank
-        cls.order_results = order_results
-        cls.batch_results = batch_results
-        cls.ledger_by_id = ledger_by_id
-        cls.settlement_by_id = settlement_by_id
+        cls.order_results, cls.batch_results = _run_frozen_matcher()
 
     def test_order_count(self):
         self.assertEqual(len(self.order_results), 500,
@@ -714,6 +767,48 @@ class TestEndToEndPipeline(unittest.TestCase):
         self.assertIn("summary", rr)
         self.assertEqual(len(rr["orders"]), 500)
         self.assertEqual(len(rr["settlements"]), 91)
+
+
+class TestMatcherOutputReproducibility(unittest.TestCase):
+    """
+    Reproducibility pin: a fresh deterministic matcher run over the frozen
+    CSVs must hash-identically match the committed engine/output/match_log.json.
+    Any future engine change that alters results fails here instead of
+    silently breaking the audit trail's reproducibility claim.
+    """
+
+    def test_match_log_reproducible_from_frozen_data(self):
+        order_results, batch_results = _run_frozen_matcher()
+
+        # Serialize exactly as exceptions.compile_match_log does (sorted order,
+        # indent=2, ensure_ascii=False, no trailing newline) but in memory.
+        match_log = [order_results[oid] for oid in sorted(order_results)]
+        match_log += [batch_results[sid] for sid in sorted(batch_results)]
+        payload = json.dumps(match_log, indent=2, ensure_ascii=False).encode("utf-8")
+        computed = hashlib.sha256(payload.replace(b"\r\n", b"\n")).hexdigest()
+
+        committed_path = PROJECT_ROOT / "engine" / "output" / "match_log.json"
+        committed = hashlib.sha256(
+            committed_path.read_bytes().replace(b"\r\n", b"\n")
+        ).hexdigest()
+
+        self.assertEqual(
+            computed,
+            committed,
+            "Fresh matcher output no longer matches the committed match_log.json "
+            "-- pipeline results have drifted. Reproduce the outputs and commit "
+            "them (or fix the engine change that broke determinism).",
+        )
+
+    def test_committed_match_log_has_expected_entry_count(self):
+        """Sanity guard: the committed file still holds 500 orders + 91 batches."""
+        committed_path = PROJECT_ROOT / "engine" / "output" / "match_log.json"
+        with open(committed_path, encoding="utf-8") as f:
+            entries = json.load(f)
+        self.assertEqual(
+            len([e for e in entries if e.get("result_type") == "order"]), 500)
+        self.assertEqual(
+            len([e for e in entries if e.get("result_type") == "settlement"]), 91)
 
 
 # ═══════════════════════════════════════════════════════════════════════

@@ -585,10 +585,13 @@ st.caption(
     f"False-negative rate {_mr_fnr:.1%}"
 )
 st.caption(
-    "Accuracy is a benchmark of classification correctness measured "
-    "against this project's synthetic ground truth - a labeled reference "
-    "set built from known rules and independently audited. It is not a "
-    "claim about real-world financial accuracy."
+    "Accuracy is a benchmark of classification correctness against this "
+    "project's synthetic ground truth - labels generated from the same "
+    "rule engine as the data, then corrected once by manual audit. Because "
+    "generator and matcher share assumptions, 100% demonstrates internal "
+    "consistency with that reference set (plus an external audit pass); it "
+    "is not independent ground truth and not a claim about real-world "
+    "financial accuracy."
 )
 
 # Match-rate gap explanation (from metrics_report.json)

@@ -2,7 +2,7 @@
 
 Full traceability chain for the Razorpay AI Buildathon reconciliation system.
 
-Generated: 2026-09-04T10:56:42Z
+Generated: 2026-09-04T11:22:23Z
 
 ---
 
@@ -148,8 +148,8 @@ The code never compares them. No bug.
 | Reconciled (no credit due) | 1 |
 | Needs Human Review | 14 |
 | Unresolved | 9 |
-| Overall match rate | 96.1%% |
-| Phase 5 accuracy | 100%% (591/591) |
+| Overall match rate | 96.1% |
+| Phase 5 accuracy | 100.0% (591/591) |
 | Mismatches | 0 |
 
 | Exception Code | Count |
